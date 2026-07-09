@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Mobil — Drive Studio</title>
+  <meta name="description" content="Spesifikasi lengkap, performa, detail interior dan eksterior, serta keunggulan dan kekurangan mobil pilihan Anda." />
+
+  <script>
+    (function () {
+      try {
+        var saved = JSON.parse(localStorage.getItem('ds:theme'));
+        if (saved === 'light') document.documentElement.dataset.theme = 'light';
+      } catch (e) { /* localStorage tidak tersedia */ }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/main.css?v=21" />
+  <link rel="stylesheet" href="css/components.css?v=21" />
+  <link rel="stylesheet" href="css/animations.css?v=21" />
+  <link rel="stylesheet" href="css/pages.css?v=21" />
+  <link rel="stylesheet" href="css/responsive.css?v=21" />
+</head>
+<body data-page="detail">
+
+  <div class="loading-screen" id="loadingScreen">
+    <p class="loading-logo">DRIVE<span class="text-primary">STUDIO</span></p>
+    <div class="loading-bar">
+      <div class="loading-bar-fill" id="loadingBarFill"></div>
+    </div>
+  </div>
+
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-brand">Drive<span>Studio</span></a>
+
+      <nav class="navbar-links" aria-label="Navigasi Utama">
+        <a href="index.html">Beranda</a>
+        <a href="cars.html" class="is-active">Eksplorasi</a>
+        <a href="compare.html">Galeri</a>
+        <a href="configurator.html">Konfigurator</a>
+        <a href="about.html">Tentang Kami</a>
+      </nav>
+
+      <div class="navbar-actions">
+        <a href="cars.html?view=favorites" class="btn-icon icon-btn-badged" id="favoritesLink" aria-label="Mobil Favorit">
+          <i class="bi bi-heart"></i>
+          <span class="icon-btn-badge" id="favoritesCount" hidden>0</span>
+        </a>
+        <button type="button" class="btn-icon" id="themeToggle" aria-label="Ubah Tema Terang/Gelap">
+          <i class="bi bi-moon-stars" id="themeIcon"></i>
+        </button>
+        <button type="button" class="btn-icon navbar-toggle" id="navbarToggle" aria-label="Buka Menu" aria-expanded="false" aria-controls="navbarDrawer">
+          <i class="bi bi-list" id="navbarToggleIcon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="navbar-drawer" id="navbarDrawer">
+    <a href="index.html">Beranda</a>
+    <a href="cars.html" class="is-active">Eksplorasi</a>
+    <a href="compare.html">Galeri</a>
+    <a href="configurator.html">Konfigurator</a>
+    <a href="about.html">Tentang Kami</a>
+  </div>
+
+  <main id="main-content">
+    <section class="section pt-0" id="tech">
+      <div class="container">
+        <nav class="breadcrumb reveal" aria-label="Breadcrumb">
+          <a href="index.html">Beranda</a>
+          <span aria-hidden="true">/</span>
+          <a href="cars.html">Eksplorasi</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Innova Zenix Hybrid</span>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-2" style="align-items: start;">
+
+          <!-- Gallery -->
+          <div class="slider reveal">
+            <div class="slider-track">
+              <div class="slider-slide car-card-media is-nocturne" style="height: 380px;">
+                <i class="bi bi-car-front-fill"></i>
+              </div>
+              <div class="slider-slide car-card-media is-nocturne" style="height: 380px;">
+                <i class="bi bi-car-front"></i>
+              </div>
+              <div class="slider-slide car-card-media is-nocturne" style="height: 380px;">
+                <i class="bi bi-badge-hd-fill"></i>
+              </div>
+              <div class="slider-slide car-card-media is-nocturne" style="height: 380px;">
+                <i class="bi bi-speedometer2"></i>
+              </div>
+            </div>
+            <div class="slider-controls">
+              <button type="button" class="btn-icon" data-slider-prev aria-label="Gambar sebelumnya">
+                <i class="bi bi-chevron-left"></i>
+              </button>
+              <button type="button" class="btn-icon" data-slider-next aria-label="Gambar berikutnya">
+                <i class="bi bi-chevron-right"></i>
+              </button>
+            </div>
+            <div class="slider-dots">
+              <button type="button" class="slider-dot is-active" aria-label="Tampilkan gambar 1"></button>
+              <button type="button" class="slider-dot" aria-label="Tampilkan gambar 2"></button>
+              <button type="button" class="slider-dot" aria-label="Tampilkan gambar 3"></button>
+              <button type="button" class="slider-dot" aria-label="Tampilkan gambar 4"></button>
+            </div>
+          </div>
+
+          <!-- Title block -->
+          <div class="reveal">
+            <div class="flex justify-between items-center">
+              <span class="badge badge-primary">Toyota</span>
+              <button type="button" class="favorite-btn" data-car-id="toyota-innova-zenix" aria-label="Tambah ke favorit" aria-pressed="false">
+                <i class="bi bi-heart"></i>
+              </button>
+            </div>
+            <h1 class="mt-3 fs-h2">Innova Zenix Hybrid</h1>
+            <p class="text-mid mt-2">MPV · Hybrid · e-CVT</p>
+            <p class="text-mid mt-3 max-w-sm">
+              Kijang Innova Zenix Hybrid menghadirkan revolusi berkendara keluarga di Indonesia dengan platform TNGA, mesin hybrid yang sangat irit, dan kenyamanan suspensi kelas atas.
+            </p>
+            <div class="flex flex-wrap gap-3 mt-5">
+              <a href="configurator.html?car=toyota-innova-zenix" class="btn btn-primary">
+                <i class="bi bi-sliders"></i> Konfigurasi Mobil Ini
+              </a>
+              <a href="compare.html" class="btn btn-ghost">
+                <i class="bi bi-image"></i> Lihat Portofolio
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="mt-7" data-tabs>
+          <div class="tabs-nav" role="tablist" aria-label="Informasi mobil">
+            <button type="button" role="tab" id="tab-specs" aria-controls="panel-specs" aria-selected="true" class="is-active">Spesifikasi</button>
+            <button type="button" role="tab" id="tab-performance" aria-controls="panel-performance" aria-selected="false">Performa</button>
+            <button type="button" role="tab" id="tab-interior" aria-controls="panel-interior" aria-selected="false">Interior</button>
+            <button type="button" role="tab" id="tab-exterior" aria-controls="panel-exterior" aria-selected="false">Eksterior</button>
+            <button type="button" role="tab" id="tab-reviews" aria-controls="panel-reviews" aria-selected="false">Kelebihan &amp; Kekurangan</button>
+          </div>
+
+          <div class="tab-panel is-active" id="panel-specs" role="tabpanel" aria-labelledby="tab-specs">
+            <dl class="spec-table">
+              <div class="spec-row"><dt>Kategori</dt><dd>MPV</dd></div>
+              <div class="spec-row"><dt>Jenis Mesin</dt><dd>2.0L M20A-FXS Dual VVT-i Hybrid</dd></div>
+              <div class="spec-row"><dt>Tenaga</dt><dd>186 PS</dd></div>
+              <div class="spec-row"><dt>Torsi</dt><dd>187 Nm</dd></div>
+              <div class="spec-row"><dt>Transmisi</dt><dd>e-CVT</dd></div>
+              <div class="spec-row"><dt>Kapasitas Penumpang</dt><dd>7 Penumpang</dd></div>
+              <div class="spec-row"><dt>Konsumsi BBM</dt><dd>21.0 km/liter</dd></div>
+            </dl>
+          </div>
+
+          <div class="tab-panel" id="panel-performance" role="tabpanel" aria-labelledby="tab-performance" hidden>
+            <div class="stat-bar">
+              <div class="flex justify-between mb-2"><span>Tenaga</span><span class="numeric">186 PS</span></div>
+              <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 75%;"></div></div>
+            </div>
+            <div class="stat-bar">
+              <div class="flex justify-between mb-2"><span>Torsi</span><span class="numeric">187 Nm</span></div>
+              <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 70%;"></div></div>
+            </div>
+            <div class="stat-bar">
+              <div class="flex justify-between mb-2"><span>Kecepatan Maksimum</span><span class="numeric">175 km/jam</span></div>
+              <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 60%;"></div></div>
+            </div>
+            <div class="stat-bar">
+              <div class="flex justify-between mb-2"><span>Efisiensi Energi / BBM</span><span class="numeric">21.0 km/liter</span></div>
+              <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 92%;"></div></div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="panel-interior" role="tabpanel" aria-labelledby="tab-interior" hidden>
+            <p class="text-mid max-w-md">
+              Kabin luas dengan captain seat berlapis kulit mewah, panoramic sunroof, dan Rear Seat Entertainment ganda untuk hiburan keluarga sepanjang perjalanan.
+            </p>
+            <ul class="mt-4 flex flex-col gap-2 text-mid" style="padding-left: 1.25rem; list-style: disc;">
+              <li>Captain Seat baris kedua dengan Ottoman leg rest</li>
+              <li>Panoramic Glass Roof yang luas dan modern</li>
+              <li>Dual Screen Rear Seat Entertainment 10 inci</li>
+              <li>Dashboard dengan aksen soft-pad premium</li>
+            </ul>
+          </div>
+
+          <div class="tab-panel" id="panel-exterior" role="tabpanel" aria-labelledby="tab-exterior" hidden>
+            <p class="text-mid max-w-md">
+              Desain crossover tangguh dengan gril depan trapezoidal yang berani, lampu depan LED tajam, serta postur bodi gagah yang aerodinamis.
+            </p>
+            <ul class="mt-4 flex flex-col gap-2 text-mid" style="padding-left: 1.25rem; list-style: disc;">
+              <li>Velg Alloy 18-inci dengan desain dual-tone</li>
+              <li>Lampu Depan LED dengan DRL dan Foglamp LED</li>
+              <li>Pintu bagasi elektrik dengan sensor suara / kick sensor</li>
+              <li>Platform TNGA-C untuk rigiditas bodi yang stabil</li>
+            </ul>
+          </div>
+
+          <div class="tab-panel" id="panel-reviews" role="tabpanel" aria-labelledby="tab-reviews" hidden>
+            <div class="grid grid-2 gap-4">
+              <div>
+                <h4 class="flex items-center gap-2 mb-3" style="color: #4caf50;">
+                  <i class="bi bi-plus-circle-fill"></i> Keunggulan
+                </h4>
+                <ul class="pros-list flex flex-col gap-2 text-mid lh-normal" style="padding-left: 1.25rem; list-style: disc;">
+                  <li>Konsumsi bahan bakar yang luar biasa irit (mencapai 21 km/liter).</li>
+                  <li>Kenyamanan suspensi TNGA yang sangat stabil dan empuk.</li>
+                  <li>Fitur keselamatan canggih Toyota Safety Sense (TSS) 3.0.</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="flex items-center gap-2 mb-3 text-primary">
+                  <i class="bi bi-dash-circle-fill"></i> Kekurangan
+                </h4>
+                <ul class="cons-list flex flex-col gap-2 text-mid lh-normal" style="padding-left: 1.25rem; list-style: disc;">
+                  <li>Dimensi bodi cukup besar sehingga menuntut kelihaian di jalan sempit.</li>
+                  <li>Kursi baris ketiga tidak memiliki pelipatan rata lantai sempurna.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related cars -->
+    <section class="section pt-0">
+      <div class="container">
+        <p class="eyebrow reveal">Mungkin Anda Suka</p>
+        <h2 class="mt-2 reveal">Rekomendasi mobil lainnya.</h2>
+
+        <div class="grid grid-3 mt-6 reveal-stagger">
+          <article class="card car-card reveal">
+            <div class="car-card-media is-solace">
+              <img src="assets/images/honda_brio.png" alt="Honda Brio" class="car-card-image" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <div class="flex justify-between items-center">
+                <span class="badge">Honda</span>
+                <button type="button" class="favorite-btn" data-car-id="honda-brio" aria-label="Tambah Honda Brio ke favorit" aria-pressed="false">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <h3 class="mt-3">Honda Brio</h3>
+              <p class="text-mid">Hatchback · Bensin · 90 PS</p>
+              <div class="flex justify-between items-center mt-4">
+                <div class="flex gap-2">
+                  <a href="detail.html?car=honda-brio" class="btn btn-ghost btn-sm">Detail</a>
+                  <a href="configurator.html?car=honda-brio" class="btn btn-primary btn-sm">Konfigurasi</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card car-card reveal">
+            <div class="car-card-media is-corsa">
+              <img src="assets/images/mitsubishi_pajero_sport.png" alt="Mitsubishi Pajero Sport" class="car-card-image" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <div class="flex justify-between items-center">
+                <span class="badge badge-accent">Mitsubishi</span>
+                <button type="button" class="favorite-btn" data-car-id="mitsubishi-pajero-sport" aria-label="Tambah Mitsubishi Pajero Sport ke favorit" aria-pressed="false">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <h3 class="mt-3">Pajero Sport</h3>
+              <p class="text-mid">SUV · Diesel · 181 PS</p>
+              <div class="flex justify-between items-center mt-4">
+                <div class="flex gap-2">
+                  <a href="detail.html?car=mitsubishi-pajero-sport" class="btn btn-ghost btn-sm">Detail</a>
+                  <a href="configurator.html?car=mitsubishi-pajero-sport" class="btn btn-primary btn-sm">Konfigurasi</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card car-card reveal">
+            <div class="car-card-media is-meridian">
+              <img src="assets/images/byd_atto_3.png" alt="BYD Atto 3" class="car-card-image" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <div class="flex justify-between items-center">
+                <span class="badge">BYD</span>
+                <button type="button" class="favorite-btn" data-car-id="byd-atto-3" aria-label="Tambah BYD Atto 3 ke favorit" aria-pressed="false">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <h3 class="mt-3">BYD Atto 3</h3>
+              <p class="text-mid">EV · Listrik · 204 PS</p>
+              <div class="flex justify-between items-center mt-4">
+                <div class="flex gap-2">
+                  <a href="detail.html?car=byd-atto-3" class="btn btn-ghost btn-sm">Detail</a>
+                  <a href="configurator.html?car=byd-atto-3" class="btn btn-primary btn-sm">Konfigurasi</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-partners">
+        <p class="eyebrow">Dipercaya Oleh</p>
+        <div class="partner-logos mt-4">
+          <div class="partner-logo" aria-label="Toyota"><i class="bi bi-car-front-fill"></i><span>Toyota</span></div>
+          <div class="partner-logo" aria-label="Honda"><i class="bi bi-car-front"></i><span>Honda</span></div>
+          <div class="partner-logo" aria-label="Mitsubishi"><i class="bi bi-truck"></i><span>Mitsubishi</span></div>
+          <div class="partner-logo" aria-label="BYD"><i class="bi bi-ev-front-fill"></i><span>BYD</span></div>
+          <div class="partner-logo" aria-label="AutoParts Pro"><i class="bi bi-gear-fill"></i><span>AutoParts Pro</span></div>
+          <div class="partner-logo" aria-label="WrapStudio"><i class="bi bi-palette-fill"></i><span>WrapStudio</span></div>
+        </div>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="navbar-brand">Drive<span>Studio</span></a>
+          <p class="mt-3">Desain mobil impian Anda — pengalaman konfigurasi 3D interaktif premium untuk pencinta otomotif Indonesia.</p>
+          <div class="social-links mt-4">
+            <a href="javascript:void(0)" class="btn-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="javascript:void(0)" class="btn-icon" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+            <a href="javascript:void(0)" class="btn-icon" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Eksplorasi</h4>
+          <nav class="footer-links">
+            <a href="cars.html">Eksplorasi Mobil</a>
+            <a href="compare.html">Galeri Proyek</a>
+            <a href="configurator.html">Konfigurator 3D</a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Perusahaan</h4>
+          <nav class="footer-links">
+            <a href="about.html">Tentang Kami</a>
+            <a href="index.html#brands">Merek</a>
+            <a href="index.html#news">Berita</a>
+            <a href="about.html#contact">Booking Jasa</a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Proyek</h4>
+          <nav class="footer-links">
+            <a href="about.html#tech">Teknologi</a>
+            <a href="about.html#roadmap">Alur Booking</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Drive Studio. Proyek Akhir Pemrograman Web.</p>
+        <p>Dibuat dengan HTML5, CSS3, Vanilla JavaScript &amp; Three.js</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initNavbar } from './js/nav.js';
+    import { initTheme } from './js/theme.js';
+    import { initScrollReveal, initCounters, initLoadingScreen } from './js/utils.js';
+    import { initTabs, initSliders } from './js/ui.js';
+    import { initFavoriteButtons } from './js/favorites.js';
+
+    /* ── Car detailed data mapping ────────────────────────────── */
+    const DETAILS_DATA = {
+      'toyota-innova-zenix': {
+        name: 'Innova Zenix Hybrid',
+        brand: 'Toyota',
+        brandClass: 'badge-primary',
+        mediaClass: 'is-nocturne',
+        price: 'Rp471.600.000',
+        subtitle: 'MPV · Hybrid · e-CVT',
+        desc: 'Kijang Innova Zenix Hybrid menghadirkan revolusi berkendara keluarga di Indonesia dengan platform TNGA, mesin hybrid yang sangat irit, dan kenyamanan suspensi kelas atas.',
+        specs: [
+          'Hybrid', '2.0L M20A-FXS Dual VVT-i Hybrid', '186 PS', '187 Nm', 'e-CVT', '7 Penumpang', '21.0 km/liter'
+        ],
+        performance: [
+          { val: '186 PS', pct: '75%' },
+          { val: '187 Nm', pct: '70%' },
+          { val: '175 km/jam', pct: '60%' },
+          { val: '21.0 km/liter', pct: '92%' }
+        ],
+        interior: {
+          desc: 'Kabin luas dengan captain seat berlapis kulit mewah, panoramic sunroof, dan Rear Seat Entertainment ganda untuk hiburan keluarga sepanjang perjalanan.',
+          items: [
+            'Captain Seat baris kedua dengan Ottoman leg rest',
+            'Panoramic Glass Roof yang luas dan modern',
+            'Dual Screen Rear Seat Entertainment 10 inci',
+            'Dashboard dengan aksen soft-pad premium'
+          ]
+        },
+        exterior: {
+          desc: 'Desain crossover tangguh dengan gril depan trapezoidal yang berani, lampu depan LED tajam, serta postur bodi gagah yang aerodinamis.',
+          items: [
+            'Velg Alloy 18-inci dengan desain dual-tone',
+            'Lampu Depan LED dengan DRL dan Foglamp LED',
+            'Pintu bagasi elektrik dengan sensor suara / kick sensor',
+            'Platform TNGA-C untuk rigiditas bodi yang stabil'
+          ]
+        },
+        pros: [
+          'Konsumsi bahan bakar yang luar biasa irit (mencapai 21 km/liter).',
+          'Kenyamanan suspensi TNGA yang sangat stabil dan empuk.',
+          'Fitur keselamatan canggih Toyota Safety Sense (TSS) 3.0.'
+        ],
+        cons: [
+          'Dimensi bodi cukup besar sehingga menuntut kelihaian di jalan sempit.',
+          'Kursi baris ketiga tidak memiliki pelipatan rata lantai sempurna.'
+        ]
+      },
+      'honda-brio': {
+        name: 'Honda Brio',
+        brand: 'Honda',
+        brandClass: '',
+        mediaClass: 'is-solace',
+        price: 'Rp191.900.000',
+        subtitle: 'Hatchback · Bensin · CVT',
+        desc: 'Honda Brio adalah hatchback perkotaan terlaris di Indonesia, menawarkan kelincahan berkendara, efisiensi bahan bakar tinggi, dan desain sporty yang dinamis.',
+        specs: [
+          'Hatchback', '1.2L 4-Silinder i-VTEC', '90 PS', '110 Nm', 'CVT', '5 Penumpang', '16.5 km/liter'
+        ],
+        performance: [
+          { val: '90 PS', pct: '45%' },
+          { val: '110 Nm', pct: '40%' },
+          { val: '160 km/jam', pct: '50%' },
+          { val: '16.5 km/liter', pct: '75%' }
+        ],
+        interior: {
+          desc: 'Kabin berjiwa muda yang ergonomis dengan ruang kepala dan kaki yang lapang untuk kelasnya, dilengkapi head unit layar sentuh interaktif.',
+          items: [
+            'Head Unit Layar Sentuh 7-inci dengan konektivitas smartphone',
+            'Desain jok sport dengan aksen jahitan oranye yang dinamis',
+            'Setir kemudi berlapis material berkualitas dengan audio switch control',
+            'Kabin senyap dengan AC digital modern'
+          ]
+        },
+        exterior: {
+          desc: 'Desain bodi dinamis dengan spoiler atas yang sporty, velg alloy berdesain menarik, dan gril depan beraksen hitam gloss.',
+          items: [
+            'Lampu Depan LED dengan LED Daytime Running Lights (DRL)',
+            'Velg Alloy 14-inci dengan sentuhan kelir gelap yang sporty',
+            'Bumper depan agresif dengan gril bermotif sarang lebah',
+            'Tailgate spoiler sporty dengan lampu rem LED terintegrasi'
+          ]
+        },
+        pros: [
+          'Dimensi bodi kompak yang sangat mudah bermanuver di perkotaan.',
+          'Konsumsi bahan bakar perkotaan sangat efisien.',
+          'Desain eksterior sporty dengan nilai jual kembali yang stabil.'
+        ],
+        cons: [
+          'Kekedapan suara kabin (NVH) kurang maksimal pada kecepatan tinggi.',
+          'Ruang bagasi belakang relatif terbatas.'
+        ]
+      },
+      'mitsubishi-pajero-sport': {
+        name: 'Pajero Sport',
+        brand: 'Mitsubishi',
+        brandClass: 'badge-accent',
+        mediaClass: 'is-corsa',
+        price: 'Rp589.600.000',
+        subtitle: 'SUV · Diesel · 8-Speed AT',
+        desc: 'Mitsubishi Pajero Sport adalah SUV tangguh legendaris di Indonesia, memadukan ketangguhan sasis ladder-frame, mesin diesel MIVEC bertenaga, dan interior mewah.',
+        specs: [
+          'SUV', '2.4L MIVEC Turbo Diesel (4N15)', '181 PS', '430 Nm', '8-Speed Otomatis', '7 Penumpang', '12.8 km/liter'
+        ],
+        performance: [
+          { val: '181 PS', pct: '72%' },
+          { val: '430 Nm', pct: '85%' },
+          { val: '180 km/jam', pct: '65%' },
+          { val: '12.8 km/liter', pct: '60%' }
+        ],
+        interior: {
+          desc: 'Kabin mewah berbalut kulit hitam berkualitas tinggi dengan panel instrumen LCD 8-inci yang modern, serta konsol tengah berlapis material empuk.',
+          items: [
+            'Panel Instrumen LCD 8-inci penuh warna dengan 3 mode tampilan',
+            'Jok kulit mewah dengan pengaturan elektrik di sisi pengemudi',
+            'Sistem AC otomatis dual-zone dengan penyaring udara nanoe',
+            'Rem parkir elektrik dengan fungsi auto hold'
+          ]
+        },
+        exterior: {
+          desc: 'Desain tangguh berkonsep Dynamic Shield legendaris Mitsubishi, dilengkapi velg alloy 18-inci berdesain tangguh, dan pintu bagasi elektrik pintar.',
+          items: [
+            'Lampu Depan LED Aktif dengan fungsi cornering light',
+            'Pintu bagasi elektrik dengan kick sensor untuk kepraktisan',
+            'Velg Alloy 18-inci bermotif tangguh dual-tone',
+            'Antena bermodel sirip hiu yang modern dan sporty'
+          ]
+        },
+        pros: [
+          'Torsi mesin diesel melimpah dan tangguh di tanjakan.',
+          'Desain eksterior gagah dan memberikan prestise tinggi.',
+          'Ground clearance tinggi (218 mm) aman melibas genangan air.'
+        ],
+        cons: [
+          'Suspensi belakang terasa agak kaku saat dikendarai sendiri.',
+          'Kabin baris ketiga kurang lapang untuk orang dewasa.'
+        ]
+      },
+      'byd-atto-3': {
+        name: 'BYD Atto 3',
+        brand: 'BYD',
+        brandClass: '',
+        mediaClass: 'is-meridian',
+        price: 'Rp515.000.000',
+        subtitle: 'EV · Listrik · 1-Speed',
+        desc: 'BYD Atto 3 membawa era baru mobil listrik di Indonesia dengan teknologi Blade Battery aman, jangkauan hingga 480 km, serta performa instan hening dan modern.',
+        specs: [
+          'Electric Vehicle (EV)', 'Motor Listrik Tunggal', '204 PS', '310 Nm', '1-Speed Direct Drive', '5 Penumpang', '6.2 km/kWh (Listrik)'
+        ],
+        performance: [
+          { val: '204 PS', pct: '80%' },
+          { val: '310 Nm', pct: '75%' },
+          { val: '160 km/jam', pct: '50%' },
+          { val: '480 km (Jangkauan)', pct: '95%' }
+        ],
+        interior: {
+          desc: 'Desain kabin bertema kebugaran / gym yang unik dan berani, layar sentuh 15.6-inci yang dapat berputar secara elektrik, serta tata suara mutakhir.',
+          items: [
+            'Layar Sentuh Layar Pintar 15.6-inci yang bisa diputar (portrait/landscape)',
+            'Tuas transmisi bermodel kokpit pesawat dan detail karet pintu unik',
+            'Panoramic Sunroof besar elektrik yang menambah kesan luas',
+            'Jok sporty ergonomis terintegrasi dengan sandaran kepala'
+          ]
+        },
+        exterior: {
+          desc: 'Tampilan berkonsep Dragon Face 3.0 dengan lampu depan LED menyambung, pilar-C beraksen metalik, serta bodi dinamis yang aerodinamis.',
+          items: [
+            'Lampu LED depan bermodel kristal dengan lampu sen berkedip sekuensial',
+            'Pilar-C dengan motif sisik perak bertekstur premium',
+            'Velg Alloy 18-inci dengan desain futuristik yang meminimalkan hambatan angin',
+            'Lampu LED belakang menyambung horizontal penuh'
+          ]
+        },
+        pros: [
+          'Akselerasi instan yang senyap dan halus khas mobil listrik.',
+          'Biaya operasional harian sangat murah dibanding mobil bensin.',
+          'Bebas aturan ganjil-genap Jakarta dan ramah lingkungan.'
+        ],
+        cons: [
+          'Waktu pengisian daya baterai saat perjalanan luar kota.',
+          'Ketergantungan pada persebaran stasiun pengisian SPKLU.'
+        ]
+      }
+    };
+
+    // --- Dynamic population logic ---
+    const carId = new URLSearchParams(location.search).get('car') || 'toyota-innova-zenix';
+    const data = DETAILS_DATA[carId] || DETAILS_DATA['toyota-innova-zenix'];
+
+    // Update document title
+    document.title = `${data.name} — Drive Studio`;
+
+    // Breadcrumb page name
+    const breadcrumbPage = document.querySelector('.breadcrumb [aria-current="page"]');
+    if (breadcrumbPage) breadcrumbPage.textContent = data.name;
+
+    // Gallery slide media classes
+    const slides = document.querySelectorAll('.slider-slide');
+    slides.forEach((slide) => {
+      slide.className = `slider-slide car-card-media ${data.mediaClass}`;
+      const imgName = carId.replace(/-/g, '_');
+      slide.innerHTML = `<img src="assets/images/${imgName}.png" alt="${data.name}" class="car-card-image" style="max-height: 100%; object-fit: contain;" />`;
+    });
+
+    // Badge
+    const badge = document.querySelector('.favorite-btn').previousElementSibling;
+    if (badge) {
+      badge.textContent = data.brand;
+      badge.className = `badge ${data.brandClass || ''}`.trim();
+    }
+
+    // Favorite Button
+    const favBtn = document.querySelector('.favorite-btn');
+    if (favBtn) {
+      favBtn.dataset.carId = carId;
+      favBtn.setAttribute('aria-label', `Tambah ${data.name} ke favorit`);
+    }
+
+    // Title Block details
+    const titleH1 = document.querySelector('main h1');
+    if (titleH1) {
+      titleH1.textContent = data.name;
+      const subtitleP = titleH1.nextElementSibling;
+      if (subtitleP) subtitleP.textContent = data.subtitle;
+      const descP = subtitleP.nextElementSibling;
+      if (descP) descP.textContent = data.desc;
+
+      // Configure button link
+      const configLink = document.querySelector('a[href^="configurator.html"]');
+      if (configLink) configLink.href = `configurator.html?car=${carId}`;
+    }
+
+    // Specifications tab rows
+    const specDds = document.querySelectorAll('#panel-specs .spec-row dd');
+    if (specDds.length === data.specs.length) {
+      specDds.forEach((dd, i) => {
+        dd.textContent = data.specs[i];
+      });
+    }
+
+    // Performance tab progress bars
+    const statBars = document.querySelectorAll('#panel-performance .stat-bar');
+    if (statBars.length === data.performance.length) {
+      statBars.forEach((bar, i) => {
+        const numericText = bar.querySelector('.numeric');
+        const fill = bar.querySelector('.stat-bar-fill');
+        if (numericText) numericText.textContent = data.performance[i].val;
+        if (fill) fill.style.width = data.performance[i].pct;
+      });
+    }
+
+    // Interior tab text and list items
+    const interiorPanel = document.getElementById('panel-interior');
+    if (interiorPanel) {
+      const desc = interiorPanel.querySelector('p');
+      const lis = interiorPanel.querySelectorAll('li');
+      if (desc) desc.textContent = data.interior.desc;
+      if (lis.length === data.interior.items.length) {
+        lis.forEach((li, i) => {
+          li.textContent = data.interior.items[i];
+        });
+      }
+    }
+
+    // Exterior tab text and list items
+    const exteriorPanel = document.getElementById('panel-exterior');
+    if (exteriorPanel) {
+      const desc = exteriorPanel.querySelector('p');
+      const lis = exteriorPanel.querySelectorAll('li');
+      if (desc) desc.textContent = data.exterior.desc;
+      if (lis.length === data.exterior.items.length) {
+        lis.forEach((li, i) => {
+          li.textContent = data.exterior.items[i];
+        });
+      }
+    }
+
+    // Pros and cons lists population
+    const reviewsPanel = document.getElementById('panel-reviews');
+    if (reviewsPanel) {
+      const prosList = reviewsPanel.querySelector('.pros-list');
+      const consList = reviewsPanel.querySelector('.cons-list');
+      if (prosList && consList) {
+        prosList.innerHTML = data.pros.map(item => `<li>${item}</li>`).join('');
+        consList.innerHTML = data.cons.map(item => `<li>${item}</li>`).join('');
+      }
+    }
+
+    // --- Run standard page initializers ---
+    initNavbar();
+    initTheme();
+    initScrollReveal();
+    initCounters();
+    initLoadingScreen();
+    initTabs();
+    initSliders();
+    initFavoriteButtons();
+  </script>
+</body>
+</html>

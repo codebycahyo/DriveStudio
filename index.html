@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drive Studio — Desain Mobil Impian Anda</title>
+  <meta name="description" content="Drive Studio adalah konfigurator 3D interaktif premium untuk kustomisasi warna, velg, dan visualisasi mobil impian Anda secara real-time." />
+
+  <!-- Diterapkan sebelum render pertama untuk menghindari kedipan tema yang salah -->
+  <script>
+    (function () {
+      try {
+        var saved = JSON.parse(localStorage.getItem('ds:theme'));
+        if (saved === 'light') document.documentElement.dataset.theme = 'light';
+      } catch (e) { /* localStorage tidak tersedia */ }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/main.css?v=21" />
+  <link rel="stylesheet" href="css/components.css?v=21" />
+  <link rel="stylesheet" href="css/animations.css?v=21" />
+  <link rel="stylesheet" href="css/pages.css?v=21" />
+  <link rel="stylesheet" href="css/responsive.css?v=21" />
+</head>
+<body data-page="home">
+
+  <div class="loading-screen" id="loadingScreen">
+    <p class="loading-logo">DRIVE<span class="text-primary">STUDIO</span></p>
+    <div class="loading-bar">
+      <div class="loading-bar-fill" id="loadingBarFill"></div>
+    </div>
+  </div>
+
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-brand">Drive<span>Studio</span></a>
+
+      <nav class="navbar-links" aria-label="Navigasi Utama">
+        <a href="index.html" class="is-active">Beranda</a>
+        <a href="cars.html">Eksplorasi</a>
+        <a href="compare.html">Galeri</a>
+        <a href="configurator.html">Konfigurator</a>
+        <a href="about.html">Tentang Kami</a>
+      </nav>
+
+      <div class="navbar-actions">
+        <a href="cars.html?view=favorites" class="btn-icon icon-btn-badged" id="favoritesLink" aria-label="Mobil Favorit">
+          <i class="bi bi-heart"></i>
+          <span class="icon-btn-badge" id="favoritesCount" hidden>0</span>
+        </a>
+        <button type="button" class="btn-icon" id="themeToggle" aria-label="Ubah Tema Terang/Gelap">
+          <i class="bi bi-moon-stars" id="themeIcon"></i>
+        </button>
+        <button type="button" class="btn-icon navbar-toggle" id="navbarToggle" aria-label="Buka Menu" aria-expanded="false" aria-controls="navbarDrawer">
+          <i class="bi bi-list" id="navbarToggleIcon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="navbar-drawer" id="navbarDrawer">
+    <a href="index.html" class="is-active">Beranda</a>
+    <a href="cars.html">Eksplorasi</a>
+    <a href="compare.html">Galeri</a>
+    <a href="configurator.html">Konfigurator</a>
+    <a href="about.html">Tentang Kami</a>
+  </div>
+
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-content reveal-stagger">
+        <p class="eyebrow reveal">Desain mobil impian Anda</p>
+        <h1 class="reveal mt-2">Rancang obsesi berkendara Anda.</h1>
+        <p class="reveal mt-3" style="max-width: 52ch;">
+          Drive Studio adalah konfigurator 3D interaktif untuk para pencinta otomotif di Indonesia — putar, 
+          ubah warna, dan kustomisasi mobil pilihan Anda dari berbagai merek terkemuka, 
+          lalu simpan gambar desain akhir yang sepenuhnya mencerminkan selera Anda.
+        </p>
+        <div class="hero-actions mt-5 reveal">
+          <a href="configurator.html" class="btn btn-primary">
+            <i class="bi bi-sliders"></i> Mulai Konfigurasi
+          </a>
+          <a href="cars.html" class="btn btn-ghost">
+            <i class="bi bi-grid"></i> Eksplorasi Mobil
+          </a>
+        </div>
+        <div class="hero-stats mt-6 reveal">
+          <div>
+            <p class="stat-number numeric text-primary" style="font-size: 2.25rem;" data-counter="4">0</p>
+            <p class="text-mid">Pilihan Mobil</p>
+          </div>
+          <div>
+            <p class="stat-number numeric text-primary" style="font-size: 2.25rem;" data-counter="4">0</p>
+            <p class="text-mid">Merek Terkemuka</p>
+          </div>
+          <div>
+            <p class="stat-number numeric text-primary" style="font-size: 2.25rem;" data-counter="3">0</p>
+            <p class="text-mid">Pilihan Latar</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Cars -->
+    <section class="section" id="featured">
+      <div class="container">
+        <p class="eyebrow reveal">Pilihan Utama</p>
+        <h2 class="mt-2 reveal">Mobil pilihan.</h2>
+        <p class="text-mid mt-3 reveal" style="max-width: 60ch;">
+          Empat pilihan mobil terbaik untuk pasar Indonesia — pilih yang Anda sukai dan kustomisasi sesuka hati di bagian konfigurator.
+        </p>
+
+        <div class="grid grid-4 mt-6 reveal-stagger">
+          <article class="card car-card reveal">
+            <div class="car-card-media is-nocturne">
+              <img src="assets/images/toyota_innova_zenix.png" alt="Toyota Innova Zenix" class="car-card-image" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <div class="flex justify-between items-center">
+                <span class="badge badge-primary">Toyota</span>
+                <button type="button" class="favorite-btn" data-car-id="toyota-innova-zenix" aria-label="Tambah Toyota Innova Zenix ke favorit" aria-pressed="false">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <h3 class="mt-3">Innova Zenix</h3>
+              <p class="text-mid">MPV · Hybrid · 186 PS</p>
+              <div class="flex justify-between items-center mt-4">
+                <p class="car-card-price">Rp471.600.000</p>
+                <div class="flex gap-2">
+                  <a href="detail.html?car=toyota-innova-zenix" class="btn btn-ghost btn-sm">Detail</a>
+                  <a href="configurator.html?car=toyota-innova-zenix" class="btn btn-primary btn-sm">Konfigurasi</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card car-card reveal">
+            <div class="car-card-media is-solace">
+              <img src="assets/images/honda_brio.png" alt="Honda Brio" class="car-card-image" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <div class="flex justify-between items-center">
+                <span class="badge">Honda</span>
+                <button type="button" class="favorite-btn" data-car-id="honda-brio" aria-label="Tambah Honda Brio ke favorit" aria-pressed="false">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <h3 class="mt-3">Honda Brio</h3>
+              <p class="text-mid">Hatchback · Bensin · 90 PS</p>
+              <div class="flex justify-between items-center mt-4">
+                <p class="car-card-price">Rp191.900.000</p>
+                <div class="flex gap-2">
+                  <a href="detail.html?car=honda-brio" class="btn btn-ghost btn-sm">Detail</a>
+                  <a href="configurator.html?car=honda-brio" class="btn btn-primary btn-sm">Konfigurasi</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card car-card reveal">
+            <div class="car-card-media is-corsa">
+              <img src="assets/images/mitsubishi_pajero_sport.png" alt="Mitsubishi Pajero Sport" class="car-card-image" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <div class="flex justify-between items-center">
+                <span class="badge badge-accent">Mitsubishi</span>
+                <button type="button" class="favorite-btn" data-car-id="mitsubishi-pajero-sport" aria-label="Tambah Mitsubishi Pajero Sport ke favorit" aria-pressed="false">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <h3 class="mt-3">Pajero Sport</h3>
+              <p class="text-mid">SUV · Diesel · 181 PS</p>
+              <div class="flex justify-between items-center mt-4">
+                <p class="car-card-price">Rp589.600.000</p>
+                <div class="flex gap-2">
+                  <a href="detail.html?car=mitsubishi-pajero-sport" class="btn btn-ghost btn-sm">Detail</a>
+                  <a href="configurator.html?car=mitsubishi-pajero-sport" class="btn btn-primary btn-sm">Konfigurasi</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card car-card reveal">
+            <div class="car-card-media is-meridian">
+              <img src="assets/images/byd_atto_3.png" alt="BYD Atto 3" class="car-card-image" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <div class="flex justify-between items-center">
+                <span class="badge">BYD</span>
+                <button type="button" class="favorite-btn" data-car-id="byd-atto-3" aria-label="Tambah BYD Atto 3 ke favorit" aria-pressed="false">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <h3 class="mt-3">BYD Atto 3</h3>
+              <p class="text-mid">EV · Listrik · 204 PS</p>
+              <div class="flex justify-between items-center mt-4">
+                <p class="car-card-price">Rp515.000.000</p>
+                <div class="flex gap-2">
+                  <a href="detail.html?car=byd-atto-3" class="btn btn-ghost btn-sm">Detail</a>
+                  <a href="configurator.html?car=byd-atto-3" class="btn btn-primary btn-sm">Konfigurasi</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brands -->
+    <section class="section" id="brands">
+      <div class="container">
+        <p class="eyebrow reveal">Filosofi Berkendara</p>
+        <h2 class="mt-2 reveal">Merek terpopuler.</h2>
+
+        <div class="grid grid-4 mt-6 reveal-stagger">
+          <article class="card brand-card reveal">
+            <p class="brand-wordmark text-primary">TOYOTA</p>
+            <p class="text-mid mt-2">Kendaraan andalan keluarga Indonesia dengan kualitas teruji dan layanan purna jual terbaik.</p>
+            <p class="text-low fs-xs mt-3">Berdiri 1937</p>
+          </article>
+          <article class="card brand-card reveal">
+            <p class="brand-wordmark">HONDA</p>
+            <p class="text-mid mt-2">Menawarkan performa dinamis, teknologi keselamatan canggih, dan efisiensi bahan bakar maksimal.</p>
+            <p class="text-low fs-xs mt-3">Berdiri 1948</p>
+          </article>
+          <article class="card brand-card reveal">
+            <p class="brand-wordmark text-accent">MITSUBISHI</p>
+            <p class="text-mid mt-2">Ketangguhan tanpa batas untuk segala medan dan petualangan di berbagai wilayah Indonesia.</p>
+            <p class="text-low fs-xs mt-3">Berdiri 1970</p>
+          </article>
+          <article class="card brand-card reveal">
+            <p class="brand-wordmark">BYD</p>
+            <p class="text-mid mt-2">Pelopor teknologi baterai kendaraan listrik terdepan untuk mobilitas masa depan ramah lingkungan.</p>
+            <p class="text-low fs-xs mt-3">Berdiri 1995</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- News -->
+    <section class="section" id="news">
+      <div class="container">
+        <p class="eyebrow reveal">Kabar Otomotif</p>
+        <h2 class="mt-2 reveal">Berita terkini.</h2>
+
+        <div class="grid grid-3 mt-6 reveal-stagger">
+          <article class="card overflow-hidden reveal" style="display: flex; flex-direction: column;">
+            <div class="aspect-video">
+              <img src="assets/images/toyota_innova_zenix.png" alt="Berita 2" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="card-body" style="flex: 1; display: flex; flex-direction: column;">
+              <div>
+                <span class="badge badge-accent">Tips & Trik</span>
+                <p class="text-low fs-xs" style="float: right;">2 Juli 2026</p>
+              </div>
+              <h3 class="mt-3" style="font-size: 1.125rem;">Panduan Lengkap Memilih Stiker Wrapping Berkualitas</h3>
+              <p class="text-mid mt-2 mb-4">Jangan salah pilih material. Ketahui perbedaan stiker cast dan calendered sebelum membungkus mobil Anda.</p>
+              <a href="article.html?id=panduan-stiker-wrapping" class="btn btn-outline btn-sm mt-auto w-full text-center d-block">Baca Selengkapnya</a>
+            </div>
+          </article>
+          <article class="card overflow-hidden reveal" style="display: flex; flex-direction: column;">
+            <div class="aspect-video">
+              <img src="assets/images/honda_brio.png" alt="Berita 3" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="card-body" style="flex: 1; display: flex; flex-direction: column;">
+              <div>
+                <span class="badge badge-primary">Perawatan</span>
+                <p class="text-low fs-xs" style="float: right;">25 Juni 2026</p>
+              </div>
+              <h3 class="mt-3" style="font-size: 1.125rem;">Cara Merawat Cat Mobil Agar Tetap Mengilap</h3>
+              <p class="text-mid mt-2 mb-4">Hindari kesalahan mencuci mobil dan gunakan proteksi lapisan wax atau coating untuk melindungi cat dari jamur.</p>
+              <a href="article.html?id=merawat-cat-mengilap" class="btn btn-outline btn-sm mt-auto w-full text-center d-block">Baca Selengkapnya</a>
+            </div>
+          </article>
+          <article class="card overflow-hidden reveal" style="display: flex; flex-direction: column;">
+            <div class="aspect-video">
+              <img src="assets/images/mitsubishi_pajero_sport.png" alt="Berita 1" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="card-body" style="flex: 1; display: flex; flex-direction: column;">
+              <div>
+                <span class="badge badge-primary">Inovasi</span>
+                <p class="text-low fs-xs" style="float: right;">10 Juli 2026</p>
+              </div>
+              <h3 class="mt-3" style="font-size: 1.125rem;">Tren Desain Mobil 2026 yang Mengguncang Industri</h3>
+              <p class="text-mid mt-2 mb-4">Menjelajahi bagaimana desain aerodinamis dan material ramah lingkungan mendominasi tren otomotif tahun ini.</p>
+              <a href="article.html?id=desain-mobil-2026" class="btn btn-outline btn-sm mt-auto w-full text-center d-block">Baca Selengkapnya</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section" id="testimonials">
+      <div class="container text-center reveal">
+        <h2>Apa Kata Mereka?</h2>
+        <p class="text-mid mt-3 mx-auto max-w-prose">
+          Dengarkan pengalaman dari para profesional yang telah merevolusi alur kerja mereka dengan Drive Studio.
+        </p>
+        
+        <div class="grid grid-2 mt-6" style="text-align: left;">
+          <div class="card" style="padding: var(--space-5);">
+            <div class="text-primary" style="margin-bottom: var(--space-3);">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="text-mid" style="font-style: italic;">"Kami membutuhkan desain mobil yang futuristik dan realistis. Konfigurator 3D Drive Studio memudahkan kami sehingga kami hanya perlu menjelajahi opsi dan menyesuaikan hasilnya. Desainnya tampak seperti kreasi studio papan atas!"</p>
+            <div class="flex items-center mt-4 gap-3">
+              <div class="flex justify-center items-center text-on-primary" style="width: 40px; height: 40px; background-color: var(--primary); border-radius: 50%; font-weight: 700;">A</div>
+              <div>
+                <p class="text-high" style="font-weight: 700; margin: 0;">Alex</p>
+                <p class="text-low fs-xs" style="margin: 0;">SVT</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card" style="padding: var(--space-5);">
+            <div class="text-primary" style="margin-bottom: var(--space-3);">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p class="text-mid" style="font-style: italic;">"Jika Anda perlu membuat desain mobil yang unik, dibutuhkan waktu berminggu-minggu atau bahkan berbulan-bulan. Kami membutuhkan solusi yang cepat dan mudah dan saat itulah kami menemukan Drive Studio. Pekerjaan itu selesai hanya dalam waktu singkat dan hasilnya memuaskan, langsung meningkatkan citra merek kami."</p>
+            <div class="flex items-center mt-4 gap-3">
+              <div class="flex justify-center items-center text-on-primary" style="width: 40px; height: 40px; background-color: var(--secondary); border-radius: 50%; font-weight: 700;">S</div>
+              <div>
+                <p class="text-high" style="font-weight: 700; margin: 0;">Sammy</p>
+                <p class="text-low fs-xs" style="margin: 0;">Pedagang Mobil</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" style="padding-top: 0;" id="faq">
+      <div class="container text-center reveal">
+        <h2>Punya pertanyaan? Kami punya jawabannya.</h2>
+        <p class="text-mid mt-3 mx-auto" style="max-width: 60ch;">
+          Temukan jawaban atas pertanyaan umum tentang Drive Studio dan kemampuannya.
+        </p>
+
+        <div class="accordion mx-auto mt-6" style="text-align: left; max-width: 600px;">
+          <div class="accordion-item card mb-3" style="overflow: hidden; margin-bottom: var(--space-3);">
+            <button class="accordion-header flex justify-between items-center text-high" style="width: 100%; padding: var(--space-4); background: transparent; border: 0; cursor: pointer; font-weight: 700; font-family: inherit; font-size: 1rem;" aria-expanded="false">
+              <span style="text-align: left;">Platform mana yang bisa menghasilkan gambar mobil 3D?</span>
+              <i class="bi bi-chevron-down text-primary" style="transition: transform 0.3s ease;"></i>
+            </button>
+            <div class="accordion-content" style="overflow: hidden; transition: max-height 0.3s ease; max-height: 0;">
+              <p class="text-mid" style="margin: 0; padding: 0 var(--space-4) var(--space-4) var(--space-4);">Drive Studio adalah salah satu konfigurator terdepan yang dikhususkan untuk visualisasi otomotif berkualitas tinggi secara real-time.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item card mb-3" style="overflow: hidden; margin-bottom: var(--space-3);">
+            <button class="accordion-header flex justify-between items-center text-high" style="width: 100%; padding: var(--space-4); background: transparent; border: 0; cursor: pointer; font-weight: 700; font-family: inherit; font-size: 1rem;" aria-expanded="false">
+              <span style="text-align: left;">Apa generator desain mobil terbaik?</span>
+              <i class="bi bi-chevron-down text-primary" style="transition: transform 0.3s ease;"></i>
+            </button>
+            <div class="accordion-content" style="overflow: hidden; transition: max-height 0.3s ease; max-height: 0;">
+              <p class="text-mid" style="margin: 0; padding: 0 var(--space-4) var(--space-4) var(--space-4);">Untuk kebutuhan otomotif, Drive Studio menawarkan akurasi render dan detail material yang superior dibanding konfigurator umum lainnya, didukung teknologi WebGL terkini.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item card mb-3" style="overflow: hidden; margin-bottom: var(--space-3);">
+            <button class="accordion-header flex justify-between items-center text-high" style="width: 100%; padding: var(--space-4); background: transparent; border: 0; cursor: pointer; font-weight: 700; font-family: inherit; font-size: 1rem;" aria-expanded="false">
+              <span style="text-align: left;">Bisakah platform ini mendesain mobil dari nol?</span>
+              <i class="bi bi-chevron-down text-primary" style="transition: transform 0.3s ease;"></i>
+            </button>
+            <div class="accordion-content" style="overflow: hidden; transition: max-height 0.3s ease; max-height: 0;">
+              <p class="text-mid" style="margin: 0; padding: 0 var(--space-4) var(--space-4) var(--space-4);">Ya, platform kami memungkinkan penyesuaian detail dari warna cat, velg, kaca, hingga material interior untuk menghasilkan render mobil 3D yang realistis dan profesional.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item card mb-3" style="overflow: hidden; margin-bottom: var(--space-3);">
+            <button class="accordion-header flex justify-between items-center text-high" style="width: 100%; padding: var(--space-4); background: transparent; border: 0; cursor: pointer; font-weight: 700; font-family: inherit; font-size: 1rem;" aria-expanded="false">
+              <span style="text-align: left;">Aplikasi apa yang digunakan untuk membuat gambar konfigurasi ini?</span>
+              <i class="bi bi-chevron-down text-primary" style="transition: transform 0.3s ease;"></i>
+            </button>
+            <div class="accordion-content" style="overflow: hidden; transition: max-height 0.3s ease; max-height: 0;">
+              <p class="text-mid" style="margin: 0; padding: 0 var(--space-4) var(--space-4) var(--space-4);">Drive Studio menyediakan platform berbasis web penuh yang memudahkan akses bagi desainer, penggemar otomotif, dan dealer mobil tanpa perlu instalasi aplikasi tambahan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+      <div class="container">
+        <div class="cta-banner reveal">
+          <h2>Siap merancang mobil impian Anda?</h2>
+          <p class="text-mid mt-3" style="max-width: 48ch; margin-inline: auto;">
+            Masuk ke konfigurator 3D interaktif kami sekarang dan rancang mobil pilihan sesuai keinginan Anda.
+          </p>
+          <a href="configurator.html" class="btn btn-primary mt-5">
+            <i class="bi bi-sliders"></i> Mulai Konfigurasi
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-partners">
+        <p class="eyebrow">Dipercaya Oleh</p>
+        <div class="partner-logos mt-4">
+          <div class="partner-logo" aria-label="Toyota"><i class="bi bi-car-front-fill"></i><span>Toyota</span></div>
+          <div class="partner-logo" aria-label="Honda"><i class="bi bi-car-front"></i><span>Honda</span></div>
+          <div class="partner-logo" aria-label="Mitsubishi"><i class="bi bi-truck"></i><span>Mitsubishi</span></div>
+          <div class="partner-logo" aria-label="BYD"><i class="bi bi-ev-front-fill"></i><span>BYD</span></div>
+          <div class="partner-logo" aria-label="AutoParts Pro"><i class="bi bi-gear-fill"></i><span>AutoParts Pro</span></div>
+          <div class="partner-logo" aria-label="WrapStudio"><i class="bi bi-palette-fill"></i><span>WrapStudio</span></div>
+        </div>
+      </div>
+
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="navbar-brand">Drive<span>Studio</span></a>
+          <p class="mt-3">Desain mobil impian Anda — pengalaman konfigurasi 3D interaktif premium untuk pencinta otomotif Indonesia.</p>
+          <div class="social-links mt-4">
+            <a href="javascript:void(0)" class="btn-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="javascript:void(0)" class="btn-icon" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+            <a href="javascript:void(0)" class="btn-icon" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Eksplorasi</h4>
+          <nav class="footer-links">
+            <a href="cars.html">Eksplorasi Mobil</a>
+            <a href="compare.html">Galeri Proyek</a>
+            <a href="configurator.html">Konfigurator 3D</a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Perusahaan</h4>
+          <nav class="footer-links">
+            <a href="about.html">Tentang Kami</a>
+            <a href="index.html#brands">Merek</a>
+            <a href="index.html#news">Berita</a>
+            <a href="about.html#contact">Booking Jasa</a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Proyek</h4>
+          <nav class="footer-links">
+            <a href="about.html#tech">Teknologi</a>
+            <a href="about.html#roadmap">Alur Booking</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Drive Studio. Proyek Akhir Pemrograman Web.</p>
+        <p>Dibuat dengan HTML5, CSS3, Vanilla JavaScript &amp; Three.js</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initNavbar } from './js/nav.js';
+    import { initTheme } from './js/theme.js';
+    import { initScrollReveal, initCounters, initLoadingScreen, initAccordion } from './js/utils.js';
+    import { initFavoriteButtons } from './js/favorites.js';
+
+    initNavbar();
+    initTheme();
+    initScrollReveal();
+    initCounters();
+    initLoadingScreen();
+    initFavoriteButtons();
+    initAccordion();
+  </script>
+</body>
+</html>

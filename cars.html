@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eksplorasi Mobil — Drive Studio</title>
+  <meta name="description" content="Cari, saring, dan urutkan katalog lengkap mobil terpopuler di Indonesia mulai dari Toyota, Honda, Mitsubishi, hingga BYD." />
+
+  <script>
+    (function () {
+      try {
+        var saved = JSON.parse(localStorage.getItem('ds:theme'));
+        if (saved === 'light') document.documentElement.dataset.theme = 'light';
+      } catch (e) { /* localStorage tidak tersedia */ }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/main.css?v=9" />
+  <link rel="stylesheet" href="css/components.css?v=9" />
+  <link rel="stylesheet" href="css/animations.css?v=9" />
+  <link rel="stylesheet" href="css/pages.css?v=9" />
+  <link rel="stylesheet" href="css/responsive.css?v=9" />
+</head>
+<body data-page="cars">
+
+  <div class="loading-screen" id="loadingScreen">
+    <p class="loading-logo">DRIVE<span class="text-primary">STUDIO</span></p>
+    <div class="loading-bar">
+      <div class="loading-bar-fill" id="loadingBarFill"></div>
+    </div>
+  </div>
+
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-brand">Drive<span>Studio</span></a>
+
+      <nav class="navbar-links" aria-label="Navigasi Utama">
+        <a href="index.html">Beranda</a>
+        <a href="cars.html" class="is-active">Eksplorasi</a>
+        <a href="compare.html">Galeri</a>
+        <a href="configurator.html">Konfigurator</a>
+        <a href="about.html">Tentang Kami</a>
+      </nav>
+
+      <div class="navbar-actions">
+        <a href="cars.html?view=favorites" class="btn-icon icon-btn-badged" id="favoritesLink" aria-label="Mobil Favorit">
+          <i class="bi bi-heart"></i>
+          <span class="icon-btn-badge" id="favoritesCount" hidden>0</span>
+        </a>
+        <button type="button" class="btn-icon" id="themeToggle" aria-label="Ubah Tema Terang/Gelap">
+          <i class="bi bi-moon-stars" id="themeIcon"></i>
+        </button>
+        <button type="button" class="btn-icon navbar-toggle" id="navbarToggle" aria-label="Buka Menu" aria-expanded="false" aria-controls="navbarDrawer">
+          <i class="bi bi-list" id="navbarToggleIcon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="navbar-drawer" id="navbarDrawer">
+    <a href="index.html">Beranda</a>
+    <a href="cars.html" class="is-active">Eksplorasi</a>
+    <a href="compare.html">Galeri</a>
+    <a href="configurator.html">Konfigurator</a>
+    <a href="about.html">Tentang Kami</a>
+  </div>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow reveal">Katalog Mobil</p>
+        <h1 class="mt-2 reveal fs-h2">Temukan mobil impian.</h1>
+        <p class="text-mid mt-3 reveal max-w-md">
+          Cari mobil impian Anda, saring berdasarkan merek atau kategori, dan urutkan berdasarkan harga atau tenaga mesin.
+        </p>
+      </div>
+    </section>
+
+    <section class="section pt-0">
+      <div class="container">
+        <div class="toolbar reveal">
+          <div class="input-group toolbar-search">
+            <i class="bi bi-search input-icon"></i>
+            <input type="search" class="input" id="carSearch" placeholder="Cari mobil impian Anda..." aria-label="Cari mobil" />
+          </div>
+          <select class="select" id="brandFilter" aria-label="Saring berdasarkan merek">
+            <option value="">Semua merek</option>
+            <option value="toyota">Toyota</option>
+            <option value="honda">Honda</option>
+            <option value="mitsubishi">Mitsubishi</option>
+            <option value="byd">BYD</option>
+          </select>
+          <select class="select" id="categoryFilter" aria-label="Saring berdasarkan kategori">
+            <option value="">Semua kategori</option>
+            <option value="hatchback">Hatchback</option>
+            <option value="hybrid">Hybrid</option>
+            <option value="suv">SUV</option>
+            <option value="ev">Listrik (EV)</option>
+          </select>
+          <select class="select" id="sortSelect" aria-label="Urutkan mobil">
+            <option value="featured">Urutkan: Unggulan</option>
+            <option value="power-desc">Tenaga: Tinggi ke Rendah</option>
+            <option value="name-asc">Nama: A ke Z</option>
+          </select>
+        </div>
+
+        <p class="text-mid mt-4 reveal" id="resultsCount">Menampilkan 4 dari 4 mobil</p>
+
+        <div class="grid grid-4 mt-4 reveal-stagger" id="carGrid">
+          <article class="card car-card reveal" data-brand="toyota" data-category="hybrid" data-price="471600000" data-power="186" data-name="Toyota Innova Zenix">
+            <div class="car-card-media is-nocturne">
+              <img src="assets/images/toyota_innova_zenix.png" alt="Toyota Innova Zenix" class="car-card-image" />
+            </div>
+            <div class="card-body">
+              <div class="flex justify-between items-center">
+                <span class="badge badge-primary">Toyota</span>
+                <button type="button" class="favorite-btn" data-car-id="toyota-innova-zenix" aria-label="Tambah Toyota Innova Zenix ke favorit" aria-pressed="false">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <h3 class="mt-3">Innova Zenix</h3>
+              <p class="text-mid">MPV · Hybrid · 186 PS</p>
+              <div class="flex justify-between items-center mt-4">
+                <div class="flex gap-2">
+                  <a href="detail.html?car=toyota-innova-zenix" class="btn btn-ghost btn-sm">Detail</a>
+                  <a href="configurator.html?car=toyota-innova-zenix" class="btn btn-primary btn-sm">Konfigurasi</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card car-card reveal" data-brand="honda" data-category="hatchback" data-price="191900000" data-power="90" data-name="Honda Brio">
+            <div class="car-card-media is-solace">
+              <img src="assets/images/honda_brio.png" alt="Honda Brio" class="car-card-image" />
+            </div>
+            <div class="card-body">
+              <div class="flex justify-between items-center">
+                <span class="badge">Honda</span>
+                <button type="button" class="favorite-btn" data-car-id="honda-brio" aria-label="Tambah Honda Brio ke favorit" aria-pressed="false">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <h3 class="mt-3">Honda Brio</h3>
+              <p class="text-mid">Hatchback · Bensin · 90 PS</p>
+              <div class="flex justify-between items-center mt-4">
+                <div class="flex gap-2">
+                  <a href="detail.html?car=honda-brio" class="btn btn-ghost btn-sm">Detail</a>
+                  <a href="configurator.html?car=honda-brio" class="btn btn-primary btn-sm">Konfigurasi</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card car-card reveal" data-brand="mitsubishi" data-category="suv" data-price="589600000" data-power="181" data-name="Mitsubishi Pajero Sport">
+            <div class="car-card-media is-corsa">
+              <img src="assets/images/mitsubishi_pajero_sport.png" alt="Mitsubishi Pajero Sport" class="car-card-image" />
+            </div>
+            <div class="card-body">
+              <div class="flex justify-between items-center">
+                <span class="badge badge-accent">Mitsubishi</span>
+                <button type="button" class="favorite-btn" data-car-id="mitsubishi-pajero-sport" aria-label="Tambah Mitsubishi Pajero Sport ke favorit" aria-pressed="false">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <h3 class="mt-3">Pajero Sport</h3>
+              <p class="text-mid">SUV · Diesel · 181 PS</p>
+              <div class="flex justify-between items-center mt-4">
+                <div class="flex gap-2">
+                  <a href="detail.html?car=mitsubishi-pajero-sport" class="btn btn-ghost btn-sm">Detail</a>
+                  <a href="configurator.html?car=mitsubishi-pajero-sport" class="btn btn-primary btn-sm">Konfigurasi</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card car-card reveal" data-brand="byd" data-category="ev" data-price="515000000" data-power="204" data-name="BYD Atto 3">
+            <div class="car-card-media is-meridian">
+              <img src="assets/images/byd_atto_3.png" alt="BYD Atto 3" class="car-card-image" />
+            </div>
+            <div class="card-body">
+              <div class="flex justify-between items-center">
+                <span class="badge">BYD</span>
+                <button type="button" class="favorite-btn" data-car-id="byd-atto-3" aria-label="Tambah BYD Atto 3 ke favorit" aria-pressed="false">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <h3 class="mt-3">BYD Atto 3</h3>
+              <p class="text-mid">EV · Listrik · 204 PS</p>
+              <div class="flex justify-between items-center mt-4">
+                <div class="flex gap-2">
+                  <a href="detail.html?car=byd-atto-3" class="btn btn-ghost btn-sm">Detail</a>
+                  <a href="configurator.html?car=byd-atto-3" class="btn btn-primary btn-sm">Konfigurasi</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="text-mid mt-6 text-center" id="emptyState" style="display: none;">
+          <i class="bi bi-emoji-frown fs-h1"></i>
+          <p class="mt-3">Tidak ada mobil yang cocok dengan pencarian Anda.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-partners">
+        <p class="eyebrow">Dipercaya Oleh</p>
+        <div class="partner-logos mt-4">
+          <div class="partner-logo" aria-label="Toyota"><i class="bi bi-car-front-fill"></i><span>Toyota</span></div>
+          <div class="partner-logo" aria-label="Honda"><i class="bi bi-car-front"></i><span>Honda</span></div>
+          <div class="partner-logo" aria-label="Mitsubishi"><i class="bi bi-truck"></i><span>Mitsubishi</span></div>
+          <div class="partner-logo" aria-label="BYD"><i class="bi bi-ev-front-fill"></i><span>BYD</span></div>
+          <div class="partner-logo" aria-label="AutoParts Pro"><i class="bi bi-gear-fill"></i><span>AutoParts Pro</span></div>
+          <div class="partner-logo" aria-label="WrapStudio"><i class="bi bi-palette-fill"></i><span>WrapStudio</span></div>
+        </div>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="navbar-brand">Drive<span>Studio</span></a>
+          <p class="mt-3">Desain mobil impian Anda — pengalaman konfigurasi 3D interaktif premium untuk pencinta otomotif Indonesia.</p>
+          <div class="social-links mt-4">
+            <a href="javascript:void(0)" class="btn-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="javascript:void(0)" class="btn-icon" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+            <a href="javascript:void(0)" class="btn-icon" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Eksplorasi</h4>
+          <nav class="footer-links">
+            <a href="cars.html">Eksplorasi Mobil</a>
+            <a href="compare.html">Galeri Proyek</a>
+            <a href="configurator.html">Konfigurator 3D</a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Perusahaan</h4>
+          <nav class="footer-links">
+            <a href="about.html">Tentang Kami</a>
+            <a href="index.html#brands">Merek</a>
+            <a href="index.html#news">Berita</a>
+            <a href="about.html#contact">Booking Jasa</a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Proyek</h4>
+          <nav class="footer-links">
+            <a href="about.html#tech">Teknologi</a>
+            <a href="about.html#roadmap">Alur Booking</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Drive Studio. Proyek Akhir Pemrograman Web.</p>
+        <p>Dibuat dengan HTML5, CSS3, Vanilla JavaScript &amp; Three.js</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initNavbar } from './js/nav.js';
+    import { initTheme } from './js/theme.js';
+    import { initScrollReveal, initCounters, initLoadingScreen, debounce } from './js/utils.js';
+    import { filterBySearch } from './js/search.js';
+    import { filterByBrandAndCategory, sortCards } from './js/filter.js';
+    import { initFavoriteButtons, isFavorite } from './js/favorites.js';
+
+    initNavbar();
+    initTheme();
+    initScrollReveal();
+    initCounters();
+    initLoadingScreen();
+
+    const grid = document.getElementById('carGrid');
+    const allCards = [...grid.querySelectorAll('.car-card')];
+    const totalCount = allCards.length;
+
+    const searchInput = document.getElementById('carSearch');
+    const brandFilter = document.getElementById('brandFilter');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const sortSelect = document.getElementById('sortSelect');
+    const resultsCount = document.getElementById('resultsCount');
+    const emptyState = document.getElementById('emptyState');
+    const emptyStateText = emptyState.querySelector('p');
+
+    const favoritesOnly = new URLSearchParams(location.search).get('view') === 'favorites';
+
+    if (favoritesOnly) {
+      const eyebrow = document.querySelector('.page-hero .eyebrow');
+      const heading = document.querySelector('.page-hero h1');
+      if (eyebrow) eyebrow.textContent = 'Favorit Anda';
+      if (heading) heading.textContent = 'Koleksi mobil favorit Anda.';
+    }
+
+    function render() {
+      let visible = allCards;
+
+      if (favoritesOnly) {
+        visible = visible.filter((card) => isFavorite(card.querySelector('.favorite-btn').dataset.carId));
+      }
+
+      visible = filterBySearch(visible, searchInput.value);
+      visible = filterByBrandAndCategory(visible, { brand: brandFilter.value, category: categoryFilter.value });
+
+      const sorted = sortCards(visible, sortSelect.value);
+      const visibleSet = new Set(sorted);
+
+      allCards.forEach((card) => {
+        card.hidden = !visibleSet.has(card);
+      });
+      sorted.forEach((card) => grid.appendChild(card));
+
+      resultsCount.textContent = `Menampilkan ${sorted.length} dari ${totalCount} mobil`;
+      emptyState.style.display = sorted.length === 0 ? 'block' : 'none';
+
+      if (sorted.length === 0) {
+        const noActiveFilters = !searchInput.value && !brandFilter.value && !categoryFilter.value;
+        emptyStateText.textContent = favoritesOnly && noActiveFilters
+          ? "Anda belum menambahkan mobil ke daftar favorit."
+          : 'Tidak ada mobil yang cocok dengan pencarian Anda.';
+      }
+    }
+
+    searchInput.addEventListener('input', debounce(render, 200));
+    brandFilter.addEventListener('change', render);
+    categoryFilter.addEventListener('change', render);
+    sortSelect.addEventListener('change', render);
+    initFavoriteButtons(document, () => {
+      if (favoritesOnly) render();
+    });
+
+    render();
+  </script>
+</body>
+</html>

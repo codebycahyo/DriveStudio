@@ -1,0 +1,93 @@
+/* ============================================================
+   Drive Studio — responsive.css
+   Mobile-first breakpoint overrides. Base styles in the other
+   CSS files target ~360px; rules here progressively enhance
+   the layout at wider viewports. Do not add max-width rules
+   here — keep the cascade min-width only.
+   ============================================================ */
+
+/* ---------- >= 576px (large phones) ---------- */
+@media (min-width: 576px) {
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .footer-bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Compare page toolbar: side-by-side selects on wider phones */
+  .toolbar {
+    flex-wrap: wrap;
+  }
+
+  .toolbar .select {
+    min-width: 160px;
+  }
+}
+
+/* ---------- >= 768px (tablets) ---------- */
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-5);
+  }
+
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+
+  .navbar-drawer {
+    display: none;
+  }
+
+  .navbar-links {
+    display: flex;
+  }
+
+  .navbar-toggle {
+    display: none;
+  }
+
+  /* Compare table: sticky first column for scrollable context */
+  .compare-table th:first-child,
+  .compare-table td:first-child {
+    position: sticky;
+    left: 0;
+    background: var(--card);
+    z-index: 1;
+  }
+
+  .compare-table thead th:first-child {
+    background: var(--bg);
+  }
+}
+
+/* ---------- >= 992px (small desktops) ---------- */
+@media (min-width: 992px) {
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(3, 1fr); }
+
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+
+  /* Configurator: sidebars + canvas side by side from here up */
+  .configurator-layout {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+/* ---------- >= 1200px (large desktops) ---------- */
+@media (min-width: 1200px) {
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .configurator-layout {
+    grid-template-columns: 280px 1fr 320px;
+  }
+}
+
+/* ---------- >= 1440px (extra-large screens) ---------- */
+@media (min-width: 1440px) {
+  :root {
+    --container-max: 1400px;
+  }
+}
