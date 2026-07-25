@@ -1,9 +1,4 @@
-/**
- * nav.js — navbar behavior shared by every page: sticky glass
- * background on scroll, mobile drawer open/close, favorites badge.
- * Active-link state is set directly in each page's HTML (no JS
- * needed to compute it, since every page is standalone markup).
- */
+
 
 import { refreshFavoritesBadge } from './favorites.js';
 

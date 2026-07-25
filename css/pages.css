@@ -5,16 +5,15 @@
    Shared component look-and-feel belongs in components.css, not here.
    ============================================================ */
 
-/* ---------- Shared across every page ---------- */
 /* First section on interior pages (everything except the Home hero) */
 .page-hero {
   padding-top: calc(var(--nav-height) + var(--space-6));
   padding-bottom: var(--space-4);
 }
 
-/* ---------- data-page="home" ---------- */
 .hero {
   min-height: 92vh;
+  min-height: 92dvh;
   display: flex;
   align-items: center;
   position: relative;
@@ -49,10 +48,16 @@
   gap: var(--space-3);
 }
 
+/* On phones the two CTAs stack full-width instead of wrapping to
+   ragged, unequal widths. They return to natural width from 480px up. */
+.hero-actions .btn {
+  width: 100%;
+}
+
 .hero-stats {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-6);
+  gap: var(--space-3);
 }
 
 .hero-stats > div {
@@ -60,6 +65,32 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 1 1 0;   /* even columns on mobile instead of an uneven wrap */
+  min-width: 0;
+}
+
+@media (min-width: 480px) {
+  .hero-actions .btn {
+    width: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-stats {
+    gap: var(--space-6);
+  }
+
+  .hero-stats > div {
+    flex: 0 0 auto;   /* natural width on desktop, unchanged */
+  }
+}
+
+/* Staggered second testimonial — only offset once the cards sit
+   side by side; on mobile (single column) it would just add an odd gap. */
+@media (min-width: 768px) {
+  .testimonial-offset {
+    margin-top: var(--space-5);
+  }
 }
 
 .cta-banner {
@@ -68,4 +99,28 @@
   border-radius: var(--radius-lg);
   padding: var(--space-6) var(--space-4);
   text-align: center;
+}
+
+/* Gallery-detail: modification checklist as a clean icon list */
+.project-mods {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  color: var(--text-mid);
+}
+
+.project-mods li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  line-height: 1.6;
+}
+
+.project-mods li i {
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
 }

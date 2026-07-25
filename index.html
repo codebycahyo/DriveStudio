@@ -6,24 +6,44 @@
   <title>Drive Studio — Desain Mobil Impian Anda</title>
   <meta name="description" content="Drive Studio adalah konfigurator 3D interaktif premium untuk kustomisasi warna, velg, dan visualisasi mobil impian Anda secara real-time." />
 
-  <!-- Diterapkan sebelum render pertama untuk menghindari kedipan tema yang salah -->
+  <!-- Tandai JavaScript aktif (untuk fallback tampilan tanpa-JS) -->
   <script>
     (function () {
-      try {
-        var saved = JSON.parse(localStorage.getItem('ds:theme'));
-        if (saved === 'light') document.documentElement.dataset.theme = 'light';
-      } catch (e) { /* localStorage tidak tersedia */ }
+      document.documentElement.classList.add('js');
     })();
   </script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="css/main.css?v=21" />
-  <link rel="stylesheet" href="css/components.css?v=21" />
-  <link rel="stylesheet" href="css/animations.css?v=21" />
-  <link rel="stylesheet" href="css/pages.css?v=21" />
-  <link rel="stylesheet" href="css/responsive.css?v=21" />
+  <link rel="stylesheet" href="css/main.css?v=26" />
+  <link rel="stylesheet" href="css/components.css?v=26" />
+  <link rel="stylesheet" href="css/animations.css?v=26" />
+  <link rel="stylesheet" href="css/pages.css?v=26" />
+  <link rel="stylesheet" href="css/responsive.css?v=26" />
+
+  <!-- SEO & Social Meta -->
+  <meta property="og:title" content="Drive Studio — Desain Mobil Impian Anda" />
+  <meta property="og:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta property="og:image" content="https://drivestudio.com/og-image.jpg" />
+  <meta property="og:url" content="https://drivestudio.com/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Drive Studio" />
+  <meta name="twitter:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta name="twitter:image" content="https://drivestudio.com/og-image.jpg" />
+  <link rel="canonical" href="https://drivestudio.com/" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>" type="image/svg+xml" />
+
+  <!-- Preconnect Hints -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://www.youtube.com" crossorigin />
+  <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
 </head>
 <body data-page="home">
+  <a href="#main-content" class="sr-only focusable-skip-link">Langsung ke konten utama</a>
+
 
   <div class="loading-screen" id="loadingScreen">
     <p class="loading-logo">DRIVE<span class="text-primary">STUDIO</span></p>
@@ -49,9 +69,6 @@
           <i class="bi bi-heart"></i>
           <span class="icon-btn-badge" id="favoritesCount" hidden>0</span>
         </a>
-        <button type="button" class="btn-icon" id="themeToggle" aria-label="Ubah Tema Terang/Gelap">
-          <i class="bi bi-moon-stars" id="themeIcon"></i>
-        </button>
         <button type="button" class="btn-icon navbar-toggle" id="navbarToggle" aria-label="Buka Menu" aria-expanded="false" aria-controls="navbarDrawer">
           <i class="bi bi-list" id="navbarToggleIcon"></i>
         </button>
@@ -87,6 +104,19 @@
             <i class="bi bi-grid"></i> Eksplorasi Mobil
           </a>
         </div>
+        
+        <!-- Social Proof -->
+        <div class="flex items-center justify-center gap-3 mt-6 reveal">
+          <div class="flex">
+            <img width="36" height="36" src="assets/images/toyota_innova_zenix.png" alt="Pengguna Drive Studio" loading="lazy" decoding="async" style="width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--bg); margin-right: -12px; object-fit: cover; z-index: 3;" />
+            <img width="36" height="36" src="assets/images/honda_brio.png" alt="Pengguna Drive Studio" loading="lazy" decoding="async" style="width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--bg); margin-right: -12px; object-fit: cover; z-index: 2;" />
+            <img width="36" height="36" src="assets/images/mitsubishi_pajero_sport.png" alt="Pengguna Drive Studio" loading="lazy" decoding="async" style="width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--bg); object-fit: cover; z-index: 1;" />
+          </div>
+          <div class="text-left">
+            <div class="text-warning fs-xs" style="margin-bottom: 2px;"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+            <p class="fs-xs text-high fw-600" style="margin:0; letter-spacing: 0.02em;">Dipercaya 10.000+ Kreator</p>
+          </div>
+        </div>
         <div class="hero-stats mt-6 reveal">
           <div>
             <p class="stat-number numeric text-primary" style="font-size: 2.25rem;" data-counter="4">0</p>
@@ -116,7 +146,7 @@
         <div class="grid grid-4 mt-6 reveal-stagger">
           <article class="card car-card reveal">
             <div class="car-card-media is-nocturne">
-              <img src="assets/images/toyota_innova_zenix.png" alt="Toyota Innova Zenix" class="car-card-image" loading="lazy" decoding="async" />
+              <img width="600" height="400"  src="assets/images/toyota_innova_zenix.png" alt="Toyota Innova Zenix" class="car-card-image" loading="lazy" decoding="async" />
             </div>
             <div class="card-body">
               <div class="flex justify-between items-center">
@@ -139,7 +169,7 @@
 
           <article class="card car-card reveal">
             <div class="car-card-media is-solace">
-              <img src="assets/images/honda_brio.png" alt="Honda Brio" class="car-card-image" loading="lazy" decoding="async" />
+              <img width="600" height="400"  src="assets/images/honda_brio.png" alt="Honda Brio" class="car-card-image" loading="lazy" decoding="async" />
             </div>
             <div class="card-body">
               <div class="flex justify-between items-center">
@@ -162,7 +192,7 @@
 
           <article class="card car-card reveal">
             <div class="car-card-media is-corsa">
-              <img src="assets/images/mitsubishi_pajero_sport.png" alt="Mitsubishi Pajero Sport" class="car-card-image" loading="lazy" decoding="async" />
+              <img width="600" height="400"  src="assets/images/mitsubishi_pajero_sport.png" alt="Mitsubishi Pajero Sport" class="car-card-image" loading="lazy" decoding="async" />
             </div>
             <div class="card-body">
               <div class="flex justify-between items-center">
@@ -185,7 +215,7 @@
 
           <article class="card car-card reveal">
             <div class="car-card-media is-meridian">
-              <img src="assets/images/byd_atto_3.png" alt="BYD Atto 3" class="car-card-image" loading="lazy" decoding="async" />
+              <img width="600" height="400"  src="assets/images/byd_atto_3.png" alt="BYD Atto 3" class="car-card-image" loading="lazy" decoding="async" />
             </div>
             <div class="card-body">
               <div class="flex justify-between items-center">
@@ -249,7 +279,7 @@
         <div class="grid grid-3 mt-6 reveal-stagger">
           <article class="card overflow-hidden reveal" style="display: flex; flex-direction: column;">
             <div class="aspect-video">
-              <img src="assets/images/toyota_innova_zenix.png" alt="Berita 2" class="w-full h-full object-cover" loading="lazy" />
+              <img width="600" height="400"  src="assets/images/toyota_innova_zenix.png" alt="Berita 2" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="card-body" style="flex: 1; display: flex; flex-direction: column;">
               <div>
@@ -263,7 +293,7 @@
           </article>
           <article class="card overflow-hidden reveal" style="display: flex; flex-direction: column;">
             <div class="aspect-video">
-              <img src="assets/images/honda_brio.png" alt="Berita 3" class="w-full h-full object-cover" loading="lazy" />
+              <img width="600" height="400"  src="assets/images/honda_brio.png" alt="Berita 3" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="card-body" style="flex: 1; display: flex; flex-direction: column;">
               <div>
@@ -277,7 +307,7 @@
           </article>
           <article class="card overflow-hidden reveal" style="display: flex; flex-direction: column;">
             <div class="aspect-video">
-              <img src="assets/images/mitsubishi_pajero_sport.png" alt="Berita 1" class="w-full h-full object-cover" loading="lazy" />
+              <img width="600" height="400"  src="assets/images/mitsubishi_pajero_sport.png" alt="Berita 1" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="card-body" style="flex: 1; display: flex; flex-direction: column;">
               <div>
@@ -301,31 +331,31 @@
           Dengarkan pengalaman dari para profesional yang telah merevolusi alur kerja mereka dengan Drive Studio.
         </p>
         
-        <div class="grid grid-2 mt-6" style="text-align: left;">
+        <div class="grid grid-2 mt-6" style="text-align: left; align-items: start;">
           <div class="card" style="padding: var(--space-5);">
             <div class="text-primary" style="margin-bottom: var(--space-3);">
               <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
-            <p class="text-mid" style="font-style: italic;">"Kami membutuhkan desain mobil yang futuristik dan realistis. Konfigurator 3D Drive Studio memudahkan kami sehingga kami hanya perlu menjelajahi opsi dan menyesuaikan hasilnya. Desainnya tampak seperti kreasi studio papan atas!"</p>
+            <p class="text-mid" style="font-style: italic;">"Awalnya saya ragu pasang Nano Ceramic Coating karena takut cat asli rusak. Tapi setelah lihat preview 3D di Drive Studio, saya jadi yakin. Hasil aslinya beneran persis seperti di layar, warna hitam Pajero saya jadi kelihatan wet-look elegan banget!"</p>
             <div class="flex items-center mt-4 gap-3">
-              <div class="flex justify-center items-center text-on-primary" style="width: 40px; height: 40px; background-color: var(--primary); border-radius: 50%; font-weight: 700;">A</div>
+              <div class="flex justify-center items-center text-on-primary" style="width: 48px; height: 48px; background-color: var(--primary); border-radius: 50%; font-weight: 800;">B</div>
               <div>
-                <p class="text-high" style="font-weight: 700; margin: 0;">Alex</p>
-                <p class="text-low fs-xs" style="margin: 0;">SVT</p>
+                <p class="text-high" style="font-weight: 700; margin: 0;">Budi Santoso</p>
+                <p class="text-low fs-xs" style="margin: 0;">Pemilik Pajero Sport</p>
               </div>
             </div>
           </div>
           
-          <div class="card" style="padding: var(--space-5);">
+          <div class="card testimonial-offset" style="padding: var(--space-5);">
             <div class="text-primary" style="margin-bottom: var(--space-3);">
               <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
             </div>
-            <p class="text-mid" style="font-style: italic;">"Jika Anda perlu membuat desain mobil yang unik, dibutuhkan waktu berminggu-minggu atau bahkan berbulan-bulan. Kami membutuhkan solusi yang cepat dan mudah dan saat itulah kami menemukan Drive Studio. Pekerjaan itu selesai hanya dalam waktu singkat dan hasilnya memuaskan, langsung meningkatkan citra merek kami."</p>
+            <p class="text-mid" style="font-style: italic;">"Nyari referensi wrapping buat Innova Zenix susah banget yang pas. Berkat fitur konfigurasi warna di Drive Studio, saya bisa trial and error warna satin grey sebelum eksekusi. Pengerjaannya juga rapi, lipatan stikernya sangat presisi."</p>
             <div class="flex items-center mt-4 gap-3">
-              <div class="flex justify-center items-center text-on-primary" style="width: 40px; height: 40px; background-color: var(--secondary); border-radius: 50%; font-weight: 700;">S</div>
+              <div class="flex justify-center items-center text-on-primary" style="width: 48px; height: 48px; background-color: var(--secondary); border-radius: 50%; font-weight: 800;">R</div>
               <div>
-                <p class="text-high" style="font-weight: 700; margin: 0;">Sammy</p>
-                <p class="text-low fs-xs" style="margin: 0;">Pedagang Mobil</p>
+                <p class="text-high" style="font-weight: 700; margin: 0;">Reza Adhitama</p>
+                <p class="text-low fs-xs" style="margin: 0;">Antusias Modifikasi</p>
               </div>
             </div>
           </div>
@@ -386,6 +416,7 @@
     </section>
 
     <!-- CTA -->
+    <section class="section" style="padding-top: 0;">
       <div class="container">
         <div class="cta-banner reveal">
           <h2>Siap merancang mobil impian Anda?</h2>
@@ -462,12 +493,10 @@
 
   <script type="module">
     import { initNavbar } from './js/nav.js';
-    import { initTheme } from './js/theme.js';
     import { initScrollReveal, initCounters, initLoadingScreen, initAccordion } from './js/utils.js';
     import { initFavoriteButtons } from './js/favorites.js';
 
     initNavbar();
-    initTheme();
     initScrollReveal();
     initCounters();
     initLoadingScreen();

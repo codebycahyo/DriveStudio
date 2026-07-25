@@ -1,29 +1,26 @@
-/* ============================================================
-   Drive Studio — components.css
-   Shared, reusable component styles used across every page.
-   ============================================================ */
 
-/* ---------- Buttons ---------- */
+
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  padding: 0.875rem 1.5rem;
-  border-radius: var(--radius-md);
+  padding: 0.875rem 1.75rem;
+  border-radius: var(--radius-pill); 
   font-family: var(--font-body);
   font-size: var(--fs-sm);
-  font-weight: 600;
+  font-weight: 700; 
   letter-spacing: 0.02em;
   white-space: nowrap;
   transition: transform var(--dur-fast) var(--ease-out),
     box-shadow var(--dur-fast) var(--ease-out),
     background-color var(--dur-fast) var(--ease-out),
-    border-color var(--dur-fast) var(--ease-out);
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
 }
 
 .btn:active {
-  transform: scale(0.97);
+  transform: scale(0.96); 
 }
 
 .btn-primary {
@@ -89,13 +86,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 48px; /* Increased to 48px for touch target */
+  height: 48px;
   padding: 0;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.04);
   border: 1px solid var(--border);
   color: var(--text-high);
+  transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
 
 .btn-icon:hover {
@@ -137,7 +135,6 @@
   font-size: var(--fs-xs);
 }
 
-/* ---------- Card ---------- */
 .card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -149,16 +146,30 @@
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   border-color: var(--border-strong);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12); /* More prominent shadow */
 }
 
 .card-body {
   padding: var(--space-4);
 }
 
-/* ---------- Badge ---------- */
+/* Consistent card text truncation */
+.card-body h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-body > p.text-mid {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -211,7 +222,6 @@
   border: 1px solid rgba(3, 119, 191, 0.3);
 }
 
-/* ---------- Inputs ---------- */
 .input,
 .select {
   width: 100%;
@@ -248,7 +258,6 @@
   color: var(--text-low);
 }
 
-/* ---------- Navbar ---------- */
 .navbar {
   position: fixed;
   inset-inline: 0;
@@ -257,13 +266,17 @@
   height: var(--nav-height);
   display: flex;
   align-items: center;
-  background: var(--bg-elevated);
-  border-bottom: 1px solid var(--border);
-  transition: box-shadow var(--dur-med) var(--ease-out);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-bottom: 1px solid transparent;
+  transition: box-shadow var(--dur-med) var(--ease-out),
+    border-color var(--dur-med) var(--ease-out);
 }
 
 .navbar.is-scrolled {
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
+  border-bottom-color: var(--border);
 }
 
 .navbar-inner {
@@ -356,7 +369,6 @@
   font-weight: 700;
 }
 
-/* ---------- Footer ---------- */
 .footer {
   border-top: 1px solid var(--border);
   padding-block: var(--space-6) var(--space-4);
@@ -404,7 +416,6 @@
   gap: var(--space-2);
 }
 
-/* ---------- Loading Screen ---------- */
 .loading-screen {
   position: fixed;
   inset: 0;
@@ -423,6 +434,11 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}
+
+/* Without JS the loader can never be dismissed, so hide it up front. */
+html:not(.js) .loading-screen {
+  display: none;
 }
 
 .loading-logo {
@@ -446,30 +462,39 @@
   transition: width var(--dur-fast) linear;
 }
 
-/* ---------- Toast ---------- */
 .toast-container {
   position: fixed;
   bottom: var(--space-4);
   right: var(--space-4);
-  z-index: 200;
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
 }
 
 .toast {
+  position: fixed;
+  bottom: var(--space-4);
+  right: var(--space-4);
+  z-index: 1000;
   min-width: 260px;
-  max-width: 340px;
+  max-width: calc(100% - var(--space-4) * 2);
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
   font-size: var(--fs-sm);
+  font-weight: 600;
   box-shadow: var(--shadow-md);
-  transform: translateY(12px);
+  transform: translateY(100%) scale(0.95);
   opacity: 0;
-  transition: transform var(--dur-med) var(--ease-out), opacity var(--dur-med) var(--ease-out);
+  pointer-events: none;
+  transition: transform var(--dur-med) var(--ease-out),
+    opacity var(--dur-med) var(--ease-out);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-high);
 }
 
 .toast.is-visible {
@@ -481,7 +506,6 @@
 .toast-error { border-left: 3px solid var(--primary); }
 .toast-info { border-left: 3px solid var(--accent); }
 
-/* ---------- Modal ---------- */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -521,7 +545,6 @@
   right: var(--space-3);
 }
 
-/* ---------- Tabs ---------- */
 .tabs-nav {
   display: flex;
   gap: var(--space-2);
@@ -553,7 +576,6 @@
   display: block;
 }
 
-/* ---------- Accordion ---------- */
 .accordion-item {
   border-bottom: 1px solid var(--border);
 }
@@ -587,7 +609,6 @@
   color: var(--text-mid);
 }
 
-/* ---------- Slider / Gallery ---------- */
 .slider {
   position: relative;
   min-width: 0; /* prevents the flex track below from inflating this grid item's track width */
@@ -625,21 +646,19 @@
 .slider-dot {
   width: 8px;
   height: 8px;
-  border-radius: 50%;
+  border-radius: var(--radius-pill);
   background: rgba(0, 0, 0, 0.2);
-  transition: background var(--dur-fast) var(--ease-out), width var(--dur-fast) var(--ease-out);
+  transition: width var(--dur-med) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
 }
 
 .slider-dot.is-active {
   background: var(--primary);
-  width: 22px;
-  border-radius: var(--radius-pill);
+  width: 24px;
 }
 
-/* ---------- Favorite / Heart toggle ---------- */
 .favorite-btn {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -658,7 +677,6 @@
   color: var(--primary);
 }
 
-/* ---------- Breadcrumb ---------- */
 .breadcrumb {
   display: flex;
   flex-wrap: wrap;
@@ -676,7 +694,6 @@
   color: var(--accent);
 }
 
-/* ---------- Toolbar (search / filter / sort) ---------- */
 .toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -692,80 +709,69 @@
   width: auto;
 }
 
-/* ---------- Car Card ---------- */
 .car-card-media {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(145deg, #eef2f7, #dde5f0);
+  aspect-ratio: 1 / 1;
+  display: block;
+  overflow: hidden;
+  background: #f8f9fa;
+  border-bottom: 1px solid var(--border);
 }
 
-.car-card-media i {
-  font-size: 3.25rem;
-  color: rgba(0, 0, 0, 0.18);
-  transition: transform var(--dur-med) var(--ease-out);
+[data-theme="dark"] .car-card-media {
+  background: #1c1c1e;
 }
 
 .car-card-image {
-  max-width: 85%;
-  max-height: 80%;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.45));
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: transform var(--dur-med) var(--ease-out);
 }
 
-.car-card:hover .car-card-media i {
-  transform: scale(1.12);
-}
-
 .car-card:hover .car-card-image {
-  transform: translateY(-4px) scale(1.05);
+  transform: scale(1.05);
 }
-
-.car-card-media.is-nocturne { background: linear-gradient(145deg, #fce8ec, #f9d4db); }
-.car-card-media.is-nocturne i { color: rgba(242, 14, 75, 0.35); }
-
-.car-card-media.is-solace { background: linear-gradient(145deg, #e3f2fd, #bbdefb); }
-.car-card-media.is-solace i { color: rgba(4, 151, 242, 0.4); }
-
-.car-card-media.is-corsa { background: linear-gradient(145deg, #fff8e1, #ffecb3); }
-.car-card-media.is-corsa i { color: rgba(245, 164, 72, 0.45); }
-
-.car-card-media.is-meridian { background: linear-gradient(145deg, #e8eaf6, #d1d5f0); }
-.car-card-media.is-meridian i { color: rgba(3, 119, 191, 0.4); }
 
 .car-card-price {
   font-family: var(--font-numeric);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--primary);
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--text-high);
 }
 
-/* Prevent button overflow on compact grid viewports */
-.car-card .card-body > .flex {
-  flex-direction: column;
-  align-items: stretch;
-  gap: var(--space-3);
-}
-
-.car-card .card-body > .flex > .flex {
-  width: 100%;
+/* Allow buttons to wrap naturally on small screens */
+.car-card .card-body {
   display: flex;
-  gap: var(--space-2);
+  flex-direction: column;
 }
 
-.car-card .card-body > .flex > .flex > .btn,
-.car-card .card-body > .flex > .btn {
+.car-card .card-body > h3 {
+  margin-top: var(--space-4);
+}
+
+.car-card .card-body .btn-ghost,
+.car-card .card-body .btn-primary {
   flex: 1;
   justify-content: center;
   padding-inline: var(--space-2);
   font-size: var(--fs-xs);
 }
 
-/* ---------- Brand Card ---------- */
+/* Car cards are narrow (≈300px in the 4-column grid), so the price + two
+   buttons never fit on one line and the "Konfigurasi" button gets clipped.
+   Stack them: price on top, full-width buttons below — at every width. */
+.car-card .card-body .justify-between.mt-4 {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-3);
+}
+
+.car-card .card-body .justify-between.mt-4 > .flex.gap-2 {
+  width: 100%;
+}
+
 .brand-card {
   padding: var(--space-4);
   text-align: center;
@@ -783,7 +789,6 @@
   letter-spacing: 0.05em;
 }
 
-/* ---------- News Card ---------- */
 .news-card-media {
   height: 160px;
   display: flex;
@@ -802,7 +807,6 @@
   transform: scale(1.1);
 }
 
-/* ---------- Spec Table ---------- */
 .spec-table {
   display: flex;
   flex-direction: column;
@@ -832,7 +836,6 @@
   text-align: right;
 }
 
-/* ---------- Stat Bar (performance) ---------- */
 .stat-bar + .stat-bar {
   margin-top: var(--space-4);
 }
@@ -850,7 +853,6 @@
   background: linear-gradient(90deg, var(--primary), var(--secondary));
 }
 
-/* ---------- Compare Table ---------- */
 .compare-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--border);
@@ -907,7 +909,6 @@
   border-bottom: none;
 }
 
-/* ---------- Timeline (About / Roadmap) ---------- */
 .timeline {
   display: flex;
   flex-direction: column;
@@ -935,7 +936,6 @@
   box-shadow: 0 0 0 4px rgba(242, 14, 75, 0.2);
 }
 
-/* ---------- Tech Card (About) ---------- */
 .tech-card {
   padding: var(--space-4);
   text-align: center;
@@ -946,7 +946,6 @@
   color: var(--primary);
 }
 
-/* ---------- Configurator ---------- */
 .configurator-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -1122,7 +1121,6 @@
   color: var(--primary);
 }
 
-/* ---------- Video Wrapper ---------- */
 .video-wrapper {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
@@ -1141,7 +1139,6 @@
   height: 100%;
 }
 
-/* ---------- Contact Form ---------- */
 .contact-form {
   max-width: 720px;
 }
@@ -1194,7 +1191,6 @@ textarea.input {
   border-radius: var(--radius-lg);
 }
 
-/* ---------- Footer Partners ---------- */
 .footer-partners {
   text-align: center;
   padding-bottom: var(--space-6);
@@ -1217,9 +1213,7 @@ textarea.input {
   gap: var(--space-2);
   filter: grayscale(100%);
   opacity: 0.5;
-  transition: filter var(--dur-normal) var(--ease-out),
-    opacity var(--dur-normal) var(--ease-out),
-    transform var(--dur-normal) var(--ease-out);
+  transition: filter var(--dur-med) var(--ease-out), opacity var(--dur-med) var(--ease-out), transform var(--dur-med) var(--ease-out);
   cursor: default;
 }
 
@@ -1242,7 +1236,6 @@ textarea.input {
   transform: scale(1.1);
 }
 
-/* ---------- Gallery Card ---------- */
 .gallery-card .card-body h3 {
   font-size: 1.125rem;
   line-height: 1.4;
@@ -1252,7 +1245,6 @@ textarea.input {
   font-size: var(--fs-sm);
 }
 
-/* ---------- Gallery Hover & Filter ---------- */
 .gallery-img-wrapper img {
   transition: transform var(--dur-med) var(--ease-out);
 }
@@ -1277,7 +1269,7 @@ textarea.input {
   justify-content: center;
   opacity: 0;
   cursor: pointer;
-  transition: all var(--dur-fast) var(--ease-out);
+  transition: transform var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
   z-index: 2;
 }
 
@@ -1295,7 +1287,6 @@ textarea.input {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* ---------- Lightbox Modal ---------- */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -1383,13 +1374,12 @@ textarea.input {
   100% { transform: scale(1); opacity: 1; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
   .lightbox-btn { width: 40px; height: 40px; font-size: 1.25rem; }
   .lightbox-nav.prev { left: var(--space-2); }
   .lightbox-nav.next { right: var(--space-2); }
 }
 
-/* ---------- News Article UI Overhaul ---------- */
 .aspect-21-9 {
   aspect-ratio: 21 / 9;
 }
@@ -1412,7 +1402,7 @@ textarea.input {
   display: flex;
   gap: var(--space-4);
   padding: var(--space-5);
-  background: var(--surface);
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   align-items: flex-start;
@@ -1440,11 +1430,11 @@ textarea.input {
 }
 
 .article-highlight-box {
-  margin: var(--space-8) 0;
+  margin: var(--space-7) 0;
   padding: var(--space-6);
   background: #2a2a2d;
   color: #fff;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   position: relative;
   overflow: hidden;
 }
@@ -1462,7 +1452,7 @@ textarea.input {
   color: #fff;
 }
 .article-highlight-text {
-  font-size: var(--fs-md);
+  font-size: var(--fs-body);
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.6;
   margin: 0;
@@ -1481,15 +1471,15 @@ textarea.input {
 }
 
 .btn-share {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-mid);
-  transition: all var(--dur-fast) var(--ease-out);
+  transition: transform var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
 }
 .btn-share:hover {
   background: var(--primary);

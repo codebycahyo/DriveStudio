@@ -1,8 +1,3 @@
-/**
- * utils.js — small, generic helpers reused across pages: the
- * loading screen animation, scroll-reveal, animated counters,
- * and a debounce function (used later by search.js).
- */
 
 const LOADING_MIN_DURATION = 700;
 
@@ -85,7 +80,7 @@ export function debounce(fn, wait = 250) {
   return (...args) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
-      fn.apply(this, args);
+      fn(...args);
     }, wait);
   };
 }

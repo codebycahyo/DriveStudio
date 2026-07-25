@@ -1,8 +1,4 @@
-/**
- * ui.js — small, generic UI behaviors reused wherever the matching
- * markup appears: tabs (Car Details) and the image slider (gallery).
- * Both operate purely on DOM structure/classes, no page-specific logic.
- */
+
 
 export function initTabs(root = document) {
   root.querySelectorAll('[data-tabs]').forEach((group) => {

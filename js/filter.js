@@ -1,7 +1,3 @@
-/**
- * filter.js — brand/category filtering and sorting over a list of
- * car card elements. Pure functions: no DOM wiring here.
- */
 
 export function filterByBrandAndCategory(cards, { brand, category }) {
   return cards.filter(

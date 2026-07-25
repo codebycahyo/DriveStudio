@@ -1,35 +1,18 @@
-/**
- * configurator.js — Three.js 3D scene for the car configurator page.
- * Renders a geometric car model with customizable paint color, wheels,
- * glass tint, liveries, environments, lighting presets, and camera views.
- *
- * Exports:
- *   initConfigurator()
- *   setBodyColor(hex)
- *   setWheelsOption(opt)
- *   setGlassTint(opt)
- *   setLivery(opt)
- *   setEnvironment(opt)
- *   setLighting(opt)
- *   setCameraPreset(opt)
- *   resetConfigurator()
- */
-
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { debounce } from './utils.js';
 
-/* ---------- Module-level state ---------- */
 let renderer, scene, camera, controls;
-let bodyMaterial, cabinMaterial, glassMaterial, rimMaterial, stripesMesh, customDecalMesh;
+let bodyMaterial, cabinMaterial, glassMaterial, rimMaterial, rubberMaterial, stripesMesh, customDecalMesh;
+const gltfLoader = new GLTFLoader();
+const textureLoader = new THREE.TextureLoader();
 let customDecalBaseWidth = 1, customDecalBaseHeight = 1;
 let ambientLight, hemiLight, dirLight, spotRed, spotBlue;
 let groundMaterial;
 
 const DEFAULT_COLOR = '#F20E4B';
-
-/* ---------- Scene Builder ---------- */
 
 function createScene() {
   scene = new THREE.Scene();
@@ -60,6 +43,7 @@ function createRenderer(canvas) {
   const pmremGenerator = new THREE.PMREMGenerator(renderer);
   pmremGenerator.compileEquirectangularShader();
   scene.environment = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
+  pmremGenerator.dispose();
 }
 
 function createControls(canvas) {
@@ -73,9 +57,14 @@ function createControls(canvas) {
   controls.maxDistance = 16;
   controls.maxPolarAngle = Math.PI / 2.25; // prevent going under the ground
   controls.minPolarAngle = 0.3;
+  controls.addEventListener('change', requestRender);
 }
 
-/* ---------- Car Model ---------- */
+function requestRender() {
+  if (renderer && scene && camera && !controls.autoRotate) {
+    renderer.render(scene, camera);
+  }
+}
 
 function buildCarModel(carId = 'toyota-innova-zenix') {
   const carGroup = new THREE.Group();
@@ -95,8 +84,8 @@ function buildCarModel(carId = 'toyota-innova-zenix') {
     roughness: 0.3,
   });
 
-  // Wheel material (dark rubber)
-  const wheelMaterial = new THREE.MeshStandardMaterial({
+  // Wheel material (dark rubber) - shared
+  rubberMaterial = new THREE.MeshStandardMaterial({
     color: '#1a1a1a',
     metalness: 0.15,
     roughness: 0.9,
@@ -149,15 +138,12 @@ function buildCarModel(carId = 'toyota-innova-zenix') {
   carGroup.add(customDecalMesh);
 
   // --- Load imported Blender glb model as premium visual overlay ---
-  const gltfLoader = new GLTFLoader();
   const loadingIndicator = document.getElementById('stagePlaceholder');
   if (loadingIndicator) {
     loadingIndicator.classList.remove('is-hidden');
     const loadingText = loadingIndicator.querySelector('p');
     if (loadingText) loadingText.textContent = 'Memuat model mobil 3D premium...';
   }
-
-  const modelPath = `assets/models/${carId}.glb`;
 
   const loadGLB = (path, isFallback = false) => {
     gltfLoader.load(
@@ -172,6 +158,11 @@ function buildCarModel(carId = 'toyota-innova-zenix') {
         // Remove any previous GLTF model to avoid duplicate rendering
         const prevModel = carGroup.getObjectByName('glbModel');
         if (prevModel) {
+          prevModel.traverse((node) => {
+            if (node.isMesh && node.geometry) {
+              node.geometry.dispose();
+            }
+          });
           carGroup.remove(prevModel);
         }
 
@@ -201,7 +192,7 @@ function buildCarModel(carId = 'toyota-innova-zenix') {
                 if (matName.includes('VD') || matName.includes('GLASS') || matName.includes('WINDSCREEN')) return glassMaterial;
                 if (matName.includes('ALLOY') || matName.includes('RIM')) return rimMaterial;
                 if (matName.includes('RUBBER') || matName.includes('PNEU')) {
-                  return new THREE.MeshStandardMaterial({ color: '#181818', roughness: 0.9 });
+                  return rubberMaterial;
                 }
                 return mat;
               });
@@ -217,7 +208,7 @@ function buildCarModel(carId = 'toyota-innova-zenix') {
               } else if (matName.includes('ALLOY') || matName.includes('RIM')) {
                 node.material = rimMaterial;
               } else if (matName.includes('RUBBER') || matName.includes('PNEU')) {
-                node.material = new THREE.MeshStandardMaterial({ color: '#181818', roughness: 0.9 });
+                node.material = rubberMaterial;
               }
             }
           }
@@ -233,6 +224,7 @@ function buildCarModel(carId = 'toyota-innova-zenix') {
         if (loadingIndicator) {
           loadingIndicator.classList.add('is-hidden');
         }
+        requestRender();
       },
       (xhr) => {
         // Dynamic loading log
@@ -244,10 +236,8 @@ function buildCarModel(carId = 'toyota-innova-zenix') {
       },
       (error) => {
         if (!isFallback) {
-          console.log(`Model ${path} tidak ditemukan, mencoba assets/models/model.glb...`);
           loadGLB('assets/models/model.glb', true);
         } else {
-          console.warn('Gagal memuat assets/models/model.glb, menggunakan fallback geometri 3D kustom.', error);
           if (loadingIndicator) {
             loadingIndicator.classList.add('is-hidden');
           }
@@ -256,14 +246,14 @@ function buildCarModel(carId = 'toyota-innova-zenix') {
     );
   };
 
-  loadGLB(modelPath);
+  // Only a single shared model ships today; load it directly instead of
+  // probing a per-car path that always 404s before falling back.
+  loadGLB('assets/models/model.glb', true);
 
   scene.add(carGroup);
 }
 
-/* ---------- Ground Plane ---------- */
-
-function buildGround() {
+function createGround() {
   const groundGeom = new THREE.CircleGeometry(14, 64);
   groundMaterial = new THREE.MeshStandardMaterial({
     color: '#111111',
@@ -277,9 +267,7 @@ function buildGround() {
   scene.add(ground);
 }
 
-/* ---------- Lighting ---------- */
-
-function buildLighting() {
+function initLighting() {
   // Soft ambient fill
   ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
   scene.add(ambientLight);
@@ -296,10 +284,10 @@ function buildLighting() {
   dirLight.shadow.mapSize.height = 1024;
   dirLight.shadow.camera.near = 1;
   dirLight.shadow.camera.far = 25;
-  dirLight.shadow.camera.left = -8;
-  dirLight.shadow.camera.right = 8;
-  dirLight.shadow.camera.top = 8;
-  dirLight.shadow.camera.bottom = -8;
+  dirLight.shadow.camera.left = -5;
+  dirLight.shadow.camera.right = 5;
+  dirLight.shadow.camera.top = 5;
+  dirLight.shadow.camera.bottom = -5;
   scene.add(dirLight);
 
   // Dramatic side spot (red tint, matching brand)
@@ -317,9 +305,7 @@ function buildLighting() {
   scene.add(spotBlue.target);
 }
 
-/* ---------- Resize Handler ---------- */
-
-function onResize() {
+function onWindowResize() {
   const canvas = renderer.domElement;
   const parent = canvas.parentElement;
   const width = parent.clientWidth;
@@ -328,17 +314,18 @@ function onResize() {
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
   renderer.setSize(width, height);
+  requestRender();
 }
 
-/* ---------- Animation Loop ---------- */
+const debouncedResize = debounce(onWindowResize, 100);
 
 function animate() {
   requestAnimationFrame(animate);
-  controls.update();
-  renderer.render(scene, camera);
+  if (controls && controls.autoRotate) {
+    controls.update();
+    renderer.render(scene, camera);
+  }
 }
-
-/* ---------- Public API ---------- */
 
 export function initConfigurator() {
   const canvas = document.getElementById('carCanvas');
@@ -351,11 +338,11 @@ export function initConfigurator() {
   createRenderer(canvas);
   createControls(canvas);
   buildCarModel(carUrlId);
-  buildGround();
-  buildLighting();
+  createGround();
+  initLighting();
 
-  window.addEventListener('resize', onResize);
-  onResize(); // match initial container size
+  window.addEventListener('resize', debouncedResize);
+  onWindowResize(); // match initial container size
 
   animate();
 }
@@ -364,6 +351,7 @@ export function setBodyColor(hex) {
   const color = new THREE.Color(hex);
   if (bodyMaterial) bodyMaterial.color.copy(color);
   if (cabinMaterial) cabinMaterial.color.copy(color);
+  requestRender();
 }
 
 export function setWheelsOption(opt) {
@@ -378,6 +366,7 @@ export function setWheelsOption(opt) {
     rimMaterial.color.set('#ddaa55'); // Gold/bronze
     rimMaterial.roughness = 0.2;
   }
+  requestRender();
 }
 
 export function setGlassTint(opt) {
@@ -388,10 +377,11 @@ export function setGlassTint(opt) {
   } else if (opt === 'glass-smoke') {
     glassMaterial.color.set('#0a0a0d');
     glassMaterial.opacity = 0.65;
-  } else if (opt === 'glass-midnight') {
+  } else if (opt === 'midnight') {
     glassMaterial.color.set('#020202');
     glassMaterial.opacity = 0.92;
   }
+  requestRender();
 }
 
 export function setLivery(opt) {
@@ -409,6 +399,7 @@ export function setLivery(opt) {
       mesh.material.color.set('#ffc107'); // Amber Gold stripes
     });
   }
+  requestRender();
 }
 
 export function setCustomLivery(url) {
@@ -419,10 +410,8 @@ export function setCustomLivery(url) {
     return;
   }
   
-  // Hide default stripes when custom is active
   if (stripesMesh) stripesMesh.visible = false;
 
-  const textureLoader = new THREE.TextureLoader();
   textureLoader.load(url, (texture) => {
     texture.colorSpace = THREE.SRGBColorSpace;
     
@@ -448,6 +437,7 @@ export function setCustomLivery(url) {
     customDecalMesh.material.map = texture;
     customDecalMesh.material.needsUpdate = true;
     customDecalMesh.visible = true;
+    requestRender();
   });
 }
 
@@ -456,6 +446,7 @@ export function updateCustomLiveryTransform(scale, posX, posY) {
   customDecalMesh.scale.set(customDecalBaseWidth * scale, customDecalBaseHeight * scale, 1);
   customDecalMesh.position.z = posX;
   customDecalMesh.position.y = posY;
+  requestRender();
 }
 
 export function setEnvironment(opt) {
@@ -476,6 +467,7 @@ export function setEnvironment(opt) {
     groundMaterial.color.set('#ffffff');
     groundMaterial.roughness = 0.85;
   }
+  requestRender();
 }
 
 export function setLighting(opt) {
@@ -500,6 +492,7 @@ export function setLighting(opt) {
     spotBlue.color.set('#00ffff'); // cyan
     spotBlue.intensity = 1.8;
   }
+  requestRender();
 }
 
 export function setCameraPreset(opt) {
@@ -517,6 +510,7 @@ export function setCameraPreset(opt) {
     camera.position.set(0.01, 7.2, 0.01);
     controls.target.set(0, 0.5, 0);
   }
+  requestRender();
 }
 
 export function resetConfigurator() {

@@ -8,21 +8,41 @@
 
   <script>
     (function () {
-      try {
-        var saved = JSON.parse(localStorage.getItem('ds:theme'));
-        if (saved === 'light') document.documentElement.dataset.theme = 'light';
-      } catch (e) { /* localStorage tidak tersedia */ }
+      document.documentElement.classList.add('js');
     })();
   </script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="css/main.css?v=9" />
-  <link rel="stylesheet" href="css/components.css?v=9" />
-  <link rel="stylesheet" href="css/animations.css?v=9" />
-  <link rel="stylesheet" href="css/pages.css?v=9" />
-  <link rel="stylesheet" href="css/responsive.css?v=9" />
+  <link rel="stylesheet" href="css/main.css?v=26" />
+  <link rel="stylesheet" href="css/components.css?v=26" />
+  <link rel="stylesheet" href="css/animations.css?v=26" />
+  <link rel="stylesheet" href="css/pages.css?v=26" />
+  <link rel="stylesheet" href="css/responsive.css?v=26" />
+
+  <!-- SEO & Social Meta -->
+  <meta property="og:title" content="Drive Studio — Desain Mobil Impian Anda" />
+  <meta property="og:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta property="og:image" content="https://drivestudio.com/og-image.jpg" />
+  <meta property="og:url" content="https://drivestudio.com/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Drive Studio" />
+  <meta name="twitter:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta name="twitter:image" content="https://drivestudio.com/og-image.jpg" />
+  <link rel="canonical" href="https://drivestudio.com/" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>" type="image/svg+xml" />
+
+  <!-- Preconnect Hints -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://www.youtube.com" crossorigin />
+  <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
 </head>
 <body data-page="cars">
+  <a href="#main-content" class="sr-only focusable-skip-link">Langsung ke konten utama</a>
+
 
   <div class="loading-screen" id="loadingScreen">
     <p class="loading-logo">DRIVE<span class="text-primary">STUDIO</span></p>
@@ -48,9 +68,6 @@
           <i class="bi bi-heart"></i>
           <span class="icon-btn-badge" id="favoritesCount" hidden>0</span>
         </a>
-        <button type="button" class="btn-icon" id="themeToggle" aria-label="Ubah Tema Terang/Gelap">
-          <i class="bi bi-moon-stars" id="themeIcon"></i>
-        </button>
         <button type="button" class="btn-icon navbar-toggle" id="navbarToggle" aria-label="Buka Menu" aria-expanded="false" aria-controls="navbarDrawer">
           <i class="bi bi-list" id="navbarToggleIcon"></i>
         </button>
@@ -110,7 +127,7 @@
         <div class="grid grid-4 mt-4 reveal-stagger" id="carGrid">
           <article class="card car-card reveal" data-brand="toyota" data-category="hybrid" data-price="471600000" data-power="186" data-name="Toyota Innova Zenix">
             <div class="car-card-media is-nocturne">
-              <img src="assets/images/toyota_innova_zenix.png" alt="Toyota Innova Zenix" class="car-card-image" />
+              <img width="600" height="400"  src="assets/images/toyota_innova_zenix.png" alt="Toyota Innova Zenix" class="car-card-image" loading="lazy" decoding="async">
             </div>
             <div class="card-body">
               <div class="flex justify-between items-center">
@@ -132,7 +149,7 @@
 
           <article class="card car-card reveal" data-brand="honda" data-category="hatchback" data-price="191900000" data-power="90" data-name="Honda Brio">
             <div class="car-card-media is-solace">
-              <img src="assets/images/honda_brio.png" alt="Honda Brio" class="car-card-image" />
+              <img width="600" height="400"  src="assets/images/honda_brio.png" alt="Honda Brio" class="car-card-image" loading="lazy" decoding="async">
             </div>
             <div class="card-body">
               <div class="flex justify-between items-center">
@@ -154,7 +171,7 @@
 
           <article class="card car-card reveal" data-brand="mitsubishi" data-category="suv" data-price="589600000" data-power="181" data-name="Mitsubishi Pajero Sport">
             <div class="car-card-media is-corsa">
-              <img src="assets/images/mitsubishi_pajero_sport.png" alt="Mitsubishi Pajero Sport" class="car-card-image" />
+              <img width="600" height="400"  src="assets/images/mitsubishi_pajero_sport.png" alt="Mitsubishi Pajero Sport" class="car-card-image" loading="lazy" decoding="async">
             </div>
             <div class="card-body">
               <div class="flex justify-between items-center">
@@ -176,7 +193,7 @@
 
           <article class="card car-card reveal" data-brand="byd" data-category="ev" data-price="515000000" data-power="204" data-name="BYD Atto 3">
             <div class="car-card-media is-meridian">
-              <img src="assets/images/byd_atto_3.png" alt="BYD Atto 3" class="car-card-image" />
+              <img width="600" height="400"  src="assets/images/byd_atto_3.png" alt="BYD Atto 3" class="car-card-image" loading="lazy" decoding="async">
             </div>
             <div class="card-body">
               <div class="flex justify-between items-center">
@@ -266,14 +283,12 @@
 
   <script type="module">
     import { initNavbar } from './js/nav.js';
-    import { initTheme } from './js/theme.js';
     import { initScrollReveal, initCounters, initLoadingScreen, debounce } from './js/utils.js';
     import { filterBySearch } from './js/search.js';
     import { filterByBrandAndCategory, sortCards } from './js/filter.js';
     import { initFavoriteButtons, isFavorite } from './js/favorites.js';
 
     initNavbar();
-    initTheme();
     initScrollReveal();
     initCounters();
     initLoadingScreen();

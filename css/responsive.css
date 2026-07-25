@@ -6,7 +6,10 @@
    here — keep the cascade min-width only.
    ============================================================ */
 
-/* ---------- >= 576px (large phones) ---------- */
+@media (min-width: 480px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (min-width: 576px) {
   .grid-2 { grid-template-columns: repeat(2, 1fr); }
 
@@ -28,13 +31,11 @@
   }
 }
 
-/* ---------- >= 768px (tablets) ---------- */
 @media (min-width: 768px) {
   .container {
     padding-inline: var(--space-5);
   }
 
-  .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
 
   .navbar-drawer {
@@ -63,7 +64,6 @@
   }
 }
 
-/* ---------- >= 992px (small desktops) ---------- */
 @media (min-width: 992px) {
   .grid-3 { grid-template-columns: repeat(3, 1fr); }
   .grid-4 { grid-template-columns: repeat(3, 1fr); }
@@ -72,20 +72,18 @@
 
   /* Configurator: sidebars + canvas side by side from here up */
   .configurator-layout {
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: minmax(240px, 280px) 1fr;
   }
 }
 
-/* ---------- >= 1200px (large desktops) ---------- */
 @media (min-width: 1200px) {
   .grid-4 { grid-template-columns: repeat(4, 1fr); }
 
   .configurator-layout {
-    grid-template-columns: 280px 1fr 320px;
+    grid-template-columns: minmax(240px, 280px) 1fr minmax(280px, 320px);
   }
 }
 
-/* ---------- >= 1440px (extra-large screens) ---------- */
 @media (min-width: 1440px) {
   :root {
     --container-max: 1400px;

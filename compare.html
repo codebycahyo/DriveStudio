@@ -8,21 +8,41 @@
 
   <script>
     (function () {
-      try {
-        var saved = JSON.parse(localStorage.getItem('ds:theme'));
-        if (saved === 'light') document.documentElement.dataset.theme = 'light';
-      } catch (e) { /* localStorage tidak tersedia */ }
+      document.documentElement.classList.add('js');
     })();
   </script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="css/main.css?v=22" />
-  <link rel="stylesheet" href="css/components.css?v=22" />
-  <link rel="stylesheet" href="css/animations.css?v=22" />
-  <link rel="stylesheet" href="css/pages.css?v=22" />
-  <link rel="stylesheet" href="css/responsive.css?v=22" />
+  <link rel="stylesheet" href="css/main.css?v=26" />
+  <link rel="stylesheet" href="css/components.css?v=26" />
+  <link rel="stylesheet" href="css/animations.css?v=26" />
+  <link rel="stylesheet" href="css/pages.css?v=26" />
+  <link rel="stylesheet" href="css/responsive.css?v=26" />
+
+  <!-- SEO & Social Meta -->
+  <meta property="og:title" content="Drive Studio — Desain Mobil Impian Anda" />
+  <meta property="og:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta property="og:image" content="https://drivestudio.com/og-image.jpg" />
+  <meta property="og:url" content="https://drivestudio.com/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Drive Studio" />
+  <meta name="twitter:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta name="twitter:image" content="https://drivestudio.com/og-image.jpg" />
+  <link rel="canonical" href="https://drivestudio.com/" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>" type="image/svg+xml" />
+
+  <!-- Preconnect Hints -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://www.youtube.com" crossorigin />
+  <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
 </head>
 <body data-page="compare">
+  <a href="#main-content" class="sr-only focusable-skip-link">Langsung ke konten utama</a>
+
 
   <div class="loading-screen" id="loadingScreen">
     <p class="loading-logo">DRIVE<span class="text-primary">STUDIO</span></p>
@@ -48,9 +68,6 @@
           <i class="bi bi-heart"></i>
           <span class="icon-btn-badge" id="favoritesCount" hidden>0</span>
         </a>
-        <button type="button" class="btn-icon" id="themeToggle" aria-label="Ubah Tema Terang/Gelap">
-          <i class="bi bi-moon-stars" id="themeIcon"></i>
-        </button>
         <button type="button" class="btn-icon navbar-toggle" id="navbarToggle" aria-label="Buka Menu" aria-expanded="false" aria-controls="navbarDrawer">
           <i class="bi bi-list" id="navbarToggleIcon"></i>
         </button>
@@ -94,7 +111,7 @@
           <!-- Project 1 -->
           <div class="card gallery-card reveal" data-category="cat-kustom" style="text-decoration: none; color: inherit; position: relative; overflow: hidden; display: flex; flex-direction: column;">
             <div class="aspect-video bg-surface gallery-img-wrapper" style="position: relative;">
-              <img src="assets/images/toyota_innova_zenix.png" alt="Custom Paint Innova Zenix" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+              <img width="600" height="400"  src="assets/images/toyota_innova_zenix.png" alt="Custom Paint Innova Zenix" class="w-full h-full object-cover" loading="lazy" decoding="async" />
               <button class="lightbox-trigger" aria-label="Lihat Gambar"><i class="bi bi-arrows-fullscreen"></i></button>
             </div>
             <div class="card-body" style="flex: 1; display: flex; flex-direction: column;">
@@ -113,7 +130,7 @@
           <!-- Project 2 -->
           <div class="card gallery-card reveal" data-category="stiker-wrapping" style="text-decoration: none; color: inherit; position: relative; overflow: hidden; display: flex; flex-direction: column;">
             <div class="aspect-video bg-surface gallery-img-wrapper" style="position: relative;">
-              <img src="assets/images/honda_brio.png" alt="Full Wrap Stiker Honda Brio" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+              <img width="600" height="400"  src="assets/images/honda_brio.png" alt="Full Wrap Stiker Honda Brio" class="w-full h-full object-cover" loading="lazy" decoding="async" />
               <button class="lightbox-trigger" aria-label="Lihat Gambar"><i class="bi bi-arrows-fullscreen"></i></button>
             </div>
             <div class="card-body" style="flex: 1; display: flex; flex-direction: column;">
@@ -132,7 +149,7 @@
           <!-- Project 3 -->
           <div class="card gallery-card reveal" data-category="eksterior" style="text-decoration: none; color: inherit; position: relative; overflow: hidden; display: flex; flex-direction: column;">
             <div class="aspect-video bg-surface gallery-img-wrapper" style="position: relative;">
-              <img src="assets/images/mitsubishi_pajero_sport.png" alt="Modifikasi Eksterior Pajero Sport" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+              <img width="600" height="400"  src="assets/images/mitsubishi_pajero_sport.png" alt="Modifikasi Eksterior Pajero Sport" class="w-full h-full object-cover" loading="lazy" decoding="async" />
               <button class="lightbox-trigger" aria-label="Lihat Gambar"><i class="bi bi-arrows-fullscreen"></i></button>
             </div>
             <div class="card-body" style="flex: 1; display: flex; flex-direction: column;">
@@ -151,7 +168,7 @@
           <!-- Project 4 -->
           <div class="card gallery-card reveal" data-category="perawatan" style="text-decoration: none; color: inherit; position: relative; overflow: hidden; display: flex; flex-direction: column;">
             <div class="aspect-video bg-surface gallery-img-wrapper" style="position: relative;">
-              <img src="assets/images/byd_atto_3.png" alt="Ceramic Coating BYD Atto 3" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+              <img width="600" height="400"  src="assets/images/byd_atto_3.png" alt="Ceramic Coating BYD Atto 3" class="w-full h-full object-cover" loading="lazy" decoding="async" />
               <button class="lightbox-trigger" aria-label="Lihat Gambar"><i class="bi bi-arrows-fullscreen"></i></button>
             </div>
             <div class="card-body" style="flex: 1; display: flex; flex-direction: column;">
@@ -170,7 +187,7 @@
           <!-- Project 5 -->
           <div class="card gallery-card reveal" data-category="stiker-wrapping" style="text-decoration: none; color: inherit; position: relative; overflow: hidden; display: flex; flex-direction: column;">
             <div class="aspect-video bg-surface gallery-img-wrapper" style="position: relative;">
-              <img src="assets/images/toyota_innova_zenix.png" alt="Custom Livery Innova Zenix" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+              <img width="600" height="400"  src="assets/images/toyota_innova_zenix.png" alt="Custom Livery Innova Zenix" class="w-full h-full object-cover" loading="lazy" decoding="async" />
               <button class="lightbox-trigger" aria-label="Lihat Gambar"><i class="bi bi-arrows-fullscreen"></i></button>
             </div>
             <div class="card-body" style="flex: 1; display: flex; flex-direction: column;">
@@ -189,7 +206,7 @@
           <!-- Project 6 -->
           <div class="card gallery-card reveal" data-category="suku-cadang" style="text-decoration: none; color: inherit; position: relative; overflow: hidden; display: flex; flex-direction: column;">
             <div class="aspect-video bg-surface gallery-img-wrapper" style="position: relative;">
-              <img src="assets/images/honda_brio.png" alt="Modifikasi Kaca Gelap Brio" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+              <img width="600" height="400"  src="assets/images/honda_brio.png" alt="Modifikasi Kaca Gelap Brio" class="w-full h-full object-cover" loading="lazy" decoding="async" />
               <button class="lightbox-trigger" aria-label="Lihat Gambar"><i class="bi bi-arrows-fullscreen"></i></button>
             </div>
             <div class="card-body" style="flex: 1; display: flex; flex-direction: column;">
@@ -291,18 +308,16 @@
     <button id="lightboxPrev" class="lightbox-btn lightbox-nav prev" aria-label="Sebelumnya"><i class="bi bi-chevron-left"></i></button>
     <button id="lightboxNext" class="lightbox-btn lightbox-nav next" aria-label="Selanjutnya"><i class="bi bi-chevron-right"></i></button>
     <div class="lightbox-content">
-      <img id="lightboxImg" src="" alt="Preview" />
+      <img width="600" height="400"  id="lightboxImg" src="" alt="Preview" loading="lazy" decoding="async">
       <div id="lightboxCaption" class="lightbox-caption"></div>
     </div>
   </div>
 
   <script type="module">
     import { initNavbar } from './js/nav.js';
-    import { initTheme } from './js/theme.js';
     import { initScrollReveal, initCounters, initLoadingScreen } from './js/utils.js';
 
     initNavbar();
-    initTheme();
     initScrollReveal();
     initCounters();
     initLoadingScreen();

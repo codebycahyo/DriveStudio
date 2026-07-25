@@ -1,8 +1,3 @@
-/**
- * favorites.js — shared favorite-car list, backed by storage.js.
- * Single source of truth so the navbar badge, Explore grid, and
- * Car Details page never drift out of sync.
- */
 
 import { getItem, setItem } from './storage.js';
 

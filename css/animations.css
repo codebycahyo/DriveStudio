@@ -1,16 +1,14 @@
-/* ============================================================
-   Drive Studio — animations.css
-   Keyframes + transition utility classes shared across pages.
-   ============================================================ */
 
-/* ---------- Scroll reveal ---------- */
-/* Element starts hidden/offset; utils.js's IntersectionObserver
-   adds .is-revealed when it enters the viewport. */
 .reveal {
-  opacity: 0;
-  transform: translateY(28px);
   transition: opacity var(--dur-slow) var(--ease-out),
     transform var(--dur-slow) var(--ease-out);
+}
+
+/* Hidden state only applies when JS is available (the inline head script
+   adds .js). Without JS the content stays visible instead of blank. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(28px);
 }
 
 .reveal.is-revealed {
@@ -26,7 +24,6 @@
 .reveal-stagger > *:nth-child(5) { transition-delay: calc(var(--stagger-unit) * 4); }
 .reveal-stagger > *:nth-child(6) { transition-delay: calc(var(--stagger-unit) * 5); }
 
-/* ---------- Keyframes ---------- */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -56,12 +53,12 @@
   50% { opacity: 0.7; transform: scale(1.05); }
 }
 
-/* ---------- Utility animation classes ---------- */
 .anim-fade-in {
   animation: fadeIn var(--dur-slow) var(--ease-out) both;
 }
 
 .anim-float {
+  will-change: transform;
   animation: floatY 4s var(--ease-in-out) infinite;
 }
 
@@ -85,7 +82,6 @@
   animation: shimmer 1.6s ease-in-out infinite;
 }
 
-/* ---------- Hover micro-interactions ---------- */
 .hover-lift {
   transition: transform var(--dur-med) var(--ease-out);
 }
@@ -108,4 +104,13 @@
 
 .hover-glow-accent:hover {
   box-shadow: var(--shadow-glow-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-float,
+  .anim-pulse-glow,
+  .anim-spin,
+  .skeleton {
+    animation-duration: 1ms !important;
+  }
 }

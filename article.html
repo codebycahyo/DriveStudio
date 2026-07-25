@@ -8,21 +8,41 @@
 
   <script>
     (function () {
-      try {
-        var saved = JSON.parse(localStorage.getItem('ds:theme'));
-        if (saved === 'light') document.documentElement.dataset.theme = 'light';
-      } catch (e) { /* localStorage tidak tersedia */ }
+      document.documentElement.classList.add('js');
     })();
   </script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="css/main.css?v=22" />
-  <link rel="stylesheet" href="css/components.css?v=22" />
-  <link rel="stylesheet" href="css/animations.css?v=22" />
-  <link rel="stylesheet" href="css/pages.css?v=22" />
-  <link rel="stylesheet" href="css/responsive.css?v=22" />
+  <link rel="stylesheet" href="css/main.css?v=26" />
+  <link rel="stylesheet" href="css/components.css?v=26" />
+  <link rel="stylesheet" href="css/animations.css?v=26" />
+  <link rel="stylesheet" href="css/pages.css?v=26" />
+  <link rel="stylesheet" href="css/responsive.css?v=26" />
+
+  <!-- SEO & Social Meta -->
+  <meta property="og:title" content="Drive Studio — Desain Mobil Impian Anda" />
+  <meta property="og:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta property="og:image" content="https://drivestudio.com/og-image.jpg" />
+  <meta property="og:url" content="https://drivestudio.com/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Drive Studio" />
+  <meta name="twitter:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta name="twitter:image" content="https://drivestudio.com/og-image.jpg" />
+  <link rel="canonical" href="https://drivestudio.com/" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>" type="image/svg+xml" />
+
+  <!-- Preconnect Hints -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://www.youtube.com" crossorigin />
+  <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
 </head>
-<body data-page="home">
+<body data-page="article">
+  <a href="#main-content" class="sr-only focusable-skip-link">Langsung ke konten utama</a>
+
 
   <div class="loading-screen" id="loadingScreen">
     <p class="loading-logo">DRIVE<span class="text-primary">STUDIO</span></p>
@@ -48,9 +68,6 @@
           <i class="bi bi-heart"></i>
           <span class="icon-btn-badge" id="favoritesCount" hidden>0</span>
         </a>
-        <button type="button" class="btn-icon" id="themeToggle" aria-label="Ubah Tema Terang/Gelap">
-          <i class="bi bi-moon-stars" id="themeIcon"></i>
-        </button>
         <button type="button" class="btn-icon navbar-toggle" id="navbarToggle" aria-label="Buka Menu" aria-expanded="false" aria-controls="navbarDrawer">
           <i class="bi bi-list" id="navbarToggleIcon"></i>
         </button>
@@ -59,34 +76,26 @@
   </header>
 
   <!-- Reading Progress Bar -->
-  <div id="readingProgress" style="position: fixed; top: 0; left: 0; height: 3px; background: var(--primary); width: 0%; z-index: 9999; transition: width 0.1s ease-out;"></div>
+  <div id="readingProgress" style="position: fixed; top: var(--nav-height); left: 0; height: 3px; background: var(--primary); width: 0%; z-index: 99; transition: width 0.1s ease-out;"></div>
 
   <!-- Mobile Drawer -->
   <div class="navbar-drawer" id="navbarDrawer">
-    <div class="navbar-drawer-header">
-      <span class="navbar-brand">Drive<span>Studio</span></span>
-      <button type="button" class="btn-icon" id="drawerClose" aria-label="Tutup Menu">
-        <i class="bi bi-x-lg"></i>
-      </button>
-    </div>
-    <nav class="navbar-drawer-links">
-      <a href="index.html">Beranda</a>
-      <a href="cars.html">Eksplorasi</a>
-      <a href="compare.html">Galeri</a>
-      <a href="configurator.html">Konfigurator</a>
-      <a href="about.html">Tentang Kami</a>
-    </nav>
+    <a href="index.html">Beranda</a>
+    <a href="cars.html">Eksplorasi</a>
+    <a href="compare.html">Galeri</a>
+    <a href="configurator.html">Konfigurator</a>
+    <a href="about.html">Tentang Kami</a>
   </div>
 
-  <main>
-    <section class="editorial-hero" style="padding-top: 120px;">
+  <main id="main-content">
+    <section class="editorial-hero" style="padding-top: calc(var(--nav-height) + var(--space-6));">
       <div class="container text-center reveal pb-5">
         <span class="badge badge-primary mb-4" id="articleCategory" style="border-radius: 9999px; font-weight: 700; padding: 0.35em 0.85em; display: inline-block;">Kategori</span>
         <h1 class="hero-title max-w-prose mx-auto" id="articleTitle" style="font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.25;">Memuat Artikel...</h1>
         <div class="flex justify-center items-center gap-4 mt-6 text-low fs-sm">
           <div class="flex items-center gap-3">
             <div style="width: 48px; height: 48px; border-radius: 50%; overflow: hidden; border: 1px solid var(--border);">
-              <img src="assets/images/toyota_innova_zenix.png" id="authorImage" alt="Author" style="width: 100%; height: 100%; object-fit: cover;" />
+              <img width="600" height="400"  src="assets/images/toyota_innova_zenix.png" id="authorImage" alt="Penulis Artikel" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" decoding="async">
             </div>
             <div class="text-left">
               <p class="fw-600 text-high" id="articleAuthor" style="margin: 0; font-size: 1rem;">Admin</p>
@@ -100,14 +109,12 @@
         </div>
       </div>
       
-      <!-- Featured Image -->
+      <!-- Featured Image (framed like the gallery slider) -->
       <div class="container reveal">
-        <div class="aspect-21-9 w-full overflow-hidden shadow-md relative" style="border-radius: var(--radius-lg);">
-          <img src="" id="articleImage" alt="Featured" class="w-full h-full object-cover" />
-          <div class="article-image-overlay">
-            <p class="fs-xs fw-500" id="articleImageCaption">Ilustrasi artikel. Dokumentasi Drive Studio.</p>
-          </div>
+        <div class="car-card-media is-nocturne mx-auto" style="max-width: 560px; min-height: 320px; border-radius: var(--radius-lg); border-bottom: none;">
+          <img class="car-card-image" src="" id="articleImage" alt="Gambar Utama Artikel" style="max-height: 100%; object-fit: contain;" loading="lazy" decoding="async">
         </div>
+        <p class="fs-xs fw-500 text-low text-center mt-3" id="articleImageCaption">Ilustrasi artikel. Dokumentasi Drive Studio.</p>
       </div>
     </section>
 
@@ -165,11 +172,9 @@
 
   <script type="module">
     import { initNavbar } from './js/nav.js';
-    import { initTheme } from './js/theme.js';
     import { initScrollReveal, initCounters, initLoadingScreen } from './js/utils.js';
 
     initNavbar();
-    initTheme();
     initScrollReveal();
     initCounters();
     initLoadingScreen();
@@ -325,13 +330,13 @@
         if(key !== articleId && relatedContainer.children.length < 2) {
            const rel = articles[key];
            relatedContainer.innerHTML += `
-             <a href="article.html?id=${key}" class="card overflow-hidden" style="text-decoration: none; color: inherit; display: block; border: 1px solid var(--border); box-shadow: none;">
+             <a href="article.html?id=${key}" class="card overflow-hidden" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; border: 1px solid var(--border); box-shadow: none;">
                <div class="aspect-video w-full">
-                 <img src="${rel.image}" alt="${rel.title}" class="w-full h-full object-cover" loading="lazy" />
+                 <img width="600" height="400"  src="${rel.image}" alt="${rel.title}" class="w-full h-full object-cover" loading="lazy" />
                </div>
-               <div class="p-3">
-                 <span class="badge badge-accent fs-xs" style="padding: 0.1rem 0.4rem;">${rel.category}</span>
-                 <h4 class="mt-2 fs-sm" style="line-height: 1.4; font-weight: 600;">${rel.title}</h4>
+               <div class="card-body" style="flex: 1; display: flex; flex-direction: column;">
+                 <div><span class="badge badge-accent fs-xs" style="padding: 0.1rem 0.4rem;">${rel.category}</span></div>
+                 <h4 class="mt-2 fs-sm line-clamp-2" style="line-height: 1.4; font-weight: 600;">${rel.title}</h4>
                </div>
              </a>
            `;

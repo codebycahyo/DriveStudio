@@ -8,21 +8,41 @@
 
   <script>
     (function () {
-      try {
-        var saved = JSON.parse(localStorage.getItem('ds:theme'));
-        if (saved === 'light') document.documentElement.dataset.theme = 'light';
-      } catch (e) { /* localStorage tidak tersedia */ }
+      document.documentElement.classList.add('js');
     })();
   </script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="css/main.css?v=22" />
-  <link rel="stylesheet" href="css/components.css?v=22" />
-  <link rel="stylesheet" href="css/animations.css?v=22" />
-  <link rel="stylesheet" href="css/pages.css?v=22" />
-  <link rel="stylesheet" href="css/responsive.css?v=22" />
+  <link rel="stylesheet" href="css/main.css?v=26" />
+  <link rel="stylesheet" href="css/components.css?v=26" />
+  <link rel="stylesheet" href="css/animations.css?v=26" />
+  <link rel="stylesheet" href="css/pages.css?v=26" />
+  <link rel="stylesheet" href="css/responsive.css?v=26" />
+
+  <!-- SEO & Social Meta -->
+  <meta property="og:title" content="Drive Studio — Desain Mobil Impian Anda" />
+  <meta property="og:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta property="og:image" content="https://drivestudio.com/og-image.jpg" />
+  <meta property="og:url" content="https://drivestudio.com/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Drive Studio" />
+  <meta name="twitter:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta name="twitter:image" content="https://drivestudio.com/og-image.jpg" />
+  <link rel="canonical" href="https://drivestudio.com/" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>" type="image/svg+xml" />
+
+  <!-- Preconnect Hints -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://www.youtube.com" crossorigin />
+  <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
 </head>
-<body data-page="compare">
+<body data-page="gallery-detail">
+  <a href="#main-content" class="sr-only focusable-skip-link">Langsung ke konten utama</a>
+
 
   <div class="loading-screen" id="loadingScreen">
     <p class="loading-logo">DRIVE<span class="text-primary">STUDIO</span></p>
@@ -48,9 +68,6 @@
           <i class="bi bi-heart"></i>
           <span class="icon-btn-badge" id="favoritesCount" hidden>0</span>
         </a>
-        <button type="button" class="btn-icon" id="themeToggle" aria-label="Ubah Tema Terang/Gelap">
-          <i class="bi bi-moon-stars" id="themeIcon"></i>
-        </button>
         <button type="button" class="btn-icon navbar-toggle" id="navbarToggle" aria-label="Buka Menu" aria-expanded="false" aria-controls="navbarDrawer">
           <i class="bi bi-list" id="navbarToggleIcon"></i>
         </button>
@@ -60,26 +77,18 @@
 
   <!-- Mobile Drawer -->
   <div class="navbar-drawer" id="navbarDrawer">
-    <div class="navbar-drawer-header">
-      <span class="navbar-brand">Drive<span>Studio</span></span>
-      <button type="button" class="btn-icon" id="drawerClose" aria-label="Tutup Menu">
-        <i class="bi bi-x-lg"></i>
-      </button>
-    </div>
-    <nav class="navbar-drawer-links">
-      <a href="index.html">Beranda</a>
-      <a href="cars.html">Eksplorasi</a>
-      <a href="compare.html" class="is-active">Galeri</a>
-      <a href="configurator.html">Konfigurator</a>
-      <a href="about.html">Tentang Kami</a>
-    </nav>
+    <a href="index.html">Beranda</a>
+    <a href="cars.html">Eksplorasi</a>
+    <a href="compare.html" class="is-active">Galeri</a>
+    <a href="configurator.html">Konfigurator</a>
+    <a href="about.html">Tentang Kami</a>
   </div>
 
-  <main>
+  <main id="main-content">
     <section class="page-hero">
       <div class="container text-center reveal">
         <span class="badge badge-primary mx-auto" id="projectCategory">Project Detail</span>
-        <h1 class="hero-title mt-4" id="projectTitle">Memuat Data Proyek...</h1>
+        <h1 class="hero-title mt-4 max-w-prose mx-auto" id="projectTitle">Memuat Data Proyek...</h1>
         <p class="text-low mt-3 mx-auto max-w-md" id="projectDesc">
           Tunggu sebentar, kami sedang memuat informasi proyek ini untuk Anda.
         </p>
@@ -88,30 +97,56 @@
 
     <section class="section pt-0">
       <div class="container">
-        <div class="card p-6 overflow-hidden reveal max-w-prose mx-auto">
-          <div class="flex justify-center p-4" style="background: var(--surface); border-radius: var(--radius-md);">
-            <img src="" alt="Project Image" id="projectImage" class="w-full object-cover" style="max-height: 400px; border-radius: var(--radius-md);" />
-          </div>
-          
-          <div class="grid mt-6 p-4 gap-6">
-            <div>
-              <h3 class="fs-h3">Tentang Proyek Ini</h3>
-              <p class="text-mid mt-3" id="projectLongDesc">
-                --
-              </p>
+        <div class="card p-6 reveal" id="projectCard" style="max-width: 1000px; margin-inline: auto;">
+          <div class="grid grid-2" style="align-items: start; gap: var(--space-6);">
+
+            <!-- Gallery -->
+            <div class="slider" id="projectGallery">
+              <div class="slider-track">
+                <div class="slider-slide car-card-media is-nocturne" style="min-height: 320px;">
+                  <img class="car-card-image gallery-slide-img" src="" alt="Detail Proyek Modifikasi" style="max-height: 100%; object-fit: contain;" loading="lazy" decoding="async">
+                </div>
+                <div class="slider-slide car-card-media is-nocturne" style="min-height: 320px;">
+                  <img class="car-card-image gallery-slide-img" src="" alt="Detail Proyek Modifikasi" style="max-height: 100%; object-fit: contain;" loading="lazy" decoding="async">
+                </div>
+                <div class="slider-slide car-card-media is-nocturne" style="min-height: 320px;">
+                  <img class="car-card-image gallery-slide-img" src="" alt="Detail Proyek Modifikasi" style="max-height: 100%; object-fit: contain;" loading="lazy" decoding="async">
+                </div>
+              </div>
+              <div class="slider-controls">
+                <button type="button" class="btn-icon" data-slider-prev aria-label="Gambar sebelumnya">
+                  <i class="bi bi-chevron-left"></i>
+                </button>
+                <button type="button" class="btn-icon" data-slider-next aria-label="Gambar berikutnya">
+                  <i class="bi bi-chevron-right"></i>
+                </button>
+              </div>
+              <div class="slider-dots">
+                <button type="button" class="slider-dot is-active" aria-label="Tampilkan gambar 1"></button>
+                <button type="button" class="slider-dot" aria-label="Tampilkan gambar 2"></button>
+                <button type="button" class="slider-dot" aria-label="Tampilkan gambar 3"></button>
+              </div>
             </div>
+
+            <!-- Info -->
             <div>
-              <h3 class="fs-h3">Checklist Modifikasi</h3>
-              <ul class="mt-3" id="projectMods" style="list-style: inside; padding-left: 1rem; color: var(--text-mid); line-height: 1.8;">
+              <h2 class="fs-h3">Tentang Proyek Ini</h2>
+              <p class="text-mid mt-3" id="projectLongDesc">--</p>
+
+              <hr class="sidebar-divider" style="margin-block: var(--space-5);" />
+
+              <h3 class="fs-h4 flex items-center gap-2">
+                <i class="bi bi-list-check text-primary"></i> Checklist Modifikasi
+              </h3>
+              <ul class="project-mods" id="projectMods">
                 <li>--</li>
               </ul>
+
+              <a href="compare.html" class="btn btn-outline mt-5">
+                <i class="bi bi-arrow-left"></i> Kembali ke Galeri
+              </a>
             </div>
-          </div>
-          
-          <div class="mt-6 text-center">
-            <a href="compare.html" class="btn btn-outline">
-              <i class="bi bi-arrow-left"></i> Kembali ke Galeri
-            </a>
+
           </div>
         </div>
       </div>
@@ -129,11 +164,10 @@
 
   <script type="module">
     import { initNavbar } from './js/nav.js';
-    import { initTheme } from './js/theme.js';
     import { initScrollReveal, initCounters, initLoadingScreen } from './js/utils.js';
+    import { initSliders } from './js/ui.js';
 
     initNavbar();
-    initTheme();
     initScrollReveal();
     initCounters();
     initLoadingScreen();
@@ -200,20 +234,28 @@
       document.getElementById('projectCategory').textContent = data.category;
       document.getElementById('projectDesc').textContent = data.desc;
       document.getElementById('projectLongDesc').textContent = data.longDesc;
-      document.getElementById('projectImage').src = data.image;
-      
+
+      // Populate the gallery slides (same photo across slides, styled like the
+      // vehicle-detail gallery) and wire up the slider controls.
+      const gallery = data.gallery && data.gallery.length ? data.gallery : [data.image];
+      const slides = document.querySelectorAll('#projectGallery .gallery-slide-img');
+      slides.forEach((img, i) => {
+        img.src = gallery[i % gallery.length];
+        img.alt = data.title;
+      });
+      initSliders();
+
       const modsList = document.getElementById('projectMods');
       modsList.innerHTML = '';
       data.mods.forEach(mod => {
         const li = document.createElement('li');
-        li.innerHTML = `<i class="bi bi-check2-circle text-primary" style="margin-right: 0.5rem;"></i> ${mod}`;
+        li.innerHTML = `<i class="bi bi-check2-circle"></i><span>${mod}</span>`;
         modsList.appendChild(li);
       });
     } else {
       document.getElementById('projectTitle').textContent = 'Proyek Tidak Ditemukan';
       document.getElementById('projectDesc').textContent = 'Maaf, detail proyek yang Anda cari tidak tersedia atau link salah.';
-      document.getElementById('projectImage').style.display = 'none';
-      document.getElementById('projectLongDesc').parentElement.parentElement.style.display = 'none';
+      document.getElementById('projectCard').style.display = 'none';
     }
   </script>
 </body>

@@ -1,0 +1,6 @@
+# Exclude documentation files
+*.docx
+
+# Exclude corrupt git directory
+.git-corrupt/
+

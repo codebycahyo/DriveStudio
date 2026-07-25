@@ -1,14 +1,12 @@
 import { initNavbar } from './nav.js';
-import { initTheme } from './theme.js';
 import { initScrollReveal, initCounters, initLoadingScreen } from './utils.js';
 
 initNavbar();
-initTheme();
 initScrollReveal();
 initCounters();
 initLoadingScreen();
 
-/* ── Car spec data ─────────────────────────────────────────── */
+
 const CAR_DATA = {
   'toyota-innova-zenix': {
     name: 'Innova Zenix Hybrid',
@@ -68,13 +66,13 @@ const CAR_DATA = {
   },
 };
 
-/* ── DOM references ────────────────────────────────────────── */
+
 const slotA = document.getElementById('compareSlotA');
 const slotB = document.getElementById('compareSlotB');
 const slotC = document.getElementById('compareSlotC');
 const table = document.getElementById('compareTable');
 
-/* ── Helpers ────────────────────────────────────────────────── */
+
 const fmt = {
   price:    (v) => `Rp${v.toLocaleString('id-ID')}`,
   power:    (v) => `${v} PS`,
@@ -92,14 +90,13 @@ function bestIndex(values, mode) {
   return values.indexOf(target);
 }
 
-/* ── Render ─────────────────────────────────────────────────── */
+
 function renderTable() {
   if (!slotA || !slotB || !slotC || !table) return;
 
   const ids  = [slotA.value, slotB.value, slotC.value];
   const cars = ids.map((id) => CAR_DATA[id]);
 
-  /* thead */
   const thead = table.querySelector('thead');
   if (thead) {
     thead.innerHTML = `
@@ -109,7 +106,7 @@ function renderTable() {
       </tr>`;
   }
 
-  /* Row definitions: [label, key, formatter | null, bestMode | null] */
+  // [label, key, formatter | null, bestMode | null]
   const rows = [
     ['Harga OTR',         'price',    fmt.price,    'lowest'],
     ['Mesin',             'engine',   null,         null],
@@ -150,10 +147,10 @@ function renderTable() {
   }
 }
 
-/* ── Events ─────────────────────────────────────────────────── */
+
 if (slotA && slotB && slotC) {
   [slotA, slotB, slotC].forEach((sel) => sel.addEventListener('change', renderTable));
 }
 
-/* ── Initial render ─────────────────────────────────────────── */
+
 renderTable();
