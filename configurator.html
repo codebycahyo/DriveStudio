@@ -3,23 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Konfigurator 3D — Drive Studio</title>
-  <meta name="description" content="Rancang mobil impian Anda secara real-time: cat, velg, kaca, livery, latar, pencahayaan, dan kamera dalam konfigurator 3D." />
+  <title>Konfigurator 3D | Drive Studio</title>
+  <meta name="description" content="Rancang mobil impian Anda secara real-time: cat, velg, kaca, livery, latar, pencahayaan, dan kamera dalam konfigurator 3D interaktif." />
 
   <script>
     (function () {
-      document.documentElement.classList.add('js');
+      try {
+        var saved = JSON.parse(localStorage.getItem('ds:theme'));
+        if (saved === 'light') document.documentElement.dataset.theme = 'light';
+      } catch (e) {}
     })();
   </script>
 
-
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="css/main.css?v=26" />
-  <link rel="stylesheet" href="css/components.css?v=26" />
-  <link rel="stylesheet" href="css/animations.css?v=26" />
-  <link rel="stylesheet" href="css/pages.css?v=26" />
-  <link rel="stylesheet" href="css/responsive.css?v=26" />
+  <link rel="stylesheet" href="css/main.css?v=34" />
+  <link rel="stylesheet" href="css/components.css?v=34" />
+  <link rel="stylesheet" href="css/animations.css?v=34" />
+  <link rel="stylesheet" href="css/pages.css?v=34" />
+  <link rel="stylesheet" href="css/responsive.css?v=34" />
 
   <script type="importmap">
     {
@@ -30,30 +31,25 @@
     }
   </script>
 
-  <!-- SEO & Social Meta -->
-  <meta property="og:title" content="Drive Studio — Desain Mobil Impian Anda" />
-  <meta property="og:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta property="og:title" content="Konfigurator 3D | Drive Studio" />
+  <meta property="og:description" content="Konfigurator 3D interaktif premium untuk kustomisasi kendaraan." />
   <meta property="og:image" content="https://drivestudio.com/og-image.jpg" />
-  <meta property="og:url" content="https://drivestudio.com/" />
+  <meta property="og:url" content="https://drivestudio.com/configurator.html" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Drive Studio" />
-  <meta name="twitter:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta name="twitter:title" content="Konfigurator 3D | Drive Studio" />
+  <meta name="twitter:description" content="Konfigurator 3D interaktif premium untuk kustomisasi kendaraan." />
   <meta name="twitter:image" content="https://drivestudio.com/og-image.jpg" />
-  <link rel="canonical" href="https://drivestudio.com/" />
+  <link rel="canonical" href="https://drivestudio.com/configurator.html" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>" type="image/svg+xml" />
 
-  <!-- Preconnect Hints -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="preconnect" href="https://unpkg.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://www.youtube.com" crossorigin />
-  <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
 </head>
 <body data-page="configurator">
   <a href="#main-content" class="sr-only focusable-skip-link">Langsung ke konten utama</a>
-
 
   <div class="loading-screen" id="loadingScreen">
     <p class="loading-logo">DRIVE<span class="text-primary">STUDIO</span></p>
@@ -68,17 +64,16 @@
 
       <nav class="navbar-links" aria-label="Navigasi Utama">
         <a href="index.html">Beranda</a>
-        <a href="cars.html">Eksplorasi</a>
+        <a href="cars.html">Layanan</a>
         <a href="compare.html">Galeri</a>
         <a href="configurator.html" class="is-active">Konfigurator</a>
         <a href="about.html">Tentang Kami</a>
       </nav>
 
       <div class="navbar-actions">
-        <a href="cars.html?view=favorites" class="btn-icon icon-btn-badged" id="favoritesLink" aria-label="Mobil Favorit">
-          <i class="bi bi-heart"></i>
-          <span class="icon-btn-badge" id="favoritesCount" hidden>0</span>
-        </a>
+        <button type="button" class="btn-icon" id="themeToggle" aria-label="Ubah Tema Terang/Gelap">
+          <i class="bi bi-moon-stars" id="themeIcon"></i>
+        </button>
         <button type="button" class="btn-icon navbar-toggle" id="navbarToggle" aria-label="Buka Menu" aria-expanded="false" aria-controls="navbarDrawer">
           <i class="bi bi-list" id="navbarToggleIcon"></i>
         </button>
@@ -88,7 +83,7 @@
 
   <div class="navbar-drawer" id="navbarDrawer">
     <a href="index.html">Beranda</a>
-    <a href="cars.html">Eksplorasi</a>
+    <a href="cars.html">Layanan</a>
     <a href="compare.html">Galeri</a>
     <a href="configurator.html" class="is-active">Konfigurator</a>
     <a href="about.html">Tentang Kami</a>
@@ -96,7 +91,7 @@
 
   <main id="main-content">
     <h1 class="sr-only">Konfigurator 3D Drive Studio</h1>
-      <div class="configurator-layout">
+    <div class="configurator-layout">
 
       <!-- Left sidebar: tools -->
       <aside class="configurator-sidebar" aria-label="Alat kustomisasi">
@@ -113,8 +108,16 @@
         <button type="button" class="tool-button" data-tool="livery">
           <i class="bi bi-flag-fill"></i> Livery
         </button>
+
+        <p class="configurator-sidebar-heading mt-3">Studio & Kamera</p>
         <button type="button" class="tool-button" data-tool="lighting">
           <i class="bi bi-brightness-high-fill"></i> Pencahayaan
+        </button>
+        <button type="button" class="tool-button" data-tool="environment">
+          <i class="bi bi-image-fill"></i> Latar Studio
+        </button>
+        <button type="button" class="tool-button" data-tool="camera">
+          <i class="bi bi-camera-reels-fill"></i> Sudut Kamera
         </button>
 
         <hr class="sidebar-divider" />
@@ -130,13 +133,11 @@
 
       <!-- Center: 3D stage -->
       <div class="configurator-canvas">
-        <a href="cars.html" class="btn-icon configurator-back" aria-label="Kembali ke Eksplorasi Mobil">
+        <a href="cars.html" class="btn-icon configurator-back" aria-label="Kembali ke Layanan">
           <i class="bi bi-arrow-left"></i>
         </a>
 
-
-
-        <canvas id="carCanvas" role="img" aria-label="Tampilan 3D interaktif konfigurator mobil — gunakan mouse untuk memutar dan zoom"></canvas>
+        <canvas id="carCanvas" role="img" aria-label="Tampilan 3D interaktif konfigurator mobil, gunakan mouse untuk memutar dan zoom"></canvas>
 
         <div class="configurator-stage-placeholder" id="stagePlaceholder">
           <i class="bi bi-car-front-fill anim-float"></i>
@@ -234,23 +235,50 @@
           </div>
         </div>
 
-
-
         <!-- Lighting Options Panel -->
         <div class="tool-options-panel" id="panel-lighting" hidden>
           <div class="flex flex-col gap-2">
             <button type="button" class="option-row is-selected" data-option="light-dramatic" aria-pressed="true">
-              <span>Fokus Sorot</span> <i class="bi bi-check-lg text-primary"></i>
+              <span>Fokus Sorot (Studio)</span> <i class="bi bi-check-lg text-primary"></i>
             </button>
             <button type="button" class="option-row" data-option="light-soft" aria-pressed="false">
-              <span>Lembut Rata</span>
+              <span>Lembut Rata (Daylight)</span>
             </button>
             <button type="button" class="option-row" data-option="light-cyber" aria-pressed="false">
-              <span>Cahaya Senja</span>
+              <span>Cahaya Senja (Cyberpunk)</span>
             </button>
           </div>
         </div>
 
+        <!-- Environment Options Panel -->
+        <div class="tool-options-panel" id="panel-environment" hidden>
+          <div class="flex flex-col gap-2">
+            <button type="button" class="option-row is-selected" data-option="env-dark" aria-pressed="true">
+              <span>Studio Gelap</span> <i class="bi bi-check-lg text-primary"></i>
+            </button>
+            <button type="button" class="option-row" data-option="env-neon" aria-pressed="false">
+              <span>Malam Neon (Reflektif)</span>
+            </button>
+            <button type="button" class="option-row" data-option="env-white" aria-pressed="false">
+              <span>Showroom Terang</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Camera Preset Panel -->
+        <div class="tool-options-panel" id="panel-camera" hidden>
+          <div class="flex flex-col gap-2">
+            <button type="button" class="option-row is-selected" data-option="cam-default" aria-pressed="true">
+              <span>360° Rotasi Otomatis</span> <i class="bi bi-check-lg text-primary"></i>
+            </button>
+            <button type="button" class="option-row" data-option="cam-side" aria-pressed="false">
+              <span>Tampilan Samping (Profile)</span>
+            </button>
+            <button type="button" class="option-row" data-option="cam-overhead" aria-pressed="false">
+              <span>Tampilan Atas (Overhead)</span>
+            </button>
+          </div>
+        </div>
 
       </aside>
     </div>
@@ -261,19 +289,19 @@
       <div class="footer-grid">
         <div>
           <a href="index.html" class="navbar-brand">Drive<span>Studio</span></a>
-          <p class="mt-3">Desain mobil impian Anda — pengalaman konfigurasi 3D interaktif premium untuk pencinta otomotif Indonesia.</p>
+          <p class="mt-3">Bengkel kustomisasi dan modifikasi kendaraan profesional. Layanan premium untuk pencinta otomotif Indonesia.</p>
           <div class="social-links mt-4">
-            <a href="#" class="btn-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="btn-icon" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
-            <a href="#" class="btn-icon" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="javascript:void(0)" class="btn-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="javascript:void(0)" class="btn-icon" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+            <a href="javascript:void(0)" class="btn-icon" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
           </div>
         </div>
 
         <div>
-          <h4 class="footer-heading">Eksplorasi</h4>
+          <h4 class="footer-heading">Layanan</h4>
           <nav class="footer-links">
-            <a href="cars.html">Eksplorasi Mobil</a>
-            <a href="compare.html">Bandingkan Mobil</a>
+            <a href="cars.html">Katalog Layanan</a>
+            <a href="compare.html">Galeri Proyek</a>
             <a href="configurator.html">Konfigurator 3D</a>
           </nav>
         </div>
@@ -282,17 +310,16 @@
           <h4 class="footer-heading">Perusahaan</h4>
           <nav class="footer-links">
             <a href="about.html">Tentang Kami</a>
-            <a href="index.html#brands">Merek</a>
-            <a href="index.html#news">Berita</a>
-            <a href="about.html#contact">Contact</a>
+            <a href="index.html#news">Artikel</a>
+            <a href="about.html#contact">Booking Jasa</a>
           </nav>
         </div>
 
         <div>
-          <h4 class="footer-heading">Proyek</h4>
+          <h4 class="footer-heading">Informasi</h4>
           <nav class="footer-links">
             <a href="about.html#tech">Teknologi</a>
-            <a href="about.html#roadmap">Alur Pengembangan</a>
+            <a href="about.html#roadmap">Alur Booking</a>
           </nav>
         </div>
       </div>
@@ -319,38 +346,37 @@
       setLighting,
       setCameraPreset,
       resetConfigurator 
-    } from './js/configurator.js?v=21';
+    } from './js/configurator.js?v=28';
 
     /* ---------- Core site init ---------- */
     initNavbar();
     initLoadingScreen();
 
+    // Theme toggle
+    const toggle = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+    if (toggle) {
+      const saved = (() => { try { return JSON.parse(localStorage.getItem('ds:theme')); } catch { return null; } })();
+      if (saved === 'light') {
+        document.documentElement.dataset.theme = 'light';
+        if (icon) icon.className = 'bi bi-sun-fill';
+      }
+      toggle.addEventListener('click', () => {
+        const isLight = document.documentElement.dataset.theme === 'light';
+        if (isLight) {
+          delete document.documentElement.dataset.theme;
+          if (icon) icon.className = 'bi bi-moon-stars';
+          try { localStorage.setItem('ds:theme', JSON.stringify('dark')); } catch {}
+        } else {
+          document.documentElement.dataset.theme = 'light';
+          if (icon) icon.className = 'bi bi-sun-fill';
+          try { localStorage.setItem('ds:theme', JSON.stringify('light')); } catch {}
+        }
+      });
+    }
+
     /* ---------- Three.js scene init ---------- */
     initConfigurator();
-
-    // --- Update car label from URL param ---
-    const CAR_INFO = {
-      'toyota-innova-zenix': { name: 'Innova Zenix Hybrid', brand: 'Toyota', brandClass: 'badge-primary' },
-      'honda-brio': { name: 'Honda Brio', brand: 'Honda', brandClass: '' },
-      'mitsubishi-pajero-sport': { name: 'Pajero Sport', brand: 'Mitsubishi', brandClass: 'badge-accent' },
-      'byd-atto-3': { name: 'BYD Atto 3', brand: 'BYD', brandClass: '' },
-    };
-
-    const carUrlId = new URLSearchParams(location.search).get('car') || 'toyota-innova-zenix';
-    const info = CAR_INFO[carUrlId] || CAR_INFO['toyota-innova-zenix'];
-
-    const labelContainer = document.querySelector('.configurator-car-label');
-    if (labelContainer) {
-      const badge = labelContainer.querySelector('.badge');
-      const heading = labelContainer.querySelector('h1');
-      if (badge) {
-        badge.textContent = info.brand;
-        badge.className = `badge ${info.brandClass || ''}`.trim();
-      }
-      if (heading) {
-        heading.textContent = info.name;
-      }
-    }
 
     const canvas = document.getElementById('carCanvas');
     const placeholder = document.getElementById('stagePlaceholder');
@@ -412,6 +438,8 @@
       glass: 'Kaca',
       livery: 'Livery',
       lighting: 'Pencahayaan',
+      environment: 'Latar Studio',
+      camera: 'Sudut Kamera',
     };
 
     toolButtons.forEach((btn) => {
@@ -423,7 +451,6 @@
         if (settingsHeading) settingsHeading.textContent = TOOL_LABELS[tool] || tool;
         if (settingsPanel) settingsPanel.setAttribute('aria-label', `${TOOL_LABELS[tool] || tool} options`);
 
-        // Hide all option panels and show matching panel
         optionPanels.forEach((panel) => {
           panel.hidden = panel.id !== `panel-${tool}`;
         });
@@ -437,29 +464,23 @@
         const parentPanel = row.closest('.tool-options-panel');
         if (!parentPanel) return;
 
-        // Reset all buttons in this panel
         const buttons = parentPanel.querySelectorAll('.option-row');
         buttons.forEach((btn) => {
           btn.classList.remove('is-selected');
           btn.setAttribute('aria-pressed', 'false');
-          // Remove check mark icon
           const checkIcon = btn.querySelector('.bi-check-lg');
           if (checkIcon) checkIcon.remove();
         });
 
-        // Select this button
         row.classList.add('is-selected');
         row.setAttribute('aria-pressed', 'true');
-        // Add check mark icon
         const check = document.createElement('i');
         check.className = 'bi bi-check-lg text-primary';
         row.appendChild(check);
 
-        // Apply action in WebGL scene
         const opt = row.dataset.option;
         if (opt) {
           if (opt === 'livery-custom') {
-            // Trigger file input
             document.getElementById('input-custom-livery')?.click();
             return;
           }
@@ -469,12 +490,16 @@
           } else if (opt.startsWith('glass-')) {
             setGlassTint(opt);
           } else if (opt.startsWith('livery-')) {
-            setCustomLivery(null); // Remove custom livery if any
+            setCustomLivery(null);
             const controls = document.getElementById('custom-livery-controls');
             if (controls) controls.style.display = 'none';
             setLivery(opt);
           } else if (opt.startsWith('light-')) {
             setLighting(opt);
+          } else if (opt.startsWith('env-')) {
+            setEnvironment(opt);
+          } else if (opt.startsWith('cam-')) {
+            setCameraPreset(opt);
           }
         }
       });
@@ -498,7 +523,6 @@
           currentObjectUrl = URL.createObjectURL(file);
           setCustomLivery(currentObjectUrl);
           
-          // Reset sliders
           if (sliderScale) sliderScale.value = 1;
           if (sliderPosX) sliderPosX.value = 1.3;
           if (sliderPosY) sliderPosY.value = 1.45;
@@ -538,14 +562,12 @@
     resetBtn?.addEventListener('click', () => {
       resetConfigurator();
 
-      // Reset swatch selection to first (Inferno Red)
       swatches.forEach((s, i) => {
         s.classList.toggle('is-selected', i === 0);
         s.setAttribute('aria-pressed', String(i === 0));
       });
       if (selectedLabel) selectedLabel.textContent = 'Merah Sporty · Glossy';
 
-      // Reset all option row checkboxes to default first selections
       optionPanels.forEach((panel) => {
         const buttons = panel.querySelectorAll('.option-row');
         buttons.forEach((btn, i) => {
@@ -561,7 +583,6 @@
         });
       });
 
-      // Reset side tools active state to Paint
       toolButtons.forEach((btn) => {
         btn.classList.toggle('is-active', btn.dataset.tool === 'paint');
       });

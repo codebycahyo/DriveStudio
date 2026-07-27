@@ -49,19 +49,6 @@
   .navbar-toggle {
     display: none;
   }
-
-  /* Compare table: sticky first column for scrollable context */
-  .compare-table th:first-child,
-  .compare-table td:first-child {
-    position: sticky;
-    left: 0;
-    background: var(--card);
-    z-index: 1;
-  }
-
-  .compare-table thead th:first-child {
-    background: var(--bg);
-  }
 }
 
 @media (min-width: 992px) {
@@ -89,3 +76,13 @@
     --container-max: 1400px;
   }
 }
+
+@media (min-width: 1920px) {
+  :root {
+    --container-max: 1720px;
+  }
+
+  .grid-4 { grid-template-columns: repeat(5, 1fr); }
+  .grid-3 { grid-template-columns: repeat(4, 1fr); }
+}
+

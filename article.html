@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Berita — Drive Studio</title>
+  <title>Berita | Drive Studio</title>
   <meta name="description" content="Baca berita dan artikel otomotif terbaru dari Drive Studio." />
 
   <script>
@@ -13,14 +13,14 @@
   </script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="css/main.css?v=26" />
-  <link rel="stylesheet" href="css/components.css?v=26" />
-  <link rel="stylesheet" href="css/animations.css?v=26" />
-  <link rel="stylesheet" href="css/pages.css?v=26" />
-  <link rel="stylesheet" href="css/responsive.css?v=26" />
+  <link rel="stylesheet" href="css/main.css?v=34" />
+  <link rel="stylesheet" href="css/components.css?v=34" />
+  <link rel="stylesheet" href="css/animations.css?v=34" />
+  <link rel="stylesheet" href="css/pages.css?v=34" />
+  <link rel="stylesheet" href="css/responsive.css?v=34" />
 
   <!-- SEO & Social Meta -->
-  <meta property="og:title" content="Drive Studio — Desain Mobil Impian Anda" />
+  <meta property="og:title" content="Drive Studio | Desain Mobil Impian Anda" />
   <meta property="og:description" content="Konfigurator 3D interaktif premium untuk mobil." />
   <meta property="og:image" content="https://drivestudio.com/og-image.jpg" />
   <meta property="og:url" content="https://drivestudio.com/" />
@@ -57,17 +57,16 @@
 
       <nav class="navbar-links" aria-label="Navigasi Utama">
         <a href="index.html">Beranda</a>
-        <a href="cars.html">Eksplorasi</a>
+        <a href="cars.html">Layanan</a>
         <a href="compare.html">Galeri</a>
         <a href="configurator.html">Konfigurator</a>
         <a href="about.html">Tentang Kami</a>
       </nav>
 
       <div class="navbar-actions">
-        <a href="cars.html?view=favorites" class="btn-icon icon-btn-badged" id="favoritesLink" aria-label="Mobil Favorit">
-          <i class="bi bi-heart"></i>
-          <span class="icon-btn-badge" id="favoritesCount" hidden>0</span>
-        </a>
+        <button type="button" class="btn-icon" id="themeToggle" aria-label="Ubah Tema Terang/Gelap">
+          <i class="bi bi-moon-stars" id="themeIcon"></i>
+        </button>
         <button type="button" class="btn-icon navbar-toggle" id="navbarToggle" aria-label="Buka Menu" aria-expanded="false" aria-controls="navbarDrawer">
           <i class="bi bi-list" id="navbarToggleIcon"></i>
         </button>
@@ -81,7 +80,7 @@
   <!-- Mobile Drawer -->
   <div class="navbar-drawer" id="navbarDrawer">
     <a href="index.html">Beranda</a>
-    <a href="cars.html">Eksplorasi</a>
+    <a href="cars.html">Layanan</a>
     <a href="compare.html">Galeri</a>
     <a href="configurator.html">Konfigurator</a>
     <a href="about.html">Tentang Kami</a>
@@ -163,7 +162,20 @@
 
   <footer class="footer">
     <div class="container">
-      <div class="footer-bottom mt-0 pt-6">
+      <div class="grid grid-4 gap-6">
+        <div>
+          <a href="index.html" class="navbar-brand">Drive<span>Studio</span></a>
+        </div>
+        <div>
+          <h4 class="footer-heading">Layanan</h4>
+          <nav class="footer-links">
+            <a href="cars.html">Katalog Layanan</a>
+            <a href="compare.html">Galeri Proyek</a>
+            <a href="configurator.html">Konfigurator 3D</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom mt-6 pt-6" style="border-top: 1px solid var(--border);">
         <p>&copy; 2026 Drive Studio. Proyek Akhir Pemrograman Web.</p>
         <p>Dibuat dengan HTML5, CSS3, Vanilla JavaScript &amp; Three.js</p>
       </div>
@@ -177,6 +189,29 @@
     initNavbar();
     initScrollReveal();
     initCounters();
+
+    // Theme toggle
+    const toggle = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+    if (toggle) {
+      const saved = (() => { try { return JSON.parse(localStorage.getItem('ds:theme')); } catch { return null; } })();
+      if (saved === 'light') {
+        document.documentElement.dataset.theme = 'light';
+        if (icon) icon.className = 'bi bi-sun-fill';
+      }
+      toggle.addEventListener('click', () => {
+        const isLight = document.documentElement.dataset.theme === 'light';
+        if (isLight) {
+          delete document.documentElement.dataset.theme;
+          if (icon) icon.className = 'bi bi-moon-stars';
+          try { localStorage.setItem('ds:theme', JSON.stringify('dark')); } catch {}
+        } else {
+          document.documentElement.dataset.theme = 'light';
+          if (icon) icon.className = 'bi bi-sun-fill';
+          try { localStorage.setItem('ds:theme', JSON.stringify('light')); } catch {}
+        }
+      });
+    }
     initLoadingScreen();
 
     // Mock Data for Articles
@@ -322,7 +357,7 @@
       document.getElementById('articleReadTime').textContent = data.readTime || '5 Min Read';
       document.getElementById('articleImage').src = data.image || 'assets/images/toyota_innova_zenix.png';
       document.getElementById('articleContent').innerHTML = data.content;
-      document.title = data.title + ' — Drive Studio';
+      document.title = data.title + ' | Drive Studio';
       
       // Populate Related Articles (pick 2 other articles)
       const relatedContainer = document.getElementById('relatedArticles');

@@ -3,46 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Detail Mobil — Drive Studio</title>
-  <meta name="description" content="Spesifikasi lengkap, performa, detail interior dan eksterior, serta keunggulan dan kekurangan mobil pilihan Anda." />
+  <title>Detail Layanan | Drive Studio</title>
+  <meta name="description" content="Deskripsi lengkap, estimasi biaya, proses pengerjaan, dan garansi layanan kustomisasi kendaraan di Drive Studio." />
 
   <script>
     (function () {
-      document.documentElement.classList.add('js');
+      try {
+        var saved = JSON.parse(localStorage.getItem('ds:theme'));
+        if (saved === 'light') document.documentElement.dataset.theme = 'light';
+      } catch (e) {}
     })();
   </script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="css/main.css?v=26" />
-  <link rel="stylesheet" href="css/components.css?v=26" />
-  <link rel="stylesheet" href="css/animations.css?v=26" />
-  <link rel="stylesheet" href="css/pages.css?v=26" />
-  <link rel="stylesheet" href="css/responsive.css?v=26" />
+  <link rel="stylesheet" href="css/main.css?v=34" />
+  <link rel="stylesheet" href="css/components.css?v=34" />
+  <link rel="stylesheet" href="css/animations.css?v=34" />
+  <link rel="stylesheet" href="css/pages.css?v=34" />
+  <link rel="stylesheet" href="css/responsive.css?v=34" />
 
-  <!-- SEO & Social Meta -->
-  <meta property="og:title" content="Drive Studio — Desain Mobil Impian Anda" />
-  <meta property="og:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta property="og:title" content="Detail Layanan | Drive Studio" />
+  <meta property="og:description" content="Informasi lengkap layanan kustomisasi dan modifikasi kendaraan." />
   <meta property="og:image" content="https://drivestudio.com/og-image.jpg" />
-  <meta property="og:url" content="https://drivestudio.com/" />
+  <meta property="og:url" content="https://drivestudio.com/detail.html" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Drive Studio" />
-  <meta name="twitter:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta name="twitter:title" content="Detail Layanan | Drive Studio" />
+  <meta name="twitter:description" content="Informasi lengkap layanan kustomisasi dan modifikasi kendaraan." />
   <meta name="twitter:image" content="https://drivestudio.com/og-image.jpg" />
-  <link rel="canonical" href="https://drivestudio.com/" />
+  <link rel="canonical" href="https://drivestudio.com/detail.html" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>" type="image/svg+xml" />
 
-  <!-- Preconnect Hints -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="preconnect" href="https://unpkg.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://www.youtube.com" crossorigin />
-  <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
 </head>
 <body data-page="detail">
   <a href="#main-content" class="sr-only focusable-skip-link">Langsung ke konten utama</a>
-
 
   <div class="loading-screen" id="loadingScreen">
     <p class="loading-logo">DRIVE<span class="text-primary">STUDIO</span></p>
@@ -57,17 +54,16 @@
 
       <nav class="navbar-links" aria-label="Navigasi Utama">
         <a href="index.html">Beranda</a>
-        <a href="cars.html" class="is-active">Eksplorasi</a>
+        <a href="cars.html" class="is-active">Layanan</a>
         <a href="compare.html">Galeri</a>
         <a href="configurator.html">Konfigurator</a>
         <a href="about.html">Tentang Kami</a>
       </nav>
 
       <div class="navbar-actions">
-        <a href="cars.html?view=favorites" class="btn-icon icon-btn-badged" id="favoritesLink" aria-label="Mobil Favorit">
-          <i class="bi bi-heart"></i>
-          <span class="icon-btn-badge" id="favoritesCount" hidden>0</span>
-        </a>
+        <button type="button" class="btn-icon" id="themeToggle" aria-label="Ubah Tema Terang/Gelap">
+          <i class="bi bi-moon-stars" id="themeIcon"></i>
+        </button>
         <button type="button" class="btn-icon navbar-toggle" id="navbarToggle" aria-label="Buka Menu" aria-expanded="false" aria-controls="navbarDrawer">
           <i class="bi bi-list" id="navbarToggleIcon"></i>
         </button>
@@ -77,7 +73,7 @@
 
   <div class="navbar-drawer" id="navbarDrawer">
     <a href="index.html">Beranda</a>
-    <a href="cars.html" class="is-active">Eksplorasi</a>
+    <a href="cars.html" class="is-active">Layanan</a>
     <a href="compare.html">Galeri</a>
     <a href="configurator.html">Konfigurator</a>
     <a href="about.html">Tentang Kami</a>
@@ -89,237 +85,176 @@
         <nav class="breadcrumb reveal" aria-label="Breadcrumb">
           <a href="index.html">Beranda</a>
           <span aria-hidden="true">/</span>
-          <a href="cars.html">Eksplorasi</a>
+          <a href="cars.html">Layanan</a>
           <span aria-hidden="true">/</span>
-          <span aria-current="page">Innova Zenix Hybrid</span>
+          <span aria-current="page" id="breadcrumbName">Ceramic Coating 9H</span>
         </nav>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="grid grid-2" style="align-items: start;">
-
-          <!-- Gallery -->
-          <div class="slider reveal">
-            <div class="slider-track">
-              <div class="slider-slide car-card-media is-nocturne" style="min-height: 320px;">
-                <i class="bi bi-car-front-fill"></i>
+        <div class="grid grid-2 gap-6 reveal">
+          <!-- Left: Image View -->
+          <div>
+            <div class="card overflow-hidden">
+              <div class="aspect-video" style="position: relative; background: var(--surface);">
+                <img width="600" height="400" id="serviceImg" src="assets/images/ceramic_coating.png" alt="Detail Layanan" class="w-full h-full object-cover" loading="lazy" decoding="async">
               </div>
-              <div class="slider-slide car-card-media is-nocturne" style="min-height: 320px;">
-                <i class="bi bi-car-front"></i>
-              </div>
-              <div class="slider-slide car-card-media is-nocturne" style="min-height: 320px;">
-                <i class="bi bi-badge-hd-fill"></i>
-              </div>
-              <div class="slider-slide car-card-media is-nocturne" style="min-height: 320px;">
-                <i class="bi bi-speedometer2"></i>
-              </div>
-            </div>
-            <div class="slider-controls">
-              <button type="button" class="btn-icon" data-slider-prev aria-label="Gambar sebelumnya">
-                <i class="bi bi-chevron-left"></i>
-              </button>
-              <button type="button" class="btn-icon" data-slider-next aria-label="Gambar berikutnya">
-                <i class="bi bi-chevron-right"></i>
-              </button>
-            </div>
-            <div class="slider-dots">
-              <button type="button" class="slider-dot is-active" aria-label="Tampilkan gambar 1"></button>
-              <button type="button" class="slider-dot" aria-label="Tampilkan gambar 2"></button>
-              <button type="button" class="slider-dot" aria-label="Tampilkan gambar 3"></button>
-              <button type="button" class="slider-dot" aria-label="Tampilkan gambar 4"></button>
             </div>
           </div>
 
-          <!-- Title block -->
-          <div class="reveal">
-            <div class="flex justify-between items-center">
-              <span class="badge badge-primary">Toyota</span>
-              <button type="button" class="favorite-btn" data-car-id="toyota-innova-zenix" aria-label="Tambah ke favorit" aria-pressed="false">
-                <i class="bi bi-heart"></i>
-              </button>
+          <!-- Right: Details summary -->
+          <div class="flex flex-col justify-center">
+            <div class="flex justify-between items-center mb-3">
+              <span class="badge badge-care" id="serviceBadge">Perawatan</span>
             </div>
-            <h1 class="mt-3 fs-h2">Innova Zenix Hybrid</h1>
-            <p class="text-mid mt-2">MPV · Hybrid · e-CVT</p>
-            <p class="text-mid mt-3 max-w-sm">
-              Kijang Innova Zenix Hybrid menghadirkan revolusi berkendara keluarga di Indonesia dengan platform TNGA, mesin hybrid yang sangat irit, dan kenyamanan suspensi kelas atas.
+            <h1 class="fs-h2" id="serviceTitle">Ceramic Coating 9H</h1>
+            <p class="text-mid mt-2 fs-sm" id="serviceSubtitle">Perlindungi cat bodi kendaraan dengan teknologi nano ceramic 9H tahan gores</p>
+            
+            <div class="card mt-4 p-5" style="background: var(--surface); border: 1px solid var(--border); padding: var(--space-4) var(--space-5);">
+              <div class="flex justify-between items-center mb-2 gap-3 flex-wrap">
+                <span class="text-mid fs-xs" style="flex-shrink: 0;">Estimasi Biaya:</span>
+                <span class="fs-h3 text-primary fw-600" id="servicePrice" style="word-break: break-word;">Mulai Rp2.500.000</span>
+              </div>
+              <div class="flex justify-between items-center gap-3 flex-wrap">
+                <span class="text-mid fs-xs" style="flex-shrink: 0;">Estimasi Pengerjaan:</span>
+                <span class="text-high fs-xs fw-600" id="serviceDuration">2-3 Hari Kerja</span>
+              </div>
+            </div>
+
+            <p class="text-mid mt-4" id="serviceDesc">
+              Layanan Ceramic Coating 9H memberikan lapisan pelindung transparan dengan tingkat kekerasan 9H. Melindungi cat asli kendaraan dari sinar UV, hujan asam, jamur, serta goresan halus.
             </p>
-            <div class="flex flex-wrap gap-3 mt-5">
-              <a href="configurator.html?car=toyota-innova-zenix" class="btn btn-primary">
-                <i class="bi bi-sliders"></i> Konfigurasi Mobil Ini
+
+            <div class="flex gap-3 mt-6 flex-wrap">
+              <a href="about.html#contact" class="btn btn-primary">
+                <i class="bi bi-calendar-check"></i> Booking Layanan Ini
               </a>
-              <a href="compare.html" class="btn btn-ghost">
-                <i class="bi bi-image"></i> Lihat Portofolio
+              <a href="configurator.html" class="btn btn-ghost">
+                <i class="bi bi-box"></i> Coba Konfigurator 3D
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Tabs -->
-        <div class="mt-7" data-tabs>
-          <div class="tabs-nav" role="tablist" aria-label="Informasi mobil">
-            <button type="button" role="tab" id="tab-specs" aria-controls="panel-specs" aria-selected="true" class="is-active">Spesifikasi</button>
-            <button type="button" role="tab" id="tab-performance" aria-controls="panel-performance" aria-selected="false">Performa</button>
-            <button type="button" role="tab" id="tab-interior" aria-controls="panel-interior" aria-selected="false">Interior</button>
-            <button type="button" role="tab" id="tab-exterior" aria-controls="panel-exterior" aria-selected="false">Eksterior</button>
-            <button type="button" role="tab" id="tab-reviews" aria-controls="panel-reviews" aria-selected="false">Kelebihan &amp; Kekurangan</button>
+        <!-- Detail Tabs Section -->
+        <div class="mt-6 reveal">
+          <div class="tabs" role="tablist" aria-label="Detail Layanan">
+            <button role="tab" aria-selected="true" aria-controls="tab-overview" id="tab-btn-overview" class="tab-btn is-active">
+              Deskripsi Layanan
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="tab-process" id="tab-btn-process" class="tab-btn">
+              Proses Pengerjaan
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="tab-warranty" id="tab-btn-warranty" class="tab-btn">
+              Garansi & Material
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="tab-benefits" id="tab-btn-benefits" class="tab-btn">
+              Kelebihan & Tips
+            </button>
           </div>
 
-          <div class="tab-panel is-active" id="panel-specs" role="tabpanel" aria-labelledby="tab-specs">
-            <dl class="spec-table">
-              <div class="spec-row"><dt>Kategori</dt><dd>MPV</dd></div>
-              <div class="spec-row"><dt>Jenis Mesin</dt><dd>2.0L M20A-FXS Dual VVT-i Hybrid</dd></div>
-              <div class="spec-row"><dt>Tenaga</dt><dd>186 PS</dd></div>
-              <div class="spec-row"><dt>Torsi</dt><dd>187 Nm</dd></div>
-              <div class="spec-row"><dt>Transmisi</dt><dd>e-CVT</dd></div>
-              <div class="spec-row"><dt>Kapasitas Penumpang</dt><dd>7 Penumpang</dd></div>
-              <div class="spec-row"><dt>Konsumsi BBM</dt><dd>21.0 km/liter</dd></div>
-            </dl>
-          </div>
-
-          <div class="tab-panel" id="panel-performance" role="tabpanel" aria-labelledby="tab-performance" hidden>
-            <div class="stat-bar">
-              <div class="flex justify-between mb-2"><span>Tenaga</span><span class="numeric">186 PS</span></div>
-              <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 75%;"></div></div>
-            </div>
-            <div class="stat-bar">
-              <div class="flex justify-between mb-2"><span>Torsi</span><span class="numeric">187 Nm</span></div>
-              <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 70%;"></div></div>
-            </div>
-            <div class="stat-bar">
-              <div class="flex justify-between mb-2"><span>Kecepatan Maksimum</span><span class="numeric">175 km/jam</span></div>
-              <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 60%;"></div></div>
-            </div>
-            <div class="stat-bar">
-              <div class="flex justify-between mb-2"><span>Efisiensi Energi / BBM</span><span class="numeric">21.0 km/liter</span></div>
-              <div class="stat-bar-track"><div class="stat-bar-fill" style="width: 92%;"></div></div>
-            </div>
-          </div>
-
-          <div class="tab-panel" id="panel-interior" role="tabpanel" aria-labelledby="tab-interior" hidden>
-            <p class="text-mid max-w-md">
-              Kabin luas dengan captain seat berlapis kulit mewah, panoramic sunroof, dan Rear Seat Entertainment ganda untuk hiburan keluarga sepanjang perjalanan.
-            </p>
-            <ul class="mt-4 flex flex-col gap-2 text-mid" style="padding-left: 1.25rem; list-style: disc;">
-              <li>Captain Seat baris kedua dengan Ottoman leg rest</li>
-              <li>Panoramic Glass Roof yang luas dan modern</li>
-              <li>Dual Screen Rear Seat Entertainment 10 inci</li>
-              <li>Dashboard dengan aksen soft-pad premium</li>
-            </ul>
-          </div>
-
-          <div class="tab-panel" id="panel-exterior" role="tabpanel" aria-labelledby="tab-exterior" hidden>
-            <p class="text-mid max-w-md">
-              Desain crossover tangguh dengan gril depan trapezoidal yang berani, lampu depan LED tajam, serta postur bodi gagah yang aerodinamis.
-            </p>
-            <ul class="mt-4 flex flex-col gap-2 text-mid" style="padding-left: 1.25rem; list-style: disc;">
-              <li>Velg Alloy 18-inci dengan desain dual-tone</li>
-              <li>Lampu Depan LED dengan DRL dan Foglamp LED</li>
-              <li>Pintu bagasi elektrik dengan sensor suara / kick sensor</li>
-              <li>Platform TNGA-C untuk rigiditas bodi yang stabil</li>
-            </ul>
-          </div>
-
-          <div class="tab-panel" id="panel-reviews" role="tabpanel" aria-labelledby="tab-reviews" hidden>
-            <div class="grid grid-2 gap-4">
-              <div>
-                <h4 class="flex items-center gap-2 mb-3" style="color: #4caf50;">
-                  <i class="bi bi-plus-circle-fill"></i> Keunggulan
-                </h4>
-                <ul class="pros-list flex flex-col gap-2 text-mid lh-normal" style="padding-left: 1.25rem; list-style: disc;">
-                  <li>Konsumsi bahan bakar yang luar biasa irit (mencapai 21 km/liter).</li>
-                  <li>Kenyamanan suspensi TNGA yang sangat stabil dan empuk.</li>
-                  <li>Fitur keselamatan canggih Toyota Safety Sense (TSS) 3.0.</li>
+          <div class="tab-content mt-4" aria-live="polite">
+            <!-- Tab 1: Overview -->
+            <div id="tab-overview" role="tabpanel" aria-labelledby="tab-btn-overview" class="tab-panel">
+              <div class="card p-5">
+                <h3 class="fs-h3 mb-3">Detail Fitur & Cakupan Layanan</h3>
+                <ul class="text-mid flex flex-col gap-2" id="overviewItems" style="padding-left: 1.2rem;">
+                  <li>Pencucian mendalam dan pembersihan kontaminasi (decontam).</li>
+                  <li>Multi-stage paint correction untuk menghilangkan swirl mark.</li>
+                  <li>Aplikasi 3 lapisan Nano Ceramic Coating 9H pada seluruh bodi.</li>
+                  <li>Coating khusus pada kaca depan dan velg.</li>
                 </ul>
               </div>
-              <div>
-                <h4 class="flex items-center gap-2 mb-3 text-primary">
-                  <i class="bi bi-dash-circle-fill"></i> Kekurangan
-                </h4>
-                <ul class="cons-list flex flex-col gap-2 text-mid lh-normal" style="padding-left: 1.25rem; list-style: disc;">
-                  <li>Dimensi bodi cukup besar sehingga menuntut kelihaian di jalan sempit.</li>
-                  <li>Kursi baris ketiga tidak memiliki pelipatan rata lantai sempurna.</li>
-                </ul>
+            </div>
+
+            <!-- Tab 2: Process -->
+            <div id="tab-process" role="tabpanel" aria-labelledby="tab-btn-process" class="tab-panel" hidden>
+              <div class="card p-5">
+                <h3 class="fs-h3 mb-4">Tahapan Pengerjaan di Studio</h3>
+                <div class="flex flex-col gap-4" id="processSteps">
+                  <div class="flex gap-3 items-start">
+                    <span class="badge badge-primary">Tahap 1</span>
+                    <div>
+                      <h4 class="fs-base fw-600">Inspeksi & Decontam Wash</h4>
+                      <p class="text-mid fs-xs mt-1">Pemeriksaan kondisi cat dan pembersihan aspal, jamur, serta zat besi menggunakan clay bar.</p>
+                    </div>
+                  </div>
+                  <div class="flex gap-3 items-start">
+                    <span class="badge badge-primary">Tahap 2</span>
+                    <div>
+                      <h4 class="fs-base fw-600">Paint Correction & Polishing</h4>
+                      <p class="text-mid fs-xs mt-1">Proses poles multi-stage untuk menghilangkan goresan halus dan mengembalikan kilap asli cat.</p>
+                    </div>
+                  </div>
+                  <div class="flex gap-3 items-start">
+                    <span class="badge badge-primary">Tahap 3</span>
+                    <div>
+                      <h4 class="fs-base fw-600">Aplikasi Coating & Curing</h4>
+                      <p class="text-mid fs-xs mt-1">Penataan lapisan ceramic coating secara presisi dan pengeringan dengan lampu infrared curing.</p>
+                    </div>
+                  </div>
+                  <div class="flex gap-3 items-start">
+                    <span class="badge badge-primary">Tahap 4</span>
+                    <div>
+                      <h4 class="fs-base fw-600">Final Quality Control</h4>
+                      <p class="text-mid fs-xs mt-1">Inspeksi akhir di bawah lampu inspeksi khusus sebelum serah terima kepada pelanggan.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 3: Warranty & Materials -->
+            <div id="tab-warranty" role="tabpanel" aria-labelledby="tab-btn-warranty" class="tab-panel" hidden>
+              <div class="card p-5">
+                <h3 class="fs-h3 mb-3">Garansi Resmi & Spesifikasi Material</h3>
+                <p class="text-mid mb-4" id="warrantyText">
+                  Kami hanya menggunakan cairan ceramic coating bersertifikasi internasional yang aman untuk semua jenis cat kendaraan. Layanan ini mencakup garansi perawatan ulang jika timbul efek kusam alami.
+                </p>
+                <div class="grid grid-2 gap-4">
+                  <div class="p-3 card" style="background: var(--surface);">
+                    <h4 class="fs-sm fw-600 text-primary"><i class="bi bi-shield-check"></i> Masa Garansi</h4>
+                    <p class="text-mid fs-xs mt-1" id="warrantyPeriod">Garansi hingga 5 tahun dengan masa maintenance berkala tiap 6 bulan.</p>
+                  </div>
+                  <div class="p-3 card" style="background: var(--surface);">
+                    <h4 class="fs-sm fw-600 text-accent"><i class="bi bi-box-seam"></i> Standar Material</h4>
+                    <p class="text-mid fs-xs mt-1" id="materialSpec">Cairan 9H Hardness Nano Silica berbahan dasar impor Jerman/Jepang.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 4: Benefits -->
+            <div id="tab-benefits" role="tabpanel" aria-labelledby="tab-btn-benefits" class="tab-panel" hidden>
+              <div class="grid grid-2 gap-4">
+                <div class="card p-5">
+                  <h3 class="fs-h3 text-primary mb-3"><i class="bi bi-check-circle-fill"></i> Keunggulan Utama</h3>
+                  <ul class="text-mid flex flex-col gap-2" id="prosList" style="padding-left: 1.2rem;">
+                    <li>Melindungi cat dari oksidasi dan bahaya sinar UV panas matahari.</li>
+                    <li>Efek daun talas (hydrophobic) membuat mobil mudah dicuci.</li>
+                    <li>Menjaga nilai jual kembali kendaraan tetap tinggi.</li>
+                  </ul>
+                </div>
+                <div class="card p-5">
+                  <h3 class="fs-h3 text-warning mb-3"><i class="bi bi-exclamation-circle-fill"></i> Catatan Perawatan</h3>
+                  <ul class="text-mid flex flex-col gap-2" id="consList" style="padding-left: 1.2rem;">
+                    <li>Hindari mencuci mobil dengan sabun cuci piring yang bersifat keras.</li>
+                    <li>Jangan mengelap bodi saat kering dan berdebu untuk mencegah baret halus.</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Related cars -->
-    <section class="section pt-0">
-      <div class="container">
-        <p class="eyebrow reveal">Mungkin Anda Suka</p>
-        <h2 class="mt-2 reveal">Rekomendasi mobil lainnya.</h2>
-
-        <div class="grid grid-3 mt-6 reveal-stagger">
-          <article class="card car-card reveal">
-            <div class="car-card-media is-solace">
-              <img width="600" height="400"  src="assets/images/honda_brio.png" alt="Honda Brio" class="car-card-image" loading="lazy" decoding="async" />
-            </div>
-            <div class="card-body">
-              <div class="flex justify-between items-center">
-                <span class="badge">Honda</span>
-                <button type="button" class="favorite-btn" data-car-id="honda-brio" aria-label="Tambah Honda Brio ke favorit" aria-pressed="false">
-                  <i class="bi bi-heart"></i>
-                </button>
-              </div>
-              <h3 class="mt-3">Honda Brio</h3>
-              <p class="text-mid">Hatchback · Bensin · 90 PS</p>
-              <div class="flex justify-between items-center mt-4">
-                <div class="flex gap-2">
-                  <a href="detail.html?car=honda-brio" class="btn btn-ghost btn-sm">Detail</a>
-                  <a href="configurator.html?car=honda-brio" class="btn btn-primary btn-sm">Konfigurasi</a>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="card car-card reveal">
-            <div class="car-card-media is-corsa">
-              <img width="600" height="400"  src="assets/images/mitsubishi_pajero_sport.png" alt="Mitsubishi Pajero Sport" class="car-card-image" loading="lazy" decoding="async" />
-            </div>
-            <div class="card-body">
-              <div class="flex justify-between items-center">
-                <span class="badge badge-accent">Mitsubishi</span>
-                <button type="button" class="favorite-btn" data-car-id="mitsubishi-pajero-sport" aria-label="Tambah Mitsubishi Pajero Sport ke favorit" aria-pressed="false">
-                  <i class="bi bi-heart"></i>
-                </button>
-              </div>
-              <h3 class="mt-3">Pajero Sport</h3>
-              <p class="text-mid">SUV · Diesel · 181 PS</p>
-              <div class="flex justify-between items-center mt-4">
-                <div class="flex gap-2">
-                  <a href="detail.html?car=mitsubishi-pajero-sport" class="btn btn-ghost btn-sm">Detail</a>
-                  <a href="configurator.html?car=mitsubishi-pajero-sport" class="btn btn-primary btn-sm">Konfigurasi</a>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="card car-card reveal">
-            <div class="car-card-media is-meridian">
-              <img width="600" height="400"  src="assets/images/byd_atto_3.png" alt="BYD Atto 3" class="car-card-image" loading="lazy" decoding="async" />
-            </div>
-            <div class="card-body">
-              <div class="flex justify-between items-center">
-                <span class="badge">BYD</span>
-                <button type="button" class="favorite-btn" data-car-id="byd-atto-3" aria-label="Tambah BYD Atto 3 ke favorit" aria-pressed="false">
-                  <i class="bi bi-heart"></i>
-                </button>
-              </div>
-              <h3 class="mt-3">BYD Atto 3</h3>
-              <p class="text-mid">EV · Listrik · 204 PS</p>
-              <div class="flex justify-between items-center mt-4">
-                <div class="flex gap-2">
-                  <a href="detail.html?car=byd-atto-3" class="btn btn-ghost btn-sm">Detail</a>
-                  <a href="configurator.html?car=byd-atto-3" class="btn btn-primary btn-sm">Konfigurasi</a>
-                </div>
-              </div>
-            </div>
-          </article>
+        <!-- Related Services -->
+        <div class="mt-6 reveal">
+          <h2 class="fs-h3 mb-4">Layanan Terkait Lainnya</h2>
+          <div class="grid grid-3 gap-4" id="relatedGrid">
+            <!-- Dynamically populated -->
+          </div>
         </div>
       </div>
     </section>
@@ -338,10 +273,11 @@
           <div class="partner-logo" aria-label="WrapStudio"><i class="bi bi-palette-fill"></i><span>WrapStudio</span></div>
         </div>
       </div>
+
       <div class="footer-grid">
         <div>
           <a href="index.html" class="navbar-brand">Drive<span>Studio</span></a>
-          <p class="mt-3">Desain mobil impian Anda — pengalaman konfigurasi 3D interaktif premium untuk pencinta otomotif Indonesia.</p>
+          <p class="mt-3">Bengkel kustomisasi dan modifikasi kendaraan profesional. Layanan premium untuk pencinta otomotif Indonesia.</p>
           <div class="social-links mt-4">
             <a href="javascript:void(0)" class="btn-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
             <a href="javascript:void(0)" class="btn-icon" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
@@ -350,9 +286,9 @@
         </div>
 
         <div>
-          <h4 class="footer-heading">Eksplorasi</h4>
+          <h4 class="footer-heading">Layanan</h4>
           <nav class="footer-links">
-            <a href="cars.html">Eksplorasi Mobil</a>
+            <a href="cars.html">Katalog Layanan</a>
             <a href="compare.html">Galeri Proyek</a>
             <a href="configurator.html">Konfigurator 3D</a>
           </nav>
@@ -362,14 +298,13 @@
           <h4 class="footer-heading">Perusahaan</h4>
           <nav class="footer-links">
             <a href="about.html">Tentang Kami</a>
-            <a href="index.html#brands">Merek</a>
-            <a href="index.html#news">Berita</a>
+            <a href="index.html#news">Artikel</a>
             <a href="about.html#contact">Booking Jasa</a>
           </nav>
         </div>
 
         <div>
-          <h4 class="footer-heading">Proyek</h4>
+          <h4 class="footer-heading">Informasi</h4>
           <nav class="footer-links">
             <a href="about.html#tech">Teknologi</a>
             <a href="about.html#roadmap">Alur Booking</a>
@@ -386,305 +321,377 @@
 
   <script type="module">
     import { initNavbar } from './js/nav.js';
-    import { initScrollReveal, initCounters, initLoadingScreen } from './js/utils.js';
-    import { initTabs, initSliders } from './js/ui.js';
-    import { initFavoriteButtons } from './js/favorites.js';
+    import { initScrollReveal, initLoadingScreen } from './js/utils.js';
+    import { initTabs } from './js/ui.js';
 
+    initNavbar();
+    initScrollReveal();
+    initLoadingScreen();
+    initTabs();
 
-    const DETAILS_DATA = {
-      'toyota-innova-zenix': {
-        name: 'Innova Zenix Hybrid',
-        brand: 'Toyota',
-        brandClass: 'badge-primary',
-        mediaClass: 'is-nocturne',
-        price: 'Rp471.600.000',
-        subtitle: 'MPV · Hybrid · e-CVT',
-        desc: 'Kijang Innova Zenix Hybrid menghadirkan revolusi berkendara keluarga di Indonesia dengan platform TNGA, mesin hybrid yang sangat irit, dan kenyamanan suspensi kelas atas.',
-        specs: [
-          'Hybrid', '2.0L M20A-FXS Dual VVT-i Hybrid', '186 PS', '187 Nm', 'e-CVT', '7 Penumpang', '21.0 km/liter'
+    // Theme toggle
+    const toggle = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+    if (toggle) {
+      const saved = (() => { try { return JSON.parse(localStorage.getItem('ds:theme')); } catch { return null; } })();
+      if (saved === 'light') {
+        document.documentElement.dataset.theme = 'light';
+        if (icon) icon.className = 'bi bi-sun-fill';
+      }
+      toggle.addEventListener('click', () => {
+        const isLight = document.documentElement.dataset.theme === 'light';
+        if (isLight) {
+          delete document.documentElement.dataset.theme;
+          if (icon) icon.className = 'bi bi-moon-stars';
+          try { localStorage.setItem('ds:theme', JSON.stringify('dark')); } catch {}
+        } else {
+          document.documentElement.dataset.theme = 'light';
+          if (icon) icon.className = 'bi bi-sun-fill';
+          try { localStorage.setItem('ds:theme', JSON.stringify('light')); } catch {}
+        }
+      });
+    }
+
+    const SERVICES_DATA = {
+      'ceramic-coating': {
+        name: 'Ceramic Coating Nano 9H',
+        category: 'Perawatan Cat',
+        badgeClass: 'badge-care',
+        img: 'ceramic_coating.png',
+        price: 'Mulai Rp2.500.000',
+        duration: '2-3 Hari Kerja',
+        subtitle: 'Perlindungi cat bodi kendaraan dengan teknologi nano ceramic 9H tahan gores',
+        desc: 'Layanan Ceramic Coating 9H memberikan lapisan pelindung transparan dengan tingkat kekerasan 9H. Melindungi cat asli kendaraan dari sinar UV, hujan asam, jamur, serta goresan halus.',
+        items: [
+          'Pencucian mendalam dan pembersihan kontaminasi (decontam).',
+          'Multi-stage paint correction untuk menghilangkan swirl mark.',
+          'Aplikasi 3 lapisan Nano Ceramic Coating 9H pada seluruh bodi.',
+          'Coating khusus pada kaca depan dan velg.'
         ],
-        performance: [
-          { val: '186 PS', pct: '75%' },
-          { val: '187 Nm', pct: '70%' },
-          { val: '175 km/jam', pct: '60%' },
-          { val: '21.0 km/liter', pct: '92%' }
-        ],
-        interior: {
-          desc: 'Kabin luas dengan captain seat berlapis kulit mewah, panoramic sunroof, dan Rear Seat Entertainment ganda untuk hiburan keluarga sepanjang perjalanan.',
-          items: [
-            'Captain Seat baris kedua dengan Ottoman leg rest',
-            'Panoramic Glass Roof yang luas dan modern',
-            'Dual Screen Rear Seat Entertainment 10 inci',
-            'Dashboard dengan aksen soft-pad premium'
-          ]
-        },
-        exterior: {
-          desc: 'Desain crossover tangguh dengan gril depan trapezoidal yang berani, lampu depan LED tajam, serta postur bodi gagah yang aerodinamis.',
-          items: [
-            'Velg Alloy 18-inci dengan desain dual-tone',
-            'Lampu Depan LED dengan DRL dan Foglamp LED',
-            'Pintu bagasi elektrik dengan sensor suara / kick sensor',
-            'Platform TNGA-C untuk rigiditas bodi yang stabil'
-          ]
-        },
+        warrantyText: 'Kami hanya menggunakan cairan ceramic coating bersertifikasi internasional yang aman untuk semua jenis cat kendaraan. Layanan ini mencakup garansi perawatan ulang jika timbul efek kusam alami.',
+        warrantyPeriod: 'Garansi hingga 5 tahun dengan masa maintenance berkala tiap 6 bulan.',
+        materialSpec: 'Cairan 9H Hardness Nano Silica berbahan dasar impor Jerman/Jepang.',
         pros: [
-          'Konsumsi bahan bakar yang luar biasa irit (mencapai 21 km/liter).',
-          'Kenyamanan suspensi TNGA yang sangat stabil dan empuk.',
-          'Fitur keselamatan canggih Toyota Safety Sense (TSS) 3.0.'
+          'Melindungi cat dari oksidasi dan bahaya sinar UV panas matahari.',
+          'Efek daun talas (hydrophobic) membuat mobil sangat mudah dicuci.',
+          'Menjaga warna cat tetap mengkilap seperti baru (wet-look).'
         ],
         cons: [
-          'Dimensi bodi cukup besar sehingga menuntut kelihaian di jalan sempit.',
-          'Kursi baris ketiga tidak memiliki pelipatan rata lantai sempurna.'
+          'Hindari mencuci mobil dengan sabun cuci piring yang bersifat keras.',
+          'Jangan mengelap bodi saat kering dan berdebu untuk mencegah baret halus.'
         ]
       },
-      'honda-brio': {
-        name: 'Honda Brio',
-        brand: 'Honda',
-        brandClass: '',
-        mediaClass: 'is-solace',
-        price: 'Rp191.900.000',
-        subtitle: 'Hatchback · Bensin · CVT',
-        desc: 'Honda Brio adalah hatchback perkotaan terlaris di Indonesia, menawarkan kelincahan berkendara, efisiensi bahan bakar tinggi, dan desain sporty yang dinamis.',
-        specs: [
-          'Hatchback', '1.2L 4-Silinder i-VTEC', '90 PS', '110 Nm', 'CVT', '5 Penumpang', '16.5 km/liter'
+      'paint-correction': {
+        name: 'Paint Correction & Polish',
+        category: 'Perawatan Cat',
+        badgeClass: 'badge-care',
+        img: 'paint_correction.png',
+        price: 'Mulai Rp1.800.000',
+        duration: '1-2 Hari Kerja',
+        subtitle: 'Restorasi kilap cat dari baret halus, jamur, dan swirl mark akibat cuci mobil',
+        desc: 'Paint Correction adalah proses pemolesan bertahap menggunakan kompon mikro khusus untuk meratakan lapisan clear coat dan menghilangkan hingga 90% baret halus (swirl mark).',
+        items: [
+          'Pembersihan kerak air dan noda jamur cat.',
+          'Poles Heavy Cut Compounding untuk baret agak dalam.',
+          'Poles Medium Finish Polish untuk meratakan kilap.',
+          'Aplikasi lapisan Wax/Sealant pelindung kilap.'
         ],
-        performance: [
-          { val: '90 PS', pct: '45%' },
-          { val: '110 Nm', pct: '40%' },
-          { val: '160 km/jam', pct: '50%' },
-          { val: '16.5 km/liter', pct: '75%' }
-        ],
-        interior: {
-          desc: 'Kabin berjiwa muda yang ergonomis dengan ruang kepala dan kaki yang lapang untuk kelasnya, dilengkapi head unit layar sentuh interaktif.',
-          items: [
-            'Head Unit Layar Sentuh 7-inci dengan konektivitas smartphone',
-            'Desain jok sport dengan aksen jahitan oranye yang dinamis',
-            'Setir kemudi berlapis material berkualitas dengan audio switch control',
-            'Kabin senyap dengan AC digital modern'
-          ]
-        },
-        exterior: {
-          desc: 'Desain bodi dinamis dengan spoiler atas yang sporty, velg alloy berdesain menarik, dan gril depan beraksen hitam gloss.',
-          items: [
-            'Lampu Depan LED dengan LED Daytime Running Lights (DRL)',
-            'Velg Alloy 14-inci dengan sentuhan kelir gelap yang sporty',
-            'Bumper depan agresif dengan gril bermotif sarang lebah',
-            'Tailgate spoiler sporty dengan lampu rem LED terintegrasi'
-          ]
-        },
+        warrantyText: 'Garansi kilap sempurna tanpa efek bercak compound pada karet dan kaca.',
+        warrantyPeriod: 'Garansi pengerjaan 6 bulan.',
+        materialSpec: 'Compound & Finishing Polish bebas silikon (paint-shop safe).',
         pros: [
-          'Dimensi bodi kompak yang sangat mudah bermanuver di perkotaan.',
-          'Konsumsi bahan bakar perkotaan sangat efisien.',
-          'Desain eksterior sporty dengan nilai jual kembali yang stabil.'
+          'Mengembalikan warna asli kendaraan yang kusam menjadi bening kembali.',
+          'Menghilangkan bercak jamur air (water spot) yang membandel.'
         ],
         cons: [
-          'Kekedapan suara kabin (NVH) kurang maksimal pada kecepatan tinggi.',
-          'Ruang bagasi belakang relatif terbatas.'
+          'Baret yang sudah menembus cat dasar tidak dapat dihilangkan hanya dengan poles.'
         ]
       },
-      'mitsubishi-pajero-sport': {
-        name: 'Pajero Sport',
-        brand: 'Mitsubishi',
-        brandClass: 'badge-accent',
-        mediaClass: 'is-corsa',
-        price: 'Rp589.600.000',
-        subtitle: 'SUV · Diesel · 8-Speed AT',
-        desc: 'Mitsubishi Pajero Sport adalah SUV tangguh legendaris di Indonesia, memadukan ketangguhan sasis ladder-frame, mesin diesel MIVEC bertenaga, dan interior mewah.',
-        specs: [
-          'SUV', '2.4L MIVEC Turbo Diesel (4N15)', '181 PS', '430 Nm', '8-Speed Otomatis', '7 Penumpang', '12.8 km/liter'
+      'full-body-wrap': {
+        name: 'Full Body Vinyl Wrapping',
+        category: 'Stiker Wrapping',
+        badgeClass: 'badge-wrap',
+        img: 'body_wrapping.png',
+        price: 'Mulai Rp8.000.000',
+        duration: '3-5 Hari Kerja',
+        subtitle: 'Ubah warna kendaraan sepenuhnya menggunakan stiker vinyl premium tanpa merusak cat asli',
+        desc: 'Layanan Full Body Wrapping melapisi seluruh permukaan eksterior kendaraan dengan stiker vinyl kelas atas. Pilihan finishing beragam dari Matte, Satin, Glossy, hingga Metallic.',
+        items: [
+          'Pembongkaran minor (handle pintu, spion) untuk lipatan rapi.',
+          'Pembersihan permukaan bodi dengan alkohol khusus.',
+          'Pemasangan stiker vinyl impor bermerek (Avery/3M/Oracal).',
+          'Heating & Post-heating untuk memastikan stiker tidak mengelupas.'
         ],
-        performance: [
-          { val: '181 PS', pct: '72%' },
-          { val: '430 Nm', pct: '85%' },
-          { val: '180 km/jam', pct: '65%' },
-          { val: '12.8 km/liter', pct: '60%' }
-        ],
-        interior: {
-          desc: 'Kabin mewah berbalut kulit hitam berkualitas tinggi dengan panel instrumen LCD 8-inci yang modern, serta konsol tengah berlapis material empuk.',
-          items: [
-            'Panel Instrumen LCD 8-inci penuh warna dengan 3 mode tampilan',
-            'Jok kulit mewah dengan pengaturan elektrik di sisi pengemudi',
-            'Sistem AC otomatis dual-zone dengan penyaring udara nanoe',
-            'Rem parkir elektrik dengan fungsi auto hold'
-          ]
-        },
-        exterior: {
-          desc: 'Desain tangguh berkonsep Dynamic Shield legendaris Mitsubishi, dilengkapi velg alloy 18-inci berdesain tangguh, dan pintu bagasi elektrik pintar.',
-          items: [
-            'Lampu Depan LED Aktif dengan fungsi cornering light',
-            'Pintu bagasi elektrik dengan kick sensor untuk kepraktisan',
-            'Velg Alloy 18-inci bermotif tangguh dual-tone',
-            'Antena bermodel sirip hiu yang modern dan sporty'
-          ]
-        },
+        warrantyText: 'Garansi lem stiker tidak merusak cat asli saat dilepas dan garansi pengerjaan dari gelembung udara.',
+        warrantyPeriod: 'Garansi resmi hingga 3 tahun.',
+        materialSpec: 'Stiker Cast Vinyl Premium ketebalan 80-100 micron.',
         pros: [
-          'Torsi mesin diesel melimpah dan tangguh di tanjakan.',
-          'Desain eksterior gagah dan memberikan prestise tinggi.',
-          'Ground clearance tinggi (218 mm) aman melibas genangan air.'
+          'Melindungi cat asli dari goresan langsung dan krikil jalanan.',
+          'Bisa berganti warna kapan saja dan mudah dilepas kembali.'
         ],
         cons: [
-          'Suspensi belakang terasa agak kaku saat dikendarai sendiri.',
-          'Kabin baris ketiga kurang lapang untuk orang dewasa.'
+          'Hindari menyemprotkan jet washer langsung dengan jarak terlalu dekat pada lekukan lipatan stiker.'
         ]
       },
-      'byd-atto-3': {
-        name: 'BYD Atto 3',
-        brand: 'BYD',
-        brandClass: '',
-        mediaClass: 'is-meridian',
-        price: 'Rp515.000.000',
-        subtitle: 'EV · Listrik · 1-Speed',
-        desc: 'BYD Atto 3 membawa era baru mobil listrik di Indonesia dengan teknologi Blade Battery aman, jangkauan hingga 480 km, serta performa instan hening dan modern.',
-        specs: [
-          'Electric Vehicle (EV)', 'Motor Listrik Tunggal', '204 PS', '310 Nm', '1-Speed Direct Drive', '5 Penumpang', '6.2 km/kWh (Listrik)'
+      'partial-wrap': {
+        name: 'Partial Wrapping & Accent',
+        category: 'Stiker Wrapping',
+        badgeClass: 'badge-wrap',
+        img: 'partial_wrapping.png',
+        price: 'Mulai Rp3.000.000',
+        duration: '1 Hari Kerja',
+        subtitle: 'Sentuhan kustomisasi dua warna pada bagian atap, kap mesin, atau spion',
+        desc: 'Bosan dengan tampilan polos? Partial wrapping memberikan aksen kontras seperti Atop Blackout (dua warna style panoramic roof) atau kap mesin motif karbon.',
+        items: [
+          'Wrapping Atap (Blackout Roof Glossy).',
+          'Wrapping Kap Mesin atau Bagasi.',
+          'Wrapping Cover Spion dan Aksen Chrome Delete.'
         ],
-        performance: [
-          { val: '204 PS', pct: '80%' },
-          { val: '310 Nm', pct: '75%' },
-          { val: '160 km/jam', pct: '50%' },
-          { val: '480 km (Jangkauan)', pct: '95%' }
-        ],
-        interior: {
-          desc: 'Desain kabin bertema kebugaran / gym yang unik dan berani, layar sentuh 15.6-inci yang dapat berputar secara elektrik, serta tata suara mutakhir.',
-          items: [
-            'Layar Sentuh Layar Pintar 15.6-inci yang bisa diputar (portrait/landscape)',
-            'Tuas transmisi bermodel kokpit pesawat dan detail karet pintu unik',
-            'Panoramic Sunroof besar elektrik yang menambah kesan luas',
-            'Jok sporty ergonomis terintegrasi dengan sandaran kepala'
-          ]
-        },
-        exterior: {
-          desc: 'Tampilan berkonsep Dragon Face 3.0 dengan lampu depan LED menyambung, pilar-C beraksen metalik, serta bodi dinamis yang aerodinamis.',
-          items: [
-            'Lampu LED depan bermodel kristal dengan lampu sen berkedip sekuensial',
-            'Pilar-C dengan motif sisik perak bertekstur premium',
-            'Velg Alloy 18-inci dengan desain futuristik yang meminimalkan hambatan angin',
-            'Lampu LED belakang menyambung horizontal penuh'
-          ]
-        },
+        warrantyText: 'Garansi pemotongan stiker presisi tanpa menggores cat bodi.',
+        warrantyPeriod: 'Garansi 2 tahun.',
+        materialSpec: 'High Gloss Super Black Vinyl / 3D Carbon Vinyl.',
         pros: [
-          'Akselerasi instan yang senyap dan halus khas mobil listrik.',
-          'Biaya operasional harian sangat murah dibanding mobil bensin.',
-          'Bebas aturan ganjil-genap Jakarta dan ramah lingkungan.'
+          'Pengerjaan cepat dalam 1 hari.',
+          'Memberikan tampilan sporty dua warna ala mobil mewah modern.'
         ],
         cons: [
-          'Waktu pengisian daya baterai saat perjalanan luar kota.',
-          'Ketergantungan pada persebaran stasiun pengisian SPKLU.'
+          'Perlu perawatan pembersihan teratur pada bagian atap yang sering terkena sinar matahari.'
         ]
+      },
+      'body-kit': {
+        name: 'Body Kit & Aero Parts',
+        category: 'Modifikasi Eksterior',
+        badgeClass: 'badge-mod',
+        img: 'body_kit.png',
+        price: 'Mulai Rp15.000.000',
+        duration: '5-7 Hari Kerja',
+        subtitle: 'Pemasangan wide body kit, lip spoiler, side skirts, dan rear diffuser',
+        desc: 'Ubah karakter kendaraan Anda menjadi lebih agresif dan aerodinamis dengan pemasangan paket body kit kustom berbahan FRP berkualitas tinggi atau ABS fleksibel.',
+        items: [
+          'Fitting & Alignment presisi sesuai sasis mobil.',
+          'Pengecatan oven sesuai kode warna asli kendaraan.',
+          'Pemasangan dengan braket aman & seal khusus.',
+          'Finishing instalasi lip spoiler & diffuser.'
+        ],
+        warrantyText: 'Garansi cat body kit tidak pecah atau belang dari bodi asli.',
+        warrantyPeriod: 'Garansi pengerjaan & cat 2 tahun.',
+        materialSpec: 'Material ABS Grade A / Fiberglass Reinforced Polymer (FRP).',
+        pros: [
+          'Tampilan eksterior berubah drastis menjadi sporty dan unik.',
+          'Meningkatkan tingkat aerodinamis kendaraan di kecepatan tinggi.'
+        ],
+        cons: [
+          'Ground clearance menjadi sedikit lebih rendah, perlu hati-hati di polisi tidur tinggi.'
+        ]
+      },
+      'carbon-fiber': {
+        name: 'Carbon Fiber Parts Upgrade',
+        category: 'Modifikasi Eksterior',
+        badgeClass: 'badge-mod',
+        img: 'carbon_fiber_parts.png',
+        price: 'Mulai Rp5.000.000',
+        duration: '2-3 Hari Kerja',
+        subtitle: 'Upgrade kap mesin, kap bagasi, dan spion karbon fiber asli',
+        desc: 'Komponen serat karbon ringan untuk mengurangi bobot sekaligus mempercantik estetika mobil balap modern.',
+        items: [
+          'Pemasangan kap mesin karbon fiber dry carbon.',
+          'Cover spion dan rear wing spoiler karbon.',
+          'Finishing clear coat UV protection.'
+        ],
+        warrantyText: 'Garansi serat karbon asli tidak menguning atau pecah retak.',
+        warrantyPeriod: 'Garansi 2 tahun.',
+        materialSpec: 'Real Carbon Fiber Weave 3K Twill Glossy Finish.',
+        pros: ['Sangat ringan dan kuat.', 'Memberikan tampilan racing performa tinggi.'],
+        cons: ['Perlu kehati-hatian saat membersihkan agar clear coat tidak tergores pasir.']
+      },
+      'custom-interior': {
+        name: 'Custom Interior Retrim',
+        category: 'Kustom Interior',
+        badgeClass: 'badge-interior',
+        img: 'interior_mod.png',
+        price: 'Mulai Rp7.000.000',
+        duration: '3-5 Hari Kerja',
+        subtitle: 'Retrim jok kulit sintetis/Nappa, dashboard custom, dan door trim',
+        desc: 'Transformasi total suasana kabin interior kendaraan Anda dengan material kulit premium buatan pabrik atau kulit impor Nappa.',
+        items: [
+          'Bongkar jok asli dan pembuatan pola jahitan kustom.',
+          'Retrim jok depan, belakang, dan armrest.',
+          'Retrim doortrim dan stir kulit perforated.'
+        ],
+        warrantyText: 'Garansi jahitan dan kelupasan bahan kulit.',
+        warrantyPeriod: 'Garansi 3 tahun.',
+        materialSpec: 'Microfiber Leather / Genuine Nappa Leather.',
+        pros: ['Kabin jauh lebih mewah dan nyaman.', 'Mudah dibersihkan dari tumpahan cairan.'],
+        cons: ['Perlu perawatan leather conditioner setiap 3 bulan.']
+      },
+      'ambient-lighting': {
+        name: 'Ambient LED Lighting System',
+        category: 'Kustom Interior',
+        badgeClass: 'badge-interior',
+        img: 'ambient_lighting.png',
+        price: 'Mulai Rp2.000.000',
+        duration: '1 Hari Kerja',
+        subtitle: 'Instalasi LED ambient light RGB 64 warna terintegrasi aplikasi smartphone',
+        desc: 'Ciptakan suasana kabin futuristik khas mobil mewah dengan sistem pencahayaan LED ambient tersembunyi yang dapat disesuaikan warnanya.',
+        items: [
+          'Pemasangan optik LED pada dashboard dan 4 pintu.',
+          'Pemasangan footwell light bawah jok.',
+          'Koneksi modul Bluetooth ke smartphone app.'
+        ],
+        warrantyText: 'Garansi modul kelistrikan dan lampu LED tidak mati.',
+        warrantyPeriod: 'Garansi 1 tahun.',
+        materialSpec: 'Acrylic LED Strip 64 Color RGB App Control.',
+        pros: ['Warna dapat diubah sesuka hati.', 'Pengoperasian mudah lewat aplikasi HP.'],
+        cons: ['Perlu kelistrikan yang teratur dan rapi.']
+      },
+      'upgrade-velg': {
+        name: 'Upgrade Velg & Ban',
+        category: 'Velg & Ban',
+        badgeClass: 'badge-wheels',
+        img: 'velg_upgrade.png',
+        price: 'Mulai Rp3.000.000',
+        duration: '1 Hari Kerja',
+        subtitle: 'Ganti velg aftermarket forged / flow-formed bermerek dengan ban performa',
+        desc: 'Upgrade velg adalah cara paling efektif mengubah stance kendaraan. Kami menyediakan velg kualitas forged berbobot ringan yang meningkatkan performa berkendara.',
+        items: [
+          'Konsultasi ukuran PCD, Offset (ET), dan lebar velg ideal.',
+          'Bongkar pasang dengan mesin tyre changer khusus tanpa menggores velg.',
+          'Balancing roda 3D laser precision.',
+          'Spooring 3D wheel alignment.'
+        ],
+        warrantyText: 'Garansi velg asli bebas retak manufaktur dan garansi spooring presisi.',
+        warrantyPeriod: 'Garansi resmi pabrikan velg 1-3 tahun.',
+        materialSpec: 'Velg Alloy Forged / Flow Formed bermerek teruji.',
+        pros: [
+          'Memangkas bobot un-sprung weight sehingga mobil lebih responsif.',
+          'Tampilan stance roda menjadi lebih padat dan gagah.'
+        ],
+        cons: [
+          'Profil ban lebih tipis memerlukan kehati-hatian ekstra saat melindas lubang.'
+        ]
+      },
+      'brake-kit': {
+        name: 'Big Brake Kit Upgrade (BBK)',
+        category: 'Velg & Ban',
+        badgeClass: 'badge-wheels',
+        img: 'brake_kit.png',
+        price: 'Mulai Rp8.000.000',
+        duration: '1 Hari Kerja',
+        subtitle: 'Upgrade rem performa dengan kaliper Big Brake Kit 4/6 pot',
+        desc: 'Tingkatkan daya cengkeram pengereman dan penampilan roda dengan kaliper Big Brake Kit berukuran besar.',
+        items: [
+          'Pemasangan kaliper Big Brake Kit 4 atau 6 pot.',
+          'Rotor piringan rem drilled & slotted.',
+          'Brake line stainless steel braided.'
+        ],
+        warrantyText: 'Garansi pengereman dan kebocoran minyak rem.',
+        warrantyPeriod: 'Garansi 1 tahun.',
+        materialSpec: 'Forged Aluminum Caliper & High Carbon Rotor Disc.',
+        pros: ['Jarak pengereman lebih pendek.', 'Tampilan roda jauh lebih padat dan sporty.'],
+        cons: ['Memerlukan velg dengan spesifikasi offset yang mendukung clearance kaliper.']
+      },
+      'audio-premium': {
+        name: 'System Audio Premium & Soundproof',
+        category: 'Audio & Elektronik',
+        badgeClass: 'badge-audio',
+        img: 'audio_premium.png',
+        price: 'Mulai Rp4.000.000',
+        duration: '2 Hari Kerja',
+        subtitle: 'Sistem audio high-end dengan DSP, subwoofer & peredam suara',
+        desc: 'Nikmati kualitas suara musik layaknya konser di dalam kabin mobil Anda dengan tuning DSP profesional.',
+        items: [
+          'Pemasangan peredam suara 2 lapis pada 4 pintu.',
+          'Instalasi speaker 2-way / 3-way component.',
+          'Processor DSP & Subwoofer aktif / pasif.'
+        ],
+        warrantyText: 'Garansi instalasi bebas noise dan garansi perangkat audio.',
+        warrantyPeriod: 'Garansi 1 tahun.',
+        materialSpec: 'DSP Amp, Hi-Res Component Speaker & Aluminium Sound Proofing.',
+        pros: ['Kabin jauh lebih senyap dari suara bising luar.', 'Kualitas vokal dan bass sangat jernih.'],
+        cons: ['Membutuhkan waktu tuning akustik yang cermat.']
+      },
+      'racing-livery': {
+        name: 'Racing Livery Design & Wrap',
+        category: 'Stiker Wrapping',
+        badgeClass: 'badge-wrap',
+        img: 'racing_livery.png',
+        price: 'Mulai Rp12.000.000',
+        duration: '3-4 Hari Kerja',
+        subtitle: 'Desain livery balap kustom & cetak vinyl high resolution',
+        desc: 'Wujudkan desain mobil balap impian dengan livery kustom hasil cetak vinyl definisi tinggi.',
+        items: [
+          'Desain 3D kustom grafis livery balap.',
+          'Cetak vinyl high resolution dengan laminasi matte/gloss.',
+          'Pemasangan presisi mengikuti kontur lekuk bodi.'
+        ],
+        warrantyText: 'Garansi ketahanan warna dari pudar sinar matahari.',
+        warrantyPeriod: 'Garansi 2 tahun.',
+        materialSpec: 'High Resolution Printed Cast Vinyl + UV Overlaminate.',
+        pros: ['Tampilan 100% kustom beda dari mobil lainnya.', 'Melindungi cat asli.'],
+        cons: ['Desain ramah balap memerlukan proses konfirmasi grafis sebelum dicetak.']
       }
     };
 
-    // --- Dynamic population logic ---
-    const carId = new URLSearchParams(location.search).get('car') || 'toyota-innova-zenix';
-    const data = DETAILS_DATA[carId] || DETAILS_DATA['toyota-innova-zenix'];
+    const serviceId = new URLSearchParams(location.search).get('car') || 'ceramic-coating';
+    const data = SERVICES_DATA[serviceId] || SERVICES_DATA['ceramic-coating'];
 
-    // Update document title
-    document.title = `${data.name} — Drive Studio`;
+    document.title = `${data.name} | Drive Studio`;
+    document.getElementById('breadcrumbName').textContent = data.name;
+    document.getElementById('serviceTitle').textContent = data.name;
+    document.getElementById('serviceSubtitle').textContent = data.subtitle;
+    document.getElementById('servicePrice').textContent = data.price;
+    document.getElementById('serviceDuration').textContent = data.duration;
+    document.getElementById('serviceDesc').textContent = data.desc;
+    document.getElementById('serviceImg').src = `assets/images/${data.img}`;
+    document.getElementById('serviceImg').alt = data.name;
 
-    // Breadcrumb page name
-    const breadcrumbPage = document.querySelector('.breadcrumb [aria-current="page"]');
-    if (breadcrumbPage) breadcrumbPage.textContent = data.name;
+    const badgeEl = document.getElementById('serviceBadge');
+    badgeEl.textContent = data.category;
+    badgeEl.className = `badge ${data.badgeClass}`;
 
-    // Gallery slide media classes
-    const slides = document.querySelectorAll('.slider-slide');
-    slides.forEach((slide) => {
-      slide.className = `slider-slide car-card-media ${data.mediaClass}`;
-      const imgName = carId.replace(/-/g, '_');
-      slide.innerHTML = `<img width="600" height="400"  src="assets/images/${imgName}.png" alt="${data.name}" class="car-card-image" style="max-height: 100%; object-fit: contain;" loading="lazy" decoding="async">`;
-    });
-
-    // Badge
-    const badge = document.querySelector('.favorite-btn').previousElementSibling;
-    if (badge) {
-      badge.textContent = data.brand;
-      badge.className = `badge ${data.brandClass || ''}`.trim();
+    // Overview list
+    const overviewUl = document.getElementById('overviewItems');
+    if (overviewUl && data.items) {
+      overviewUl.innerHTML = data.items.map(item => `<li>${item}</li>`).join('');
     }
 
-    // Favorite Button
-    const favBtn = document.querySelector('.favorite-btn');
-    if (favBtn) {
-      favBtn.dataset.carId = carId;
-      favBtn.setAttribute('aria-label', `Tambah ${data.name} ke favorit`);
+    // Warranty
+    if (data.warrantyText) document.getElementById('warrantyText').textContent = data.warrantyText;
+    if (data.warrantyPeriod) document.getElementById('warrantyPeriod').textContent = data.warrantyPeriod;
+    if (data.materialSpec) document.getElementById('materialSpec').textContent = data.materialSpec;
+
+    // Pros / Cons
+    const prosUl = document.getElementById('prosList');
+    if (prosUl && data.pros) {
+      prosUl.innerHTML = data.pros.map(p => `<li>${p}</li>`).join('');
     }
 
-    // Title Block details
-    const titleH1 = document.querySelector('main h1');
-    if (titleH1) {
-      titleH1.textContent = data.name;
-      const subtitleP = titleH1.nextElementSibling;
-      if (subtitleP) subtitleP.textContent = data.subtitle;
-      const descP = subtitleP.nextElementSibling;
-      if (descP) descP.textContent = data.desc;
-
-      // Configure button link
-      const configLink = document.querySelector('a[href^="configurator.html"]');
-      if (configLink) configLink.href = `configurator.html?car=${carId}`;
+    const consUl = document.getElementById('consList');
+    if (consUl && data.cons) {
+      consUl.innerHTML = data.cons.map(c => `<li>${c}</li>`).join('');
     }
 
-    // Specifications tab rows
-    const specDds = document.querySelectorAll('#panel-specs .spec-row dd');
-    if (specDds.length === data.specs.length) {
-      specDds.forEach((dd, i) => {
-        dd.textContent = data.specs[i];
-      });
+    // Related Services
+    const relatedGrid = document.getElementById('relatedGrid');
+    if (relatedGrid) {
+      const keys = Object.keys(SERVICES_DATA).filter(k => k !== serviceId).slice(0, 3);
+      relatedGrid.innerHTML = keys.map(k => {
+        const item = SERVICES_DATA[k];
+        return `
+          <div class="card car-card">
+            <div class="car-card-media">
+              <img width="600" height="400" src="assets/images/${item.img}" alt="${item.name}" class="car-card-image" loading="lazy" decoding="async">
+            </div>
+            <div class="card-body">
+              <span class="badge ${item.badgeClass}">${item.category}</span>
+              <h3 class="mt-2" style="font-size: 1rem;">${item.name}</h3>
+              <p class="text-mid fs-xs mt-1">${item.price}</p>
+              <a href="detail.html?car=${k}" class="btn btn-outline btn-sm mt-3 w-full text-center d-block">Lihat Detail</a>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
-
-    // Performance tab progress bars
-    const statBars = document.querySelectorAll('#panel-performance .stat-bar');
-    if (statBars.length === data.performance.length) {
-      statBars.forEach((bar, i) => {
-        const numericText = bar.querySelector('.numeric');
-        const fill = bar.querySelector('.stat-bar-fill');
-        if (numericText) numericText.textContent = data.performance[i].val;
-        if (fill) fill.style.width = data.performance[i].pct;
-      });
-    }
-
-    // Interior tab text and list items
-    const interiorPanel = document.getElementById('panel-interior');
-    if (interiorPanel) {
-      const desc = interiorPanel.querySelector('p');
-      const lis = interiorPanel.querySelectorAll('li');
-      if (desc) desc.textContent = data.interior.desc;
-      if (lis.length === data.interior.items.length) {
-        lis.forEach((li, i) => {
-          li.textContent = data.interior.items[i];
-        });
-      }
-    }
-
-    // Exterior tab text and list items
-    const exteriorPanel = document.getElementById('panel-exterior');
-    if (exteriorPanel) {
-      const desc = exteriorPanel.querySelector('p');
-      const lis = exteriorPanel.querySelectorAll('li');
-      if (desc) desc.textContent = data.exterior.desc;
-      if (lis.length === data.exterior.items.length) {
-        lis.forEach((li, i) => {
-          li.textContent = data.exterior.items[i];
-        });
-      }
-    }
-
-    // Pros and cons lists population
-    const reviewsPanel = document.getElementById('panel-reviews');
-    if (reviewsPanel) {
-      const prosList = reviewsPanel.querySelector('.pros-list');
-      const consList = reviewsPanel.querySelector('.cons-list');
-      if (prosList && consList) {
-        prosList.innerHTML = data.pros.map(item => `<li>${item}</li>`).join('');
-        consList.innerHTML = data.cons.map(item => `<li>${item}</li>`).join('');
-      }
-    }
-
-    // --- Run standard page initializers ---
-    initNavbar();
-    initScrollReveal();
-    initCounters();
-    initLoadingScreen();
-    initTabs();
-    initSliders();
-    initFavoriteButtons();
   </script>
 </body>
 </html>
