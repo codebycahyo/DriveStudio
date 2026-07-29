@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Proyek | Drive Studio</title>
+  <meta name="description" content="Detail pengerjaan proyek kustomisasi kendaraan oleh Drive Studio." />
+
+  <script>
+    (function () {
+      document.documentElement.classList.add('js');
+    })();
+  </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/main.css?v=34" />
+  <link rel="stylesheet" href="css/components.css?v=34" />
+  <link rel="stylesheet" href="css/animations.css?v=34" />
+  <link rel="stylesheet" href="css/pages.css?v=34" />
+  <link rel="stylesheet" href="css/responsive.css?v=34" />
+
+  <!-- SEO & Social Meta -->
+  <meta property="og:title" content="Drive Studio | Desain Mobil Impian Anda" />
+  <meta property="og:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta property="og:image" content="https://drivestudio.com/og-image.jpg" />
+  <meta property="og:url" content="https://drivestudio.com/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Drive Studio" />
+  <meta name="twitter:description" content="Konfigurator 3D interaktif premium untuk mobil." />
+  <meta name="twitter:image" content="https://drivestudio.com/og-image.jpg" />
+  <link rel="canonical" href="https://drivestudio.com/" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>" type="image/svg+xml" />
+
+  <!-- Preconnect Hints -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://www.youtube.com" crossorigin />
+  <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
+</head>
+<body data-page="gallery-detail">
+  <a href="#main-content" class="sr-only focusable-skip-link">Langsung ke konten utama</a>
+
+
+  <div class="loading-screen" id="loadingScreen">
+    <p class="loading-logo">DRIVE<span class="text-primary">STUDIO</span></p>
+    <div class="loading-bar">
+      <div class="loading-bar-fill" id="loadingBarFill"></div>
+    </div>
+  </div>
+
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-brand">Drive<span>Studio</span></a>
+
+      <nav class="navbar-links" aria-label="Navigasi Utama">
+        <a href="index.html">Beranda</a>
+        <a href="cars.html">Layanan</a>
+        <a href="compare.html" class="is-active">Galeri</a>
+        <a href="configurator.html">Konfigurator</a>
+        <a href="about.html">Tentang Kami</a>
+      </nav>
+
+      <div class="navbar-actions">
+        <button type="button" class="btn-icon" id="themeToggle" aria-label="Ubah Tema Terang/Gelap">
+          <i class="bi bi-moon-stars" id="themeIcon"></i>
+        </button>
+        <button type="button" class="btn-icon navbar-toggle" id="navbarToggle" aria-label="Buka Menu" aria-expanded="false" aria-controls="navbarDrawer">
+          <i class="bi bi-list" id="navbarToggleIcon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="navbar-drawer" id="navbarDrawer">
+    <a href="index.html">Beranda</a>
+    <a href="cars.html">Layanan</a>
+    <a href="compare.html" class="is-active">Galeri</a>
+    <a href="configurator.html">Konfigurator</a>
+    <a href="about.html">Tentang Kami</a>
+  </div>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container text-center reveal">
+        <span class="badge badge-primary mx-auto" id="projectCategory">Project Detail</span>
+        <h1 class="hero-title mt-4 max-w-prose mx-auto" id="projectTitle">Memuat Data Proyek...</h1>
+        <p class="text-low mt-3 mx-auto max-w-md" id="projectDesc">
+          Tunggu sebentar, kami sedang memuat informasi proyek ini untuk Anda.
+        </p>
+      </div>
+    </section>
+
+    <section class="section pt-0">
+      <div class="container">
+        <div class="card p-6 reveal" id="projectCard" style="max-width: 1000px; margin-inline: auto;">
+          <div class="grid grid-2" style="align-items: start; gap: var(--space-6);">
+
+            <!-- Gallery -->
+            <div class="slider" id="projectGallery">
+              <div class="slider-track">
+                <div class="slider-slide car-card-media is-nocturne" style="min-height: 320px;">
+                  <img class="car-card-image gallery-slide-img" src="" alt="Detail Proyek Modifikasi" style="max-height: 100%; object-fit: contain;" loading="lazy" decoding="async">
+                </div>
+                <div class="slider-slide car-card-media is-nocturne" style="min-height: 320px;">
+                  <img class="car-card-image gallery-slide-img" src="" alt="Detail Proyek Modifikasi" style="max-height: 100%; object-fit: contain;" loading="lazy" decoding="async">
+                </div>
+                <div class="slider-slide car-card-media is-nocturne" style="min-height: 320px;">
+                  <img class="car-card-image gallery-slide-img" src="" alt="Detail Proyek Modifikasi" style="max-height: 100%; object-fit: contain;" loading="lazy" decoding="async">
+                </div>
+              </div>
+              <div class="slider-controls">
+                <button type="button" class="btn-icon" data-slider-prev aria-label="Gambar sebelumnya">
+                  <i class="bi bi-chevron-left"></i>
+                </button>
+                <button type="button" class="btn-icon" data-slider-next aria-label="Gambar berikutnya">
+                  <i class="bi bi-chevron-right"></i>
+                </button>
+              </div>
+              <div class="slider-dots">
+                <button type="button" class="slider-dot is-active" aria-label="Tampilkan gambar 1"></button>
+                <button type="button" class="slider-dot" aria-label="Tampilkan gambar 2"></button>
+                <button type="button" class="slider-dot" aria-label="Tampilkan gambar 3"></button>
+              </div>
+            </div>
+
+            <!-- Info -->
+            <div>
+              <h2 class="fs-h3">Tentang Proyek Ini</h2>
+              <p class="text-mid mt-3" id="projectLongDesc">--</p>
+
+              <hr class="sidebar-divider" style="margin-block: var(--space-5);" />
+
+              <h3 class="fs-h4 flex items-center gap-2">
+                <i class="bi bi-list-check text-primary"></i> Checklist Modifikasi
+              </h3>
+              <ul class="project-mods" id="projectMods">
+                <li>--</li>
+              </ul>
+
+              <a href="compare.html" class="btn btn-outline mt-5">
+                <i class="bi bi-arrow-left"></i> Kembali ke Galeri
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom mt-0 pt-6">
+        <p>&copy; 2026 Drive Studio. Proyek Akhir Pemrograman Web.</p>
+        <p>Dibuat dengan HTML5, CSS3, Vanilla JavaScript &amp; Three.js</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initNavbar } from './js/nav.js';
+    import { initScrollReveal, initCounters, initLoadingScreen } from './js/utils.js';
+    import { initSliders } from './js/ui.js';
+
+    initNavbar();
+    initScrollReveal();
+    initCounters();
+    initLoadingScreen();
+
+    // Mock Data for Gallery Projects
+    const projects = {
+      'custom-paint-innova': {
+        title: 'Ceramic Coating 9H Deep Gloss',
+        category: 'Perawatan Cat',
+        desc: 'Pengerjaan multi-stage paint correction disusul 3 lapisan ceramic coating 9H pada Toyota Innova Zenix.',
+        longDesc: 'Klien menginginkan proteksi cat bodi Toyota Innova Zenix dengan tingkat kilap wet-look maksimal. Kami melakukan proses decontam wash, poles multi-stage paint correction untuk meratakan swirl mark, disusul 3 lapisan Nano Ceramic Coating 9H tahan UV & asam air hujan.',
+        image: 'assets/images/ceramic_coating.png',
+        gallery: ['assets/images/ceramic_coating.png', 'assets/images/ceramic_innova_detail.png', 'assets/images/ceramic_innova_1.png'],
+        mods: ['Decontam Wash & Clay Bar', 'Multi-Stage Paint Correction', '3-Layer Nano Ceramic Coating 9H', 'Glass & Wheel Coating']
+      },
+      'full-wrap-brio': {
+        title: 'Full Body Wrap Satin Grey',
+        category: 'Stiker Wrapping',
+        desc: 'Pemasangan stiker vinyl premium full body warna Satin Grey Matte dengan proteksi anti-gores UV pada Honda Brio.',
+        longDesc: 'Proyek ini bertujuan memberikan tampilan sporty dan agresif pada Honda Brio tanpa merusak cat aslinya. Kami menggunakan stiker vinyl kualitas premium berwarna Satin Grey Matte. Material ini dilengkapi teknologi self-healing dan proteksi UV.',
+        image: 'assets/images/body_wrapping.png',
+        gallery: ['assets/images/body_wrapping.png', 'assets/images/wrap_brio_detail.png'],
+        mods: ['Premium Vinyl Wrap (Satin Grey Matte)', 'Self-Healing Technology', 'UV Protection', 'Chrome Delete pada list kaca']
+      },
+      'exterior-pajero': {
+        title: 'Wide Body Kit & Aero Parts',
+        category: 'Modifikasi Eksterior',
+        desc: 'Pemasangan kit aero kustom meliputi front lip splitter, side skirts, rear diffuser, dan spoiler pada Pajero Sport.',
+        longDesc: 'Modifikasi eksterior lengkap untuk memberikan tampilan agresif dan gagah pada Mitsubishi Pajero Sport. Pemasangan body kit ABS yang dicat oven presisi sesuai kode warna kendaraan.',
+        image: 'assets/images/body_kit.png',
+        gallery: ['assets/images/body_kit.png', 'assets/images/body_kit_detail.png'],
+        mods: ['Front Lip Splitter', 'Side Skirts & Fender Flare', 'Rear Diffuser dengan Quad Tailpipe', 'Ducktail Spoiler']
+      },
+      'coating-atto3': {
+        title: 'Retrim Jok Kulit & Ambient LED',
+        category: 'Kustom Interior',
+        desc: 'Pemasangan jok kulit Nappa kustom warna hitam-merah disusul sistem ambient light 64 warna pada BYD Atto 3.',
+        longDesc: 'Perubahan kabin interior BYD Atto 3 secara menyeluruh dengan lapisan kulit sintetis Nappa bermotif perforated sporty, dipadukan lampu LED ambient light RGB yang dapat dikontrol dari aplikasi smartphone.',
+        image: 'assets/images/interior_mod.png',
+        gallery: ['assets/images/interior_mod.png', 'assets/images/ambient_lighting.png'],
+        mods: ['Retrim Jok Kulit Nappa Dual-Tone', 'Ambient LED Lighting 64 Warna', 'Aksen Carbon Panel Dashboard', 'Karpet Kustom 5D']
+      },
+      'livery-innova': {
+        title: 'Custom Racing Livery Design',
+        category: 'Stiker Wrapping',
+        desc: 'Desain stiker kustom bertema balap dengan garis geometris tegas dan kombinasi warna matte & gloss.',
+        longDesc: 'Kami merancang grafis livery kustom dan mencetaknya pada stiker vinyl premium resolusi tinggi. Pemasangan presisi mengikuti kontur lekuk bodi mobil.',
+        image: 'assets/images/racing_livery.png',
+        gallery: ['assets/images/racing_livery.png'],
+        mods: ['Custom Livery Graphic Design', 'Print Vinyl HD + Matte Laminate', 'Precision Edge Fitting']
+      },
+      'velg-upgrade-brio': {
+        title: 'Velg Forged 18" & Big Brake Kit',
+        category: 'Velg & Ban',
+        desc: 'Pemasangan velg alloy forged ringan ring 18 dengan kaliper Big Brake Kit 6-piston pada Honda Brio.',
+        longDesc: 'Ganti velg standar dengan velg alloy forged berbobot ringan untuk memangkas un-sprung weight, dipadukan kaliper Big Brake Kit 6-pot berwarna merah sporty dan ban performa tinggi.',
+        image: 'assets/images/velg_upgrade.png',
+        gallery: ['assets/images/velg_upgrade.png', 'assets/images/brake_kit.png'],
+        mods: ['Velg Alloy Forged 18 Inch', 'Big Brake Kit 6-Piston Caliper', 'Ban Performa High-Grip', 'Spooring & Balancing 3D']
+      }
+    };
+
+    // Theme toggle
+    const toggle = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+    if (toggle) {
+      const saved = (() => { try { return JSON.parse(localStorage.getItem('ds:theme')); } catch { return null; } })();
+      if (saved === 'light') {
+        document.documentElement.dataset.theme = 'light';
+        if (icon) icon.className = 'bi bi-sun-fill';
+      }
+      toggle.addEventListener('click', () => {
+        const isLight = document.documentElement.dataset.theme === 'light';
+        if (isLight) {
+          delete document.documentElement.dataset.theme;
+          if (icon) icon.className = 'bi bi-moon-stars';
+          try { localStorage.setItem('ds:theme', JSON.stringify('dark')); } catch {}
+        } else {
+          document.documentElement.dataset.theme = 'light';
+          if (icon) icon.className = 'bi bi-sun-fill';
+          try { localStorage.setItem('ds:theme', JSON.stringify('light')); } catch {}
+        }
+      });
+    }
+
+    // Parse URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const projectId = urlParams.get('id');
+
+    if (projectId && projects[projectId]) {
+      const data = projects[projectId];
+      document.getElementById('projectTitle').textContent = data.title;
+      document.getElementById('projectCategory').textContent = data.category;
+      document.getElementById('projectDesc').textContent = data.desc;
+      document.getElementById('projectLongDesc').textContent = data.longDesc;
+
+      // Dynamically render slides matching the project's exact gallery photos
+      const gallery = data.gallery && data.gallery.length ? data.gallery : [data.image];
+      const sliderContainer = document.getElementById('projectGallery');
+      const track = sliderContainer.querySelector('.slider-track');
+      const dotsContainer = sliderContainer.querySelector('.slider-dots');
+      const controlsContainer = sliderContainer.querySelector('.slider-controls');
+
+      if (track) {
+        track.innerHTML = gallery.map(imgSrc => `
+          <div class="slider-slide car-card-media is-nocturne" style="min-height: 320px;">
+            <img class="car-card-image gallery-slide-img" src="${imgSrc}" alt="${data.title}" style="max-height: 100%; object-fit: contain;" loading="lazy" decoding="async">
+          </div>
+        `).join('');
+      }
+
+      if (gallery.length > 1) {
+        if (dotsContainer) {
+          dotsContainer.style.display = 'flex';
+          dotsContainer.innerHTML = gallery.map((_, i) => `
+            <button type="button" class="slider-dot ${i === 0 ? 'is-active' : ''}" aria-label="Tampilkan gambar ${i + 1}"></button>
+          `).join('');
+        }
+        if (controlsContainer) controlsContainer.style.display = 'flex';
+        initSliders();
+      } else {
+        if (dotsContainer) dotsContainer.style.display = 'none';
+        if (controlsContainer) controlsContainer.style.display = 'none';
+      }
+
+      const modsList = document.getElementById('projectMods');
+      modsList.innerHTML = '';
+      data.mods.forEach(mod => {
+        const li = document.createElement('li');
+        li.innerHTML = `<i class="bi bi-check2-circle"></i><span>${mod}</span>`;
+        modsList.appendChild(li);
+      });
+    } else {
+      document.getElementById('projectTitle').textContent = 'Proyek Tidak Ditemukan';
+      document.getElementById('projectDesc').textContent = 'Maaf, detail proyek yang Anda cari tidak tersedia atau link salah.';
+      document.getElementById('projectCard').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

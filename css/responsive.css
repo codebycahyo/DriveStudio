@@ -1,0 +1,88 @@
+/* ============================================================
+   Drive Studio — responsive.css
+   Mobile-first breakpoint overrides. Base styles in the other
+   CSS files target ~360px; rules here progressively enhance
+   the layout at wider viewports. Do not add max-width rules
+   here — keep the cascade min-width only.
+   ============================================================ */
+
+@media (min-width: 480px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 576px) {
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .footer-bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Toolbar: wide search + compact filter side by side */
+  .toolbar .select {
+    min-width: 200px;
+  }
+
+  .toolbar-search {
+    flex: 1 1 320px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-5);
+  }
+
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+
+  .navbar-drawer {
+    display: none;
+  }
+
+  .navbar-links {
+    display: flex;
+  }
+
+  .navbar-toggle {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(3, 1fr); }
+
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+
+  /* Configurator: sidebars + canvas side by side from here up */
+  .configurator-layout {
+    grid-template-columns: minmax(240px, 280px) 1fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .configurator-layout {
+    grid-template-columns: minmax(240px, 280px) 1fr minmax(280px, 320px);
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --container-max: 1400px;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --container-max: 1720px;
+  }
+
+  .grid-4 { grid-template-columns: repeat(5, 1fr); }
+  .grid-3 { grid-template-columns: repeat(4, 1fr); }
+}
+

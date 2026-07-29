@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Layanan | Drive Studio</title>
+  <meta name="description" content="Deskripsi lengkap, estimasi biaya, proses pengerjaan, dan garansi layanan kustomisasi kendaraan di Drive Studio." />
+
+  <script>
+    (function () {
+      try {
+        var saved = JSON.parse(localStorage.getItem('ds:theme'));
+        if (saved === 'light') document.documentElement.dataset.theme = 'light';
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/main.css?v=34" />
+  <link rel="stylesheet" href="css/components.css?v=34" />
+  <link rel="stylesheet" href="css/animations.css?v=34" />
+  <link rel="stylesheet" href="css/pages.css?v=34" />
+  <link rel="stylesheet" href="css/responsive.css?v=34" />
+
+  <meta property="og:title" content="Detail Layanan | Drive Studio" />
+  <meta property="og:description" content="Informasi lengkap layanan kustomisasi dan modifikasi kendaraan." />
+  <meta property="og:image" content="https://drivestudio.com/og-image.jpg" />
+  <meta property="og:url" content="https://drivestudio.com/detail.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Detail Layanan | Drive Studio" />
+  <meta name="twitter:description" content="Informasi lengkap layanan kustomisasi dan modifikasi kendaraan." />
+  <meta name="twitter:image" content="https://drivestudio.com/og-image.jpg" />
+  <link rel="canonical" href="https://drivestudio.com/detail.html" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body data-page="detail">
+  <a href="#main-content" class="sr-only focusable-skip-link">Langsung ke konten utama</a>
+
+  <div class="loading-screen" id="loadingScreen">
+    <p class="loading-logo">DRIVE<span class="text-primary">STUDIO</span></p>
+    <div class="loading-bar">
+      <div class="loading-bar-fill" id="loadingBarFill"></div>
+    </div>
+  </div>
+
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="navbar-brand">Drive<span>Studio</span></a>
+
+      <nav class="navbar-links" aria-label="Navigasi Utama">
+        <a href="index.html">Beranda</a>
+        <a href="cars.html" class="is-active">Layanan</a>
+        <a href="compare.html">Galeri</a>
+        <a href="configurator.html">Konfigurator</a>
+        <a href="about.html">Tentang Kami</a>
+      </nav>
+
+      <div class="navbar-actions">
+        <button type="button" class="btn-icon" id="themeToggle" aria-label="Ubah Tema Terang/Gelap">
+          <i class="bi bi-moon-stars" id="themeIcon"></i>
+        </button>
+        <button type="button" class="btn-icon navbar-toggle" id="navbarToggle" aria-label="Buka Menu" aria-expanded="false" aria-controls="navbarDrawer">
+          <i class="bi bi-list" id="navbarToggleIcon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="navbar-drawer" id="navbarDrawer">
+    <a href="index.html">Beranda</a>
+    <a href="cars.html" class="is-active">Layanan</a>
+    <a href="compare.html">Galeri</a>
+    <a href="configurator.html">Konfigurator</a>
+    <a href="about.html">Tentang Kami</a>
+  </div>
+
+  <main id="main-content">
+    <section class="page-hero" id="tech">
+      <div class="container">
+        <nav class="breadcrumb reveal" aria-label="Breadcrumb">
+          <a href="index.html">Beranda</a>
+          <span aria-hidden="true">/</span>
+          <a href="cars.html">Layanan</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page" id="breadcrumbName">Ceramic Coating 9H</span>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-2 gap-6 reveal">
+          <!-- Left: Image View -->
+          <div>
+            <div class="card overflow-hidden">
+              <div class="aspect-video" style="position: relative; background: var(--surface);">
+                <img width="600" height="400" id="serviceImg" src="assets/images/ceramic_coating.png" alt="Detail Layanan" class="w-full h-full object-cover" loading="lazy" decoding="async">
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Details summary -->
+          <div class="flex flex-col justify-center">
+            <div class="flex justify-between items-center mb-3">
+              <span class="badge badge-care" id="serviceBadge">Perawatan</span>
+            </div>
+            <h1 class="fs-h2" id="serviceTitle">Ceramic Coating 9H</h1>
+            <p class="text-mid mt-2 fs-sm" id="serviceSubtitle">Perlindungi cat bodi kendaraan dengan teknologi nano ceramic 9H tahan gores</p>
+            
+            <div class="card mt-4 p-5" style="background: var(--surface); border: 1px solid var(--border); padding: var(--space-4) var(--space-5);">
+              <div class="flex justify-between items-center mb-2 gap-3 flex-wrap">
+                <span class="text-mid fs-xs" style="flex-shrink: 0;">Estimasi Biaya:</span>
+                <span class="fs-h3 text-primary fw-600" id="servicePrice" style="word-break: break-word;">Mulai Rp2.500.000</span>
+              </div>
+              <div class="flex justify-between items-center gap-3 flex-wrap">
+                <span class="text-mid fs-xs" style="flex-shrink: 0;">Estimasi Pengerjaan:</span>
+                <span class="text-high fs-xs fw-600" id="serviceDuration">2-3 Hari Kerja</span>
+              </div>
+            </div>
+
+            <p class="text-mid mt-4" id="serviceDesc">
+              Layanan Ceramic Coating 9H memberikan lapisan pelindung transparan dengan tingkat kekerasan 9H. Melindungi cat asli kendaraan dari sinar UV, hujan asam, jamur, serta goresan halus.
+            </p>
+
+            <div class="flex gap-3 mt-6 flex-wrap">
+              <a href="about.html#contact" class="btn btn-primary">
+                <i class="bi bi-calendar-check"></i> Booking Layanan Ini
+              </a>
+              <a href="configurator.html" class="btn btn-ghost">
+                <i class="bi bi-box"></i> Coba Konfigurator 3D
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail Tabs Section -->
+        <div class="mt-6 reveal">
+          <div class="tabs" role="tablist" aria-label="Detail Layanan">
+            <button role="tab" aria-selected="true" aria-controls="tab-overview" id="tab-btn-overview" class="tab-btn is-active">
+              Deskripsi Layanan
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="tab-process" id="tab-btn-process" class="tab-btn">
+              Proses Pengerjaan
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="tab-warranty" id="tab-btn-warranty" class="tab-btn">
+              Garansi & Material
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="tab-benefits" id="tab-btn-benefits" class="tab-btn">
+              Kelebihan & Tips
+            </button>
+          </div>
+
+          <div class="tab-content mt-4" aria-live="polite">
+            <!-- Tab 1: Overview -->
+            <div id="tab-overview" role="tabpanel" aria-labelledby="tab-btn-overview" class="tab-panel">
+              <div class="card p-5">
+                <h3 class="fs-h3 mb-3">Detail Fitur & Cakupan Layanan</h3>
+                <ul class="text-mid flex flex-col gap-2" id="overviewItems" style="padding-left: 1.2rem;">
+                  <li>Pencucian mendalam dan pembersihan kontaminasi (decontam).</li>
+                  <li>Multi-stage paint correction untuk menghilangkan swirl mark.</li>
+                  <li>Aplikasi 3 lapisan Nano Ceramic Coating 9H pada seluruh bodi.</li>
+                  <li>Coating khusus pada kaca depan dan velg.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Tab 2: Process -->
+            <div id="tab-process" role="tabpanel" aria-labelledby="tab-btn-process" class="tab-panel" hidden>
+              <div class="card p-5">
+                <h3 class="fs-h3 mb-4">Tahapan Pengerjaan di Studio</h3>
+                <div class="flex flex-col gap-4" id="processSteps">
+                  <div class="flex gap-3 items-start">
+                    <span class="badge badge-primary">Tahap 1</span>
+                    <div>
+                      <h4 class="fs-base fw-600">Inspeksi & Decontam Wash</h4>
+                      <p class="text-mid fs-xs mt-1">Pemeriksaan kondisi cat dan pembersihan aspal, jamur, serta zat besi menggunakan clay bar.</p>
+                    </div>
+                  </div>
+                  <div class="flex gap-3 items-start">
+                    <span class="badge badge-primary">Tahap 2</span>
+                    <div>
+                      <h4 class="fs-base fw-600">Paint Correction & Polishing</h4>
+                      <p class="text-mid fs-xs mt-1">Proses poles multi-stage untuk menghilangkan goresan halus dan mengembalikan kilap asli cat.</p>
+                    </div>
+                  </div>
+                  <div class="flex gap-3 items-start">
+                    <span class="badge badge-primary">Tahap 3</span>
+                    <div>
+                      <h4 class="fs-base fw-600">Aplikasi Coating & Curing</h4>
+                      <p class="text-mid fs-xs mt-1">Penataan lapisan ceramic coating secara presisi dan pengeringan dengan lampu infrared curing.</p>
+                    </div>
+                  </div>
+                  <div class="flex gap-3 items-start">
+                    <span class="badge badge-primary">Tahap 4</span>
+                    <div>
+                      <h4 class="fs-base fw-600">Final Quality Control</h4>
+                      <p class="text-mid fs-xs mt-1">Inspeksi akhir di bawah lampu inspeksi khusus sebelum serah terima kepada pelanggan.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 3: Warranty & Materials -->
+            <div id="tab-warranty" role="tabpanel" aria-labelledby="tab-btn-warranty" class="tab-panel" hidden>
+              <div class="card p-5">
+                <h3 class="fs-h3 mb-3">Garansi Resmi & Spesifikasi Material</h3>
+                <p class="text-mid mb-4" id="warrantyText">
+                  Kami hanya menggunakan cairan ceramic coating bersertifikasi internasional yang aman untuk semua jenis cat kendaraan. Layanan ini mencakup garansi perawatan ulang jika timbul efek kusam alami.
+                </p>
+                <div class="grid grid-2 gap-4">
+                  <div class="p-3 card" style="background: var(--surface);">
+                    <h4 class="fs-sm fw-600 text-primary"><i class="bi bi-shield-check"></i> Masa Garansi</h4>
+                    <p class="text-mid fs-xs mt-1" id="warrantyPeriod">Garansi hingga 5 tahun dengan masa maintenance berkala tiap 6 bulan.</p>
+                  </div>
+                  <div class="p-3 card" style="background: var(--surface);">
+                    <h4 class="fs-sm fw-600 text-accent"><i class="bi bi-box-seam"></i> Standar Material</h4>
+                    <p class="text-mid fs-xs mt-1" id="materialSpec">Cairan 9H Hardness Nano Silica berbahan dasar impor Jerman/Jepang.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 4: Benefits -->
+            <div id="tab-benefits" role="tabpanel" aria-labelledby="tab-btn-benefits" class="tab-panel" hidden>
+              <div class="grid grid-2 gap-4">
+                <div class="card p-5">
+                  <h3 class="fs-h3 text-primary mb-3"><i class="bi bi-check-circle-fill"></i> Keunggulan Utama</h3>
+                  <ul class="text-mid flex flex-col gap-2" id="prosList" style="padding-left: 1.2rem;">
+                    <li>Melindungi cat dari oksidasi dan bahaya sinar UV panas matahari.</li>
+                    <li>Efek daun talas (hydrophobic) membuat mobil mudah dicuci.</li>
+                    <li>Menjaga nilai jual kembali kendaraan tetap tinggi.</li>
+                  </ul>
+                </div>
+                <div class="card p-5">
+                  <h3 class="fs-h3 text-warning mb-3"><i class="bi bi-exclamation-circle-fill"></i> Catatan Perawatan</h3>
+                  <ul class="text-mid flex flex-col gap-2" id="consList" style="padding-left: 1.2rem;">
+                    <li>Hindari mencuci mobil dengan sabun cuci piring yang bersifat keras.</li>
+                    <li>Jangan mengelap bodi saat kering dan berdebu untuk mencegah baret halus.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related Services -->
+        <div class="mt-6 reveal">
+          <h2 class="fs-h3 mb-4">Layanan Terkait Lainnya</h2>
+          <div class="grid grid-3 gap-4" id="relatedGrid">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-partners">
+        <p class="eyebrow">Dipercaya Oleh</p>
+        <div class="partner-logos mt-4">
+          <div class="partner-logo" aria-label="Toyota"><i class="bi bi-car-front-fill"></i><span>Toyota</span></div>
+          <div class="partner-logo" aria-label="Honda"><i class="bi bi-car-front"></i><span>Honda</span></div>
+          <div class="partner-logo" aria-label="Mitsubishi"><i class="bi bi-truck"></i><span>Mitsubishi</span></div>
+          <div class="partner-logo" aria-label="BYD"><i class="bi bi-ev-front-fill"></i><span>BYD</span></div>
+          <div class="partner-logo" aria-label="AutoParts Pro"><i class="bi bi-gear-fill"></i><span>AutoParts Pro</span></div>
+          <div class="partner-logo" aria-label="WrapStudio"><i class="bi bi-palette-fill"></i><span>WrapStudio</span></div>
+        </div>
+      </div>
+
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="navbar-brand">Drive<span>Studio</span></a>
+          <p class="mt-3">Bengkel kustomisasi dan modifikasi kendaraan profesional. Layanan premium untuk pencinta otomotif Indonesia.</p>
+          <div class="social-links mt-4">
+            <a href="javascript:void(0)" class="btn-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="javascript:void(0)" class="btn-icon" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+            <a href="javascript:void(0)" class="btn-icon" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Layanan</h4>
+          <nav class="footer-links">
+            <a href="cars.html">Katalog Layanan</a>
+            <a href="compare.html">Galeri Proyek</a>
+            <a href="configurator.html">Konfigurator 3D</a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Perusahaan</h4>
+          <nav class="footer-links">
+            <a href="about.html">Tentang Kami</a>
+            <a href="index.html#news">Artikel</a>
+            <a href="about.html#contact">Booking Jasa</a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Informasi</h4>
+          <nav class="footer-links">
+            <a href="about.html#tech">Teknologi</a>
+            <a href="about.html#roadmap">Alur Booking</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Drive Studio. Proyek Akhir Pemrograman Web.</p>
+        <p>Dibuat dengan HTML5, CSS3, Vanilla JavaScript &amp; Three.js</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initNavbar } from './js/nav.js';
+    import { initScrollReveal, initLoadingScreen } from './js/utils.js';
+    import { initTabs } from './js/ui.js';
+
+    initNavbar();
+    initScrollReveal();
+    initLoadingScreen();
+    initTabs();
+
+    // Theme toggle
+    const toggle = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+    if (toggle) {
+      const saved = (() => { try { return JSON.parse(localStorage.getItem('ds:theme')); } catch { return null; } })();
+      if (saved === 'light') {
+        document.documentElement.dataset.theme = 'light';
+        if (icon) icon.className = 'bi bi-sun-fill';
+      }
+      toggle.addEventListener('click', () => {
+        const isLight = document.documentElement.dataset.theme === 'light';
+        if (isLight) {
+          delete document.documentElement.dataset.theme;
+          if (icon) icon.className = 'bi bi-moon-stars';
+          try { localStorage.setItem('ds:theme', JSON.stringify('dark')); } catch {}
+        } else {
+          document.documentElement.dataset.theme = 'light';
+          if (icon) icon.className = 'bi bi-sun-fill';
+          try { localStorage.setItem('ds:theme', JSON.stringify('light')); } catch {}
+        }
+      });
+    }
+
+    const SERVICES_DATA = {
+      'ceramic-coating': {
+        name: 'Ceramic Coating Nano 9H',
+        category: 'Perawatan Cat',
+        badgeClass: 'badge-care',
+        img: 'ceramic_coating.png',
+        price: 'Mulai Rp2.500.000',
+        duration: '2-3 Hari Kerja',
+        subtitle: 'Perlindungi cat bodi kendaraan dengan teknologi nano ceramic 9H tahan gores',
+        desc: 'Layanan Ceramic Coating 9H memberikan lapisan pelindung transparan dengan tingkat kekerasan 9H. Melindungi cat asli kendaraan dari sinar UV, hujan asam, jamur, serta goresan halus.',
+        items: [
+          'Pencucian mendalam dan pembersihan kontaminasi (decontam).',
+          'Multi-stage paint correction untuk menghilangkan swirl mark.',
+          'Aplikasi 3 lapisan Nano Ceramic Coating 9H pada seluruh bodi.',
+          'Coating khusus pada kaca depan dan velg.'
+        ],
+        warrantyText: 'Kami hanya menggunakan cairan ceramic coating bersertifikasi internasional yang aman untuk semua jenis cat kendaraan. Layanan ini mencakup garansi perawatan ulang jika timbul efek kusam alami.',
+        warrantyPeriod: 'Garansi hingga 5 tahun dengan masa maintenance berkala tiap 6 bulan.',
+        materialSpec: 'Cairan 9H Hardness Nano Silica berbahan dasar impor Jerman/Jepang.',
+        pros: [
+          'Melindungi cat dari oksidasi dan bahaya sinar UV panas matahari.',
+          'Efek daun talas (hydrophobic) membuat mobil sangat mudah dicuci.',
+          'Menjaga warna cat tetap mengkilap seperti baru (wet-look).'
+        ],
+        cons: [
+          'Hindari mencuci mobil dengan sabun cuci piring yang bersifat keras.',
+          'Jangan mengelap bodi saat kering dan berdebu untuk mencegah baret halus.'
+        ]
+      },
+      'paint-correction': {
+        name: 'Paint Correction & Polish',
+        category: 'Perawatan Cat',
+        badgeClass: 'badge-care',
+        img: 'paint_correction.png',
+        price: 'Mulai Rp1.800.000',
+        duration: '1-2 Hari Kerja',
+        subtitle: 'Restorasi kilap cat dari baret halus, jamur, dan swirl mark akibat cuci mobil',
+        desc: 'Paint Correction adalah proses pemolesan bertahap menggunakan kompon mikro khusus untuk meratakan lapisan clear coat dan menghilangkan hingga 90% baret halus (swirl mark).',
+        items: [
+          'Pembersihan kerak air dan noda jamur cat.',
+          'Poles Heavy Cut Compounding untuk baret agak dalam.',
+          'Poles Medium Finish Polish untuk meratakan kilap.',
+          'Aplikasi lapisan Wax/Sealant pelindung kilap.'
+        ],
+        warrantyText: 'Garansi kilap sempurna tanpa efek bercak compound pada karet dan kaca.',
+        warrantyPeriod: 'Garansi pengerjaan 6 bulan.',
+        materialSpec: 'Compound & Finishing Polish bebas silikon (paint-shop safe).',
+        pros: [
+          'Mengembalikan warna asli kendaraan yang kusam menjadi bening kembali.',
+          'Menghilangkan bercak jamur air (water spot) yang membandel.'
+        ],
+        cons: [
+          'Baret yang sudah menembus cat dasar tidak dapat dihilangkan hanya dengan poles.'
+        ]
+      },
+      'full-body-wrap': {
+        name: 'Full Body Vinyl Wrapping',
+        category: 'Stiker Wrapping',
+        badgeClass: 'badge-wrap',
+        img: 'body_wrapping.png',
+        price: 'Mulai Rp8.000.000',
+        duration: '3-5 Hari Kerja',
+        subtitle: 'Ubah warna kendaraan sepenuhnya menggunakan stiker vinyl premium tanpa merusak cat asli',
+        desc: 'Layanan Full Body Wrapping melapisi seluruh permukaan eksterior kendaraan dengan stiker vinyl kelas atas. Pilihan finishing beragam dari Matte, Satin, Glossy, hingga Metallic.',
+        items: [
+          'Pembongkaran minor (handle pintu, spion) untuk lipatan rapi.',
+          'Pembersihan permukaan bodi dengan alkohol khusus.',
+          'Pemasangan stiker vinyl impor bermerek (Avery/3M/Oracal).',
+          'Heating & Post-heating untuk memastikan stiker tidak mengelupas.'
+        ],
+        warrantyText: 'Garansi lem stiker tidak merusak cat asli saat dilepas dan garansi pengerjaan dari gelembung udara.',
+        warrantyPeriod: 'Garansi resmi hingga 3 tahun.',
+        materialSpec: 'Stiker Cast Vinyl Premium ketebalan 80-100 micron.',
+        pros: [
+          'Melindungi cat asli dari goresan langsung dan krikil jalanan.',
+          'Bisa berganti warna kapan saja dan mudah dilepas kembali.'
+        ],
+        cons: [
+          'Hindari menyemprotkan jet washer langsung dengan jarak terlalu dekat pada lekukan lipatan stiker.'
+        ]
+      },
+      'partial-wrap': {
+        name: 'Partial Wrapping & Accent',
+        category: 'Stiker Wrapping',
+        badgeClass: 'badge-wrap',
+        img: 'partial_wrapping.png',
+        price: 'Mulai Rp3.000.000',
+        duration: '1 Hari Kerja',
+        subtitle: 'Sentuhan kustomisasi dua warna pada bagian atap, kap mesin, atau spion',
+        desc: 'Bosan dengan tampilan polos? Partial wrapping memberikan aksen kontras seperti Atop Blackout (dua warna style panoramic roof) atau kap mesin motif karbon.',
+        items: [
+          'Wrapping Atap (Blackout Roof Glossy).',
+          'Wrapping Kap Mesin atau Bagasi.',
+          'Wrapping Cover Spion dan Aksen Chrome Delete.'
+        ],
+        warrantyText: 'Garansi pemotongan stiker presisi tanpa menggores cat bodi.',
+        warrantyPeriod: 'Garansi 2 tahun.',
+        materialSpec: 'High Gloss Super Black Vinyl / 3D Carbon Vinyl.',
+        pros: [
+          'Pengerjaan cepat dalam 1 hari.',
+          'Memberikan tampilan sporty dua warna ala mobil mewah modern.'
+        ],
+        cons: [
+          'Perlu perawatan pembersihan teratur pada bagian atap yang sering terkena sinar matahari.'
+        ]
+      },
+      'body-kit': {
+        name: 'Body Kit & Aero Parts',
+        category: 'Modifikasi Eksterior',
+        badgeClass: 'badge-mod',
+        img: 'body_kit.png',
+        price: 'Mulai Rp15.000.000',
+        duration: '5-7 Hari Kerja',
+        subtitle: 'Pemasangan wide body kit, lip spoiler, side skirts, dan rear diffuser',
+        desc: 'Ubah karakter kendaraan Anda menjadi lebih agresif dan aerodinamis dengan pemasangan paket body kit kustom berbahan FRP berkualitas tinggi atau ABS fleksibel.',
+        items: [
+          'Fitting & Alignment presisi sesuai sasis mobil.',
+          'Pengecatan oven sesuai kode warna asli kendaraan.',
+          'Pemasangan dengan braket aman & seal khusus.',
+          'Finishing instalasi lip spoiler & diffuser.'
+        ],
+        warrantyText: 'Garansi cat body kit tidak pecah atau belang dari bodi asli.',
+        warrantyPeriod: 'Garansi pengerjaan & cat 2 tahun.',
+        materialSpec: 'Material ABS Grade A / Fiberglass Reinforced Polymer (FRP).',
+        pros: [
+          'Tampilan eksterior berubah drastis menjadi sporty dan unik.',
+          'Meningkatkan tingkat aerodinamis kendaraan di kecepatan tinggi.'
+        ],
+        cons: [
+          'Ground clearance menjadi sedikit lebih rendah, perlu hati-hati di polisi tidur tinggi.'
+        ]
+      },
+      'carbon-fiber': {
+        name: 'Carbon Fiber Parts Upgrade',
+        category: 'Modifikasi Eksterior',
+        badgeClass: 'badge-mod',
+        img: 'carbon_fiber_parts.png',
+        price: 'Mulai Rp5.000.000',
+        duration: '2-3 Hari Kerja',
+        subtitle: 'Upgrade kap mesin, kap bagasi, dan spion karbon fiber asli',
+        desc: 'Komponen serat karbon ringan untuk mengurangi bobot sekaligus mempercantik estetika mobil balap modern.',
+        items: [
+          'Pemasangan kap mesin karbon fiber dry carbon.',
+          'Cover spion dan rear wing spoiler karbon.',
+          'Finishing clear coat UV protection.'
+        ],
+        warrantyText: 'Garansi serat karbon asli tidak menguning atau pecah retak.',
+        warrantyPeriod: 'Garansi 2 tahun.',
+        materialSpec: 'Real Carbon Fiber Weave 3K Twill Glossy Finish.',
+        pros: ['Sangat ringan dan kuat.', 'Memberikan tampilan racing performa tinggi.'],
+        cons: ['Perlu kehati-hatian saat membersihkan agar clear coat tidak tergores pasir.']
+      },
+      'custom-interior': {
+        name: 'Custom Interior Retrim',
+        category: 'Kustom Interior',
+        badgeClass: 'badge-interior',
+        img: 'interior_mod.png',
+        price: 'Mulai Rp7.000.000',
+        duration: '3-5 Hari Kerja',
+        subtitle: 'Retrim jok kulit sintetis/Nappa, dashboard custom, dan door trim',
+        desc: 'Transformasi total suasana kabin interior kendaraan Anda dengan material kulit premium buatan pabrik atau kulit impor Nappa.',
+        items: [
+          'Bongkar jok asli dan pembuatan pola jahitan kustom.',
+          'Retrim jok depan, belakang, dan armrest.',
+          'Retrim doortrim dan stir kulit perforated.'
+        ],
+        warrantyText: 'Garansi jahitan dan kelupasan bahan kulit.',
+        warrantyPeriod: 'Garansi 3 tahun.',
+        materialSpec: 'Microfiber Leather / Genuine Nappa Leather.',
+        pros: ['Kabin jauh lebih mewah dan nyaman.', 'Mudah dibersihkan dari tumpahan cairan.'],
+        cons: ['Perlu perawatan leather conditioner setiap 3 bulan.']
+      },
+      'ambient-lighting': {
+        name: 'Ambient LED Lighting System',
+        category: 'Kustom Interior',
+        badgeClass: 'badge-interior',
+        img: 'ambient_lighting.png',
+        price: 'Mulai Rp2.000.000',
+        duration: '1 Hari Kerja',
+        subtitle: 'Instalasi LED ambient light RGB 64 warna terintegrasi aplikasi smartphone',
+        desc: 'Ciptakan suasana kabin futuristik khas mobil mewah dengan sistem pencahayaan LED ambient tersembunyi yang dapat disesuaikan warnanya.',
+        items: [
+          'Pemasangan optik LED pada dashboard dan 4 pintu.',
+          'Pemasangan footwell light bawah jok.',
+          'Koneksi modul Bluetooth ke smartphone app.'
+        ],
+        warrantyText: 'Garansi modul kelistrikan dan lampu LED tidak mati.',
+        warrantyPeriod: 'Garansi 1 tahun.',
+        materialSpec: 'Acrylic LED Strip 64 Color RGB App Control.',
+        pros: ['Warna dapat diubah sesuka hati.', 'Pengoperasian mudah lewat aplikasi HP.'],
+        cons: ['Perlu kelistrikan yang teratur dan rapi.']
+      },
+      'upgrade-velg': {
+        name: 'Upgrade Velg & Ban',
+        category: 'Velg & Ban',
+        badgeClass: 'badge-wheels',
+        img: 'velg_upgrade.png',
+        price: 'Mulai Rp3.000.000',
+        duration: '1 Hari Kerja',
+        subtitle: 'Ganti velg aftermarket forged / flow-formed bermerek dengan ban performa',
+        desc: 'Upgrade velg adalah cara paling efektif mengubah stance kendaraan. Kami menyediakan velg kualitas forged berbobot ringan yang meningkatkan performa berkendara.',
+        items: [
+          'Konsultasi ukuran PCD, Offset (ET), dan lebar velg ideal.',
+          'Bongkar pasang dengan mesin tyre changer khusus tanpa menggores velg.',
+          'Balancing roda 3D laser precision.',
+          'Spooring 3D wheel alignment.'
+        ],
+        warrantyText: 'Garansi velg asli bebas retak manufaktur dan garansi spooring presisi.',
+        warrantyPeriod: 'Garansi resmi pabrikan velg 1-3 tahun.',
+        materialSpec: 'Velg Alloy Forged / Flow Formed bermerek teruji.',
+        pros: [
+          'Memangkas bobot un-sprung weight sehingga mobil lebih responsif.',
+          'Tampilan stance roda menjadi lebih padat dan gagah.'
+        ],
+        cons: [
+          'Profil ban lebih tipis memerlukan kehati-hatian ekstra saat melindas lubang.'
+        ]
+      },
+      'brake-kit': {
+        name: 'Big Brake Kit Upgrade (BBK)',
+        category: 'Velg & Ban',
+        badgeClass: 'badge-wheels',
+        img: 'brake_kit.png',
+        price: 'Mulai Rp8.000.000',
+        duration: '1 Hari Kerja',
+        subtitle: 'Upgrade rem performa dengan kaliper Big Brake Kit 4/6 pot',
+        desc: 'Tingkatkan daya cengkeram pengereman dan penampilan roda dengan kaliper Big Brake Kit berukuran besar.',
+        items: [
+          'Pemasangan kaliper Big Brake Kit 4 atau 6 pot.',
+          'Rotor piringan rem drilled & slotted.',
+          'Brake line stainless steel braided.'
+        ],
+        warrantyText: 'Garansi pengereman dan kebocoran minyak rem.',
+        warrantyPeriod: 'Garansi 1 tahun.',
+        materialSpec: 'Forged Aluminum Caliper & High Carbon Rotor Disc.',
+        pros: ['Jarak pengereman lebih pendek.', 'Tampilan roda jauh lebih padat dan sporty.'],
+        cons: ['Memerlukan velg dengan spesifikasi offset yang mendukung clearance kaliper.']
+      },
+      'audio-premium': {
+        name: 'System Audio Premium & Soundproof',
+        category: 'Audio & Elektronik',
+        badgeClass: 'badge-audio',
+        img: 'audio_premium.png',
+        price: 'Mulai Rp4.000.000',
+        duration: '2 Hari Kerja',
+        subtitle: 'Sistem audio high-end dengan DSP, subwoofer & peredam suara',
+        desc: 'Nikmati kualitas suara musik layaknya konser di dalam kabin mobil Anda dengan tuning DSP profesional.',
+        items: [
+          'Pemasangan peredam suara 2 lapis pada 4 pintu.',
+          'Instalasi speaker 2-way / 3-way component.',
+          'Processor DSP & Subwoofer aktif / pasif.'
+        ],
+        warrantyText: 'Garansi instalasi bebas noise dan garansi perangkat audio.',
+        warrantyPeriod: 'Garansi 1 tahun.',
+        materialSpec: 'DSP Amp, Hi-Res Component Speaker & Aluminium Sound Proofing.',
+        pros: ['Kabin jauh lebih senyap dari suara bising luar.', 'Kualitas vokal dan bass sangat jernih.'],
+        cons: ['Membutuhkan waktu tuning akustik yang cermat.']
+      },
+      'racing-livery': {
+        name: 'Racing Livery Design & Wrap',
+        category: 'Stiker Wrapping',
+        badgeClass: 'badge-wrap',
+        img: 'racing_livery.png',
+        price: 'Mulai Rp12.000.000',
+        duration: '3-4 Hari Kerja',
+        subtitle: 'Desain livery balap kustom & cetak vinyl high resolution',
+        desc: 'Wujudkan desain mobil balap impian dengan livery kustom hasil cetak vinyl definisi tinggi.',
+        items: [
+          'Desain 3D kustom grafis livery balap.',
+          'Cetak vinyl high resolution dengan laminasi matte/gloss.',
+          'Pemasangan presisi mengikuti kontur lekuk bodi.'
+        ],
+        warrantyText: 'Garansi ketahanan warna dari pudar sinar matahari.',
+        warrantyPeriod: 'Garansi 2 tahun.',
+        materialSpec: 'High Resolution Printed Cast Vinyl + UV Overlaminate.',
+        pros: ['Tampilan 100% kustom beda dari mobil lainnya.', 'Melindungi cat asli.'],
+        cons: ['Desain ramah balap memerlukan proses konfirmasi grafis sebelum dicetak.']
+      }
+    };
+
+    const serviceId = new URLSearchParams(location.search).get('car') || 'ceramic-coating';
+    const data = SERVICES_DATA[serviceId] || SERVICES_DATA['ceramic-coating'];
+
+    document.title = `${data.name} | Drive Studio`;
+    document.getElementById('breadcrumbName').textContent = data.name;
+    document.getElementById('serviceTitle').textContent = data.name;
+    document.getElementById('serviceSubtitle').textContent = data.subtitle;
+    document.getElementById('servicePrice').textContent = data.price;
+    document.getElementById('serviceDuration').textContent = data.duration;
+    document.getElementById('serviceDesc').textContent = data.desc;
+    document.getElementById('serviceImg').src = `assets/images/${data.img}`;
+    document.getElementById('serviceImg').alt = data.name;
+
+    const badgeEl = document.getElementById('serviceBadge');
+    badgeEl.textContent = data.category;
+    badgeEl.className = `badge ${data.badgeClass}`;
+
+    // Overview list
+    const overviewUl = document.getElementById('overviewItems');
+    if (overviewUl && data.items) {
+      overviewUl.innerHTML = data.items.map(item => `<li>${item}</li>`).join('');
+    }
+
+    // Warranty
+    if (data.warrantyText) document.getElementById('warrantyText').textContent = data.warrantyText;
+    if (data.warrantyPeriod) document.getElementById('warrantyPeriod').textContent = data.warrantyPeriod;
+    if (data.materialSpec) document.getElementById('materialSpec').textContent = data.materialSpec;
+
+    // Pros / Cons
+    const prosUl = document.getElementById('prosList');
+    if (prosUl && data.pros) {
+      prosUl.innerHTML = data.pros.map(p => `<li>${p}</li>`).join('');
+    }
+
+    const consUl = document.getElementById('consList');
+    if (consUl && data.cons) {
+      consUl.innerHTML = data.cons.map(c => `<li>${c}</li>`).join('');
+    }
+
+    // Related Services
+    const relatedGrid = document.getElementById('relatedGrid');
+    if (relatedGrid) {
+      const keys = Object.keys(SERVICES_DATA).filter(k => k !== serviceId).slice(0, 3);
+      relatedGrid.innerHTML = keys.map(k => {
+        const item = SERVICES_DATA[k];
+        return `
+          <div class="card car-card">
+            <div class="car-card-media">
+              <img width="600" height="400" src="assets/images/${item.img}" alt="${item.name}" class="car-card-image" loading="lazy" decoding="async">
+            </div>
+            <div class="card-body">
+              <span class="badge ${item.badgeClass}">${item.category}</span>
+              <h3 class="mt-2" style="font-size: 1rem;">${item.name}</h3>
+              <p class="text-mid fs-xs mt-1">${item.price}</p>
+              <a href="detail.html?car=${k}" class="btn btn-outline btn-sm mt-3 w-full text-center d-block">Lihat Detail</a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+  </script>
+</body>
+</html>

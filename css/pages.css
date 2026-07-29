@@ -1,0 +1,245 @@
+/* ============================================================
+   Drive Studio — pages.css
+   Page-specific layout. Each page's rules are grouped under a
+   comment banner keyed to its <body data-page="..."> value.
+   Shared component look-and-feel belongs in components.css, not here.
+   ============================================================ */
+
+/* First section on interior pages (everything except the Home hero) */
+.page-hero {
+  padding-top: calc(var(--nav-height) + var(--space-6));
+  padding-bottom: var(--space-4);
+}
+
+/* Larger page titles on interior pages (overrides the .fs-h2 utility) */
+.page-hero h1 {
+  font-size: clamp(2.5rem, 6.5vw, 4rem);
+}
+
+.hero {
+  min-height: 92vh;
+  min-height: 92dvh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(var(--nav-height) + var(--space-5));
+  padding-bottom: var(--space-6);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 18% 22%, rgba(242, 14, 75, 0.08), transparent 55%),
+    radial-gradient(circle at 82% 74%, rgba(4, 151, 242, 0.07), transparent 50%);
+  pointer-events: none;
+  animation: heroGlowPulse 8s var(--ease-in-out) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before {
+    animation: none;
+  }
+}
+
+.hero-content {
+  position: relative;
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+  text-align: left;
+}
+
+@media (min-width: 992px) {
+  .hero-content {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-6);
+  }
+}
+
+.hero-copy {
+  max-width: 620px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* On phones the two CTAs stack full-width; natural width from 480px up. */
+.hero-actions .btn {
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .hero-actions .btn {
+    width: auto;
+  }
+}
+
+.hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-car {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  filter: drop-shadow(0 26px 30px rgba(0, 0, 0, 0.30));
+}
+
+/* Desktop: enlarge the car and push it toward the right edge so it reads as
+   "emerging from the right". The hero has overflow:hidden, so the slight bleed
+   past the container is clipped intentionally (no horizontal scrollbar).
+   Fully static — no animation. */
+@media (min-width: 992px) {
+  .hero-visual {
+    justify-content: flex-end;
+    overflow: visible;
+  }
+
+  .hero-car {
+    max-width: none;
+    width: min(58vw, 780px);
+    transform: translateX(8%);
+  }
+}
+
+/* Rating + stats: horizontal strip below the hero row */
+.hero-stats-strip {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.hero-proof {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Stats stay on ONE horizontal row, even on phones (proof sits above). */
+.hero-stats {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.hero-stats > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  text-align: center;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.hero-stat-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--primary);
+  margin-bottom: 2px;
+}
+
+.hero-stats .stat-number {
+  font-size: 1.375rem;
+  line-height: 1.1;
+}
+
+.hero-stats .text-mid {
+  font-size: 0.7rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+/* From tablet up: rating on the left, stat columns spread on the right */
+@media (min-width: 768px) {
+  .hero-stats-strip {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-6);
+  }
+
+  .hero-proof {
+    flex: 0 0 auto;
+    padding-right: var(--space-6);
+    border-right: 1px solid var(--border);
+  }
+
+  .hero-stats {
+    flex: 1 1 auto;
+    justify-content: space-around;
+    width: auto;
+    gap: var(--space-4);
+  }
+
+  .hero-stat-icon {
+    font-size: 1.5rem;
+  }
+
+  .hero-stats .stat-number {
+    font-size: 2rem;
+  }
+
+  .hero-stats .text-mid {
+    font-size: var(--fs-sm);
+  }
+}
+
+/* Staggered second testimonial — only offset once the cards sit
+   side by side; on mobile (single column) it would just add an odd gap. */
+@media (min-width: 768px) {
+  .testimonial-offset {
+    margin-top: var(--space-5);
+  }
+}
+
+.cta-banner {
+  background: linear-gradient(135deg, rgba(242, 14, 75, 0.05), rgba(4, 151, 242, 0.05));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
+}
+
+/* A lone button directly inside a CTA banner is reliably centered */
+.cta-banner > .btn {
+  display: flex;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+/* Gallery-detail: modification checklist as a clean icon list */
+.project-mods {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  color: var(--text-mid);
+}
+
+.project-mods li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  line-height: 1.6;
+}
+
+.project-mods li i {
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
